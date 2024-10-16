@@ -16,6 +16,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Slider } from "@/components/ui/slider"
 import { useToast } from "@/hooks/use-toast"
+import { Label } from "@/components/ui/label"
 import {
   Book,
   ChevronLeft,
@@ -34,6 +35,7 @@ import {
   SkipForward,
   Repeat,
 } from "lucide-react"
+import reciters from "./reciter.json"
 
 interface VerseData {
   text: string
@@ -45,15 +47,6 @@ interface VerseData {
     revelationType: string
     numberOfAyahs: number
   }
-}
-
-interface SearchResult {
-  surah: {
-    number: number
-    englishName: string
-  }
-  numberInSurah: number
-  text: string
 }
 
 interface BookmarkData {
@@ -77,7 +70,6 @@ export default function Component() {
   const [versePictureUrl, setVersePictureUrl] = useState<string>("")
   const [selectedLanguage, setSelectedLanguage] = useState<string>("en")
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
   const [bookmarks, setBookmarks] = useState<BookmarkData[]>([])
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
@@ -89,268 +81,7 @@ export default function Component() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const { toast } = useToast()
 
-  const reciters: Reciter[] = [
-    {
-      id: 1,
-      name: "Abdul Basit Murattal",
-      subfolder: "Abdul_Basit_Murattal_64kbps",
-    },
-    {
-      id: 2,
-      name: "Abdul Basit Murattal",
-      subfolder: "Abdul_Basit_Murattal_192kbps",
-    },
-    {
-      id: 3,
-      name: "Abdul Basit Mujawwad",
-      subfolder: "Abdul_Basit_Mujawwad_128kbps",
-    },
-    { id: 4, name: "Abdullah Basfar", subfolder: "Abdullah_Basfar_32kbps" },
-    { id: 5, name: "Abdullah Basfar", subfolder: "Abdullah_Basfar_64kbps" },
-    { id: 6, name: "Abdullah Basfar", subfolder: "Abdullah_Basfar_192kbps" },
-    {
-      id: 7,
-      name: "Abdurrahmaan As-Sudais",
-      subfolder: "Abdurrahmaan_As-Sudais_64kbps",
-    },
-    {
-      id: 8,
-      name: "Abdurrahmaan As-Sudais",
-      subfolder: "Abdurrahmaan_As-Sudais_192kbps",
-    },
-    {
-      id: 9,
-      name: "AbdulSamad QuranExplorer.Com",
-      subfolder: "AbdulSamad_64kbps_QuranExplorer.Com",
-    },
-    {
-      id: 10,
-      name: "Abu Bakr Ash-Shaatree",
-      subfolder: "Abu_Bakr_Ash-Shaatree_64kbps",
-    },
-    {
-      id: 11,
-      name: "Abu Bakr Ash-Shaatree",
-      subfolder: "Abu_Bakr_Ash-Shaatree_128kbps",
-    },
-    {
-      id: 12,
-      name: "Ahmed ibn Ali al-Ajamy QuranExplorer.Com",
-      subfolder: "Ahmed_ibn_Ali_al-Ajamy_64kbps_QuranExplorer.Com",
-    },
-    {
-      id: 13,
-      name: "Ahmed ibn Ali al-Ajamy KetabAllah.Net",
-      subfolder: "Ahmed_ibn_Ali_al-Ajamy_128kbps_ketaballah.net",
-    },
-    { id: 14, name: "Alafasy", subfolder: "Alafasy_64kbps" },
-    { id: 15, name: "Alafasy", subfolder: "Alafasy_128kbps" },
-    { id: 16, name: "Ghamadi", subfolder: "Ghamadi_40kbps" },
-    { id: 17, name: "Hani Rifai", subfolder: "Hani_Rifai_64kbps" },
-    { id: 18, name: "Hani Rifai", subfolder: "Hani_Rifai_192kbps" },
-    { id: 19, name: "Husary", subfolder: "Husary_64kbps" },
-    { id: 20, name: "Husary", subfolder: "Husary_128kbps" },
-    { id: 21, name: "Husary Mujawwad", subfolder: "Husary_Mujawwad_64kbps" },
-    { id: 22, name: "Husary Mujawwad", subfolder: "Husary_128kbps_Mujawwad" },
-    { id: 23, name: "Hudhaify", subfolder: "Hudhaify_32kbps" },
-    { id: 24, name: "Hudhaify", subfolder: "Hudhaify_64kbps" },
-    { id: 25, name: "Hudhaify", subfolder: "Hudhaify_128kbps" },
-    { id: 26, name: "Ibrahim Akhdar", subfolder: "Ibrahim_Akhdar_32kbps" },
-    { id: 27, name: "Ibrahim Akhdar", subfolder: "Ibrahim_Akhdar_64kbps" },
-    { id: 28, name: "Maher Al Muaiqly", subfolder: "Maher_AlMuaiqly_64kbps" },
-    { id: 29, name: "Maher Al Muaiqly", subfolder: "MaherAlMuaiqly128kbps" },
-    { id: 30, name: "Menshawi", subfolder: "Menshawi_16kbps" },
-    { id: 31, name: "Menshawi", subfolder: "Menshawi_32kbps" },
-    {
-      id: 32,
-      name: "Minshawy Mujawwad",
-      subfolder: "Minshawy_Mujawwad_64kbps",
-    },
-    {
-      id: 33,
-      name: "Minshawy Mujawwad",
-      subfolder: "Minshawy_Mujawwad_192kbps",
-    },
-    {
-      id: 34,
-      name: "Minshawy Murattal",
-      subfolder: "Minshawy_Murattal_128kbps",
-    },
-    {
-      id: 35,
-      name: "Mohammad al Tablaway",
-      subfolder: "Mohammad_al_Tablaway_64kbps",
-    },
-    {
-      id: 36,
-      name: "Mohammad al Tablaway",
-      subfolder: "Mohammad_al_Tablaway_128kbps",
-    },
-    { id: 37, name: "Muhammad Ayyoub", subfolder: "Muhammad_Ayyoub_128kbps" },
-    { id: 38, name: "Muhammad Ayyoub", subfolder: "Muhammad_Ayyoub_64kbps" },
-    { id: 39, name: "Muhammad Ayyoub", subfolder: "Muhammad_Ayyoub_32kbps" },
-    { id: 40, name: "Muhammad Jibreel", subfolder: "Muhammad_Jibreel_64kbps" },
-    { id: 41, name: "Muhammad Jibreel", subfolder: "Muhammad_Jibreel_128kbps" },
-    { id: 42, name: "Mustafa Ismail", subfolder: "Mustafa_Ismail_48kbps" },
-    {
-      id: 43,
-      name: "Saood bin Ibraaheem Ash-Shuraym",
-      subfolder: "Saood_ash-Shuraym_64kbps",
-    },
-    {
-      id: 44,
-      name: "Saood bin Ibraaheem Ash-Shuraym",
-      subfolder: "Saood_ash-Shuraym_128kbps",
-    },
-    {
-      id: 45,
-      name: "(English) Translated by Sahih International Recited by Ibrahim Walk",
-      subfolder: "English/Sahih_Intnl_Ibrahim_Walk_192kbps",
-    },
-    {
-      id: 46,
-      name: "MultiLanguage/Basfar Walk",
-      subfolder: "MultiLanguage/Basfar_Walk_192kbps",
-    },
-    {
-      id: 47,
-      name: "(Persian) Translated by Makarem Recited by Kabiri",
-      subfolder: "translations/Makarem_Kabiri_16Kbps",
-    },
-    {
-      id: 48,
-      name: "(Persian) Translated by Fooladvand Recited by Hedayatfar",
-      subfolder: "translations/Fooladvand_Hedayatfar_40Kbps",
-    },
-    { id: 49, name: "Parhizgar", subfolder: "Parhizgar_48kbps" },
-    { id: 50, name: "Balayev", subfolder: "translations/azerbaijani/balayev" },
-    {
-      id: 51,
-      name: "Salaah AbdulRahman Bukhatir",
-      subfolder: "Salaah_AbdulRahman_Bukhatir_128kbps",
-    },
-    { id: 52, name: "Muhsin Al Qasim", subfolder: "Muhsin_Al_Qasim_192kbps" },
-    {
-      id: 53,
-      name: "Abdullaah 3awwaad Al-Juhaynee",
-      subfolder: "Abdullaah_3awwaad_Al-Juhaynee_128kbps",
-    },
-    { id: 54, name: "Salah Al Budair", subfolder: "Salah_Al_Budair_128kbps" },
-    { id: 55, name: "Abdullah Matroud", subfolder: "Abdullah_Matroud_128kbps" },
-    { id: 56, name: "Ahmed Neana", subfolder: "Ahmed_Neana_128kbps" },
-    {
-      id: 57,
-      name: "Muhammad AbdulKareem",
-      subfolder: "Muhammad_AbdulKareem_128kbps",
-    },
-    {
-      id: 58,
-      name: "Khalefa Al-Tunaiji",
-      subfolder: "khalefa_al_tunaiji_64kbps",
-    },
-    {
-      id: 59,
-      name: "Mahmoud Ali Al-Banna",
-      subfolder: "mahmoud_ali_al_banna_32kbps",
-    },
-    {
-      id: 60,
-      name: "(Warsh) Ibrahim Al-Dosary",
-      subfolder: "warsh/warsh_ibrahim_aldosary_128kbps",
-    },
-    {
-      id: 61,
-      name: "(Warsh) Yassin Al-Jazaery",
-      subfolder: "warsh/warsh_yassin_al_jazaery_64kbps",
-    },
-    {
-      id: 62,
-      name: "(Warsh) Abdul Basit",
-      subfolder: "warsh/warsh_Abdul_Basit_128kbps",
-    },
-    {
-      id: 63,
-      name: "(Urdu) Shamshad Ali Khan",
-      subfolder: "translations/urdu_shamshad_ali_khan_46kbps",
-    },
-    { id: 64, name: "Karim Mansoori", subfolder: "Karim_Mansoori_40kbps" },
-    { id: 65, name: "Husary (Muallim)", subfolder: "Husary_Muallim_128kbps" },
-    {
-      id: 66,
-      name: "Khalid Abdullah al-Qahtanee",
-      subfolder: "Khaalid_Abdullaah_al-Qahtaanee_128kbps",
-    },
-    {
-      id: 58,
-      name: "Khalefa Al-Tunaiji",
-      subfolder: "khalefa_al_tunaiji_64kbps",
-    },
-    {
-      id: 59,
-      name: "Mahmoud Ali Al-Banna",
-      subfolder: "mahmoud_ali_al_banna_32kbps",
-    },
-    {
-      id: 60,
-      name: "(Warsh) Ibrahim Al-Dosary",
-      subfolder: "warsh/warsh_ibrahim_aldosary_128kbps",
-    },
-    {
-      id: 61,
-      name: "(Warsh) Yassin Al-Jazaery",
-      subfolder: "warsh/warsh_yassin_al_jazaery_64kbps",
-    },
-    {
-      id: 62,
-      name: "(Warsh) Abdul Basit",
-      subfolder: "warsh/warsh_Abdul_Basit_128kbps",
-    },
-    {
-      id: 63,
-      name: "(Urdu) Shamshad Ali Khan",
-      subfolder: "translations/urdu_shamshad_ali_khan_46kbps",
-    },
-    { id: 64, name: "Karim Mansoori", subfolder: "Karim_Mansoori_40kbps" },
-    { id: 65, name: "Husary (Muallim)", subfolder: "Husary_Muallim_128kbps" },
-    {
-      id: 66,
-      name: "Khalid Abdullah al-Qahtanee",
-      subfolder: "Khaalid_Abdullaah_al-Qahtanee_64kbps",
-    },
-    {
-      id: 67,
-      name: "Yasser Ad-Dussary",
-      subfolder: "Yasser_Ad-Dussary_128kbps",
-    },
-    { id: 68, name: "Nasser Alqatami", subfolder: "Nasser_Alqatami_128kbps" },
-    {
-      id: 69,
-      name: "Ali Hajjaj Al-Suesy",
-      subfolder: "Ali_Hajjaj_AlSuesy_128kbps",
-    },
-    { id: 70, name: "Sahl Yassin", subfolder: "Sahl_Yassin_128kbps" },
-    {
-      id: 71,
-      name: "Ahmed Ibn Ali Al Ajamy",
-      subfolder: "ahmed_ibn_ali_al_ajamy_128kbps",
-    },
-    {
-      id: 72,
-      name: "Besim Korkut (Bosnian)",
-      subfolder: "translations/besim_korkut_ajet_po_ajet",
-    },
-    { id: 73, name: "Aziz Alili", subfolder: "aziz_alili_128kbps" },
-    { id: 74, name: "Yaser Salamah", subfolder: "Yaser_Salamah_128kbps" },
-    { id: 75, name: "Akram Al Alaqimy", subfolder: "Akram_AlAlaqimy_128kbps" },
-    { id: 76, name: "Ali Jaber", subfolder: "Ali_Jaber_64kbps" },
-    { id: 77, name: "Fares Abbad", subfolder: "Fares_Abbad_64kbps" },
-    {
-      id: 78,
-      name: "Farhat Hashmi",
-      subfolder: "translations/urdu_farhat_hashmi",
-    },
-    { id: 79, name: "Ayman Sowaid", subfolder: "Ayman_Sowaid_64kbps" },
-  ];
+  // const Qaris : Reciter[] = reciters;
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -359,6 +90,7 @@ export default function Component() {
 
   useEffect(() => {
     fetchVerseData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSurah, currentVerse, selectedLanguage, selectedQari])
 
   useEffect(() => {
@@ -379,22 +111,15 @@ export default function Component() {
       if (audioRef.current) {
         audioRef.current.removeEventListener("ended", handleAudioEnd)
         audioRef.current.removeEventListener("timeupdate", handleTimeUpdate)
-        audioRef.current.removeEventListener(
-          "loadedmetadata",
-          handleLoadedMetadata
-        )
+        audioRef.current.removeEventListener("loadedmetadata", handleLoadedMetadata)
         audioRef.current.pause()
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audioUrl, isLooping])
 
   const fetchVerseData = async () => {
-    if (
-      !currentVerse ||
-      isNaN(currentVerse) ||
-      !currentSurah ||
-      isNaN(currentSurah)
-    ) {
+    if (!currentVerse || isNaN(currentVerse) || !currentSurah || isNaN(currentSurah)) {
       toast({
         title: "Invalid Input",
         description: "Please enter valid surah and verse numbers",
@@ -420,7 +145,7 @@ export default function Component() {
         `https://cdn.islamic.network/quran/images/${currentSurah}_${currentVerse}.png`
       )
 
-      const selectedReciter = reciters.find((r) => r.id === selectedQari)
+      const selectedReciter = reciters.find((r: Reciter) => r.id === selectedQari)
       if (selectedReciter) {
         const audioUrl = `https://everyayah.com/data/${selectedReciter.subfolder}/${currentSurah.toString().padStart(3, '0')}${currentVerse.toString().padStart(3, '0')}.mp3`
         setAudioUrl(audioUrl)
@@ -428,8 +153,7 @@ export default function Component() {
     } catch (err) {
       toast({
         title: "Error",
-        description:
-          err instanceof Error ? err.message : "An unexpected error occurred",
+        description: err instanceof Error ? err.message : "An unexpected error occurred",
         variant: "destructive",
       })
       setVerseData(null)
@@ -459,16 +183,9 @@ export default function Component() {
 
   const toggleDarkMode = () => setIsDarkMode((prev) => !prev)
 
-  const handleSearchResultClick = (surah: number, verse: number) => {
-    setCurrentSurah(surah)
-    setCurrentVerse(verse)
-    setSearchResults([])
-  }
-
   const handleReset = () => {
     setCurrentSurah(1)
     setCurrentVerse(1)
-    setSearchResults([])
   }
 
   const addBookmark = () => {
@@ -604,24 +321,6 @@ export default function Component() {
                       Help & FAQ
                     </Button>
                   </div>
-                  <div className="mt-auto">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      onClick={() => window.open("https://quran.com", "_blank")}
-                    >
-                      Quran.com
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      onClick={() =>
-                        window.open("https://sunnah.com", "_blank")
-                      }
-                    >
-                      Sunnah.com
-                    </Button>
-                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -638,35 +337,46 @@ export default function Component() {
         <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
           <CardContent className="p-6 space-y-6">
             <div className="flex flex-wrap justify-between items-center gap-4">
-              <Input
-                type="number"
-                value={currentSurah}
-                onChange={(e) => setCurrentSurah(Number(e.target.value))}
-                placeholder="Surah"
-                className="w-24"
-                aria-label="Surah number"
-              />
-              <Input
-                type="number"
-                
-                value={currentVerse}
-                onChange={(e) => setCurrentVerse(Number(e.target.value))}
-                placeholder="Verse"
-                className="w-24"
-                aria-label="Verse number"
-              />
-              <Select
-                value={selectedLanguage}
-                onValueChange={setSelectedLanguage}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select language" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="en">English</SelectItem>
-                  <SelectItem value="ur">Urdu</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="flex flex-col w-24">
+                <Label htmlFor="surah-input" className="mb-1">Surah</Label>
+                <Input
+                  id="surah-input"
+                  type="number"
+                  value={currentSurah}
+                  onChange={(e) => setCurrentSurah(Number(e.target.value))}
+                  placeholder="Surah"
+                  className="w-full"
+                  aria-label="Surah number"
+                />
+              </div>
+              <div className="flex flex-col w-24">
+                <Label htmlFor="verse-input" className="mb-1">Verse</Label>
+                <Input
+                  id="verse-input"
+                  type="number"
+                  value={currentVerse}
+                  onChange={(e) => setCurrentVerse(Number(e.target.value))}
+                  placeholder="Verse"
+                  className="w-full"
+                  aria-label="Verse number"
+                />
+              </div>
+              <div className="flex flex-col w-[180px]">
+                <Label htmlFor="language-select" className="mb-1">Language</Label>
+                <Select
+                  value={selectedLanguage}
+                  onValueChange={setSelectedLanguage}
+                >
+                  
+                  <SelectTrigger id="language-select" className="w-full">
+                    <SelectValue placeholder="Select language" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="en">English</SelectItem>
+                    <SelectItem value="ur">Urdu</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               <Button
                 onClick={isBookmarked ? () => {} : addBookmark}
                 variant="outline"
@@ -688,21 +398,24 @@ export default function Component() {
                 <RefreshCw className="h-4 w-4 mr-2" aria-hidden="true" />
                 Reset
               </Button>
-              <Select
-                value={selectedQari.toString()}
-                onValueChange={(value) => setSelectedQari(Number(value))}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Select Qari" />
-                </SelectTrigger>
-                <SelectContent>
-                  {reciters.map((reciter) => (
-                    <SelectItem key={reciter.id} value={reciter.id.toString()}>
-                      {reciter.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="flex flex-col w-[180px]">
+                <Label htmlFor="qari-select" className="mb-1">Qari</Label>
+                <Select
+                  value={selectedQari.toString()}
+                  onValueChange={(value) => setSelectedQari(Number(value))}
+                >
+                  <SelectTrigger id="qari-select" className="w-full">
+                    <SelectValue placeholder="Select Qari" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {reciters.map((reciter) => (
+                      <SelectItem key={reciter.id} value={reciter.id.toString()}>
+                        {reciter.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             {isLoading && (
@@ -711,27 +424,6 @@ export default function Component() {
                 <p className="mt-2 text-gray-600 dark:text-gray-400">
                   Loading...
                 </p>
-              </div>
-            )}
-
-            {searchResults.length > 0 && (
-              <div className="mt-4 max-h-60 overflow-y-auto">
-                {searchResults.map((result) => (
-                  <Button
-                    key={`${result.surah.number}-${result.numberInSurah}`}
-                    variant="link"
-                    className="text-left w-full justify-start"
-                    onClick={() =>
-                      handleSearchResultClick(
-                        result.surah.number,
-                        result.numberInSurah
-                      )
-                    }
-                  >
-                    {result.text} (Surah {result.surah.englishName}, Verse{" "}
-                    {result.numberInSurah})
-                  </Button>
-                ))}
               </div>
             )}
 
@@ -749,7 +441,7 @@ export default function Component() {
                   />
                 </div>
                 <div className="mt-4 flex items-center justify-center">
-                  <p className="text-lg text-amber-800 dark:text-amber-200 font-arabic mr-2">
+                  <p className="text-2xl text-amber-800 dark:text-amber-200 font-arabic mr-2">
                     {verseData.text}
                   </p>
                 </div>
