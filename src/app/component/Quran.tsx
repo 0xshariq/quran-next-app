@@ -493,14 +493,14 @@ export default function Component() {
                 <div className="relative w-full aspect-[4/3] mt-8 mb-8 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                   {isLoading ? (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <RefreshCw className="h-8 w-8 animate-spin text-amber-600 dark:text-amber-400" />
+                      <RefreshCw className="h-8 w-8 animate-spin text-amber-600 dark:text-amber-400 " />
                     </div>
                   ) : (
-                    <Image
+                      <Image
                       src={versePictureUrl}
                       alt={`Verse ${currentVerse} of Surah ${verseData?.surah.name}`}
                       fill
-                      className="object-contain"
+                      className="object-contain bg-white"
                       onError={() => setImageError(true)}
                     />
                   )}
