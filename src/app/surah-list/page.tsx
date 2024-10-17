@@ -69,10 +69,8 @@ export default function SurahList() {
                         </div>
                       </div>
                       <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500 dark:text-gray-500">
-                        <div>Verses: {surah.versesCount}</div>
+                        <div>Verses: {surah.versesCount}</div>&nbsp;&nbsp;
                         <div>{surah.revelationPlace}</div>
-                        <div>Order of Revelation: {surah.orderOfRevelation}</div>
-                        <div>{surah.juz}</div>
                       </div>
                     </Button>
                   </Link>
