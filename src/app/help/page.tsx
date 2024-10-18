@@ -123,10 +123,12 @@ export default function HelpFAQ() {
             )}
             <div className="mt-8 text-center">
               <p className="mb-4 text-amber-700 dark:text-amber-300">Didn&apos;t find what you&apos;re looking for?</p>
+              <Link href="/contact" passHref>
               <Button className="bg-amber-600 hover:bg-amber-700 text-white dark:bg-amber-500 dark:hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105">
                 <Mail className="mr-2 h-4 w-4" aria-hidden="true" />
                 Contact Support
               </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

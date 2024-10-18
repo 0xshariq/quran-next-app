@@ -33,6 +33,7 @@ import {
   SkipBack,
   SkipForward,
   Repeat,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -333,6 +334,12 @@ export default function Component() {
                       <Button variant="ghost" className="w-full justify-start">
                         <Bookmark className="mr-2 h-4 w-4" />
                         Bookmarks
+                      </Button>
+                    </Link>
+                    <Link href="/contact" passHref>
+                      <Button variant="ghost" className="w-full justify-start">
+                        <User className="mr-2 h-4 w-4" />
+                        Contact Us
                       </Button>
                     </Link>
                     <Button
