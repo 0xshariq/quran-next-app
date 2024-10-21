@@ -383,6 +383,7 @@ export default function QuranApp() {
                   <h2 className="text-3xl font-semibold">Quran App Menu</h2>
                 </div>
                 <div className="space-y-4">
+                <Link href="/" passHref>
                   <Button
                     variant="ghost"
                     className="w-full justify-start"
@@ -391,13 +392,14 @@ export default function QuranApp() {
                     <Home className="mr-2 h-4 w-4" />
                     Home
                   </Button>
-                  <Link href="/surah-list" passHref legacyBehavior>
+                  </Link>
+                  <Link href="/surah-list" passHref>
                     <Button variant="ghost" className="w-full justify-start">
                       <BookOpen className="mr-2 h-4 w-4" />
                       Surah List
                     </Button>
                   </Link>
-                  <Link href="/bookmarks" passHref legacyBehavior>
+                  <Link href="/bookmarks" passHref>
                     <Button variant="ghost" className="w-full justify-start">
                       <Bookmark className="mr-2 h-4 w-4" />
                       Bookmarks
@@ -416,10 +418,12 @@ export default function QuranApp() {
                     )}
                     {isDarkMode ? "Light Mode" : "Dark Mode"}
                   </Button>
+                  <Link href="/help" passHref>
                   <Button variant="ghost" className="w-full justify-start">
                     <HelpCircle className="mr-2  h-4 w-4" />
                     Help & FAQ
                   </Button>
+                  </Link>
                 </div>
               </nav>
             </SheetContent>
