@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -30,19 +30,13 @@ interface Bookmark {
 export default function Bookmarks() {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
   const router = useRouter()
-  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
     const savedBookmarks = localStorage.getItem("quranBookmarks")
     if (savedBookmarks) {
       setBookmarks(JSON.parse(savedBookmarks))
     }
-    setIsMounted(true)
   }, [])
-
-  if (!isMounted) {
-    return null // or a loading indicator
-  }
 
   const removeBookmark = (id: number) => {
     const updatedBookmarks = bookmarks.filter((bookmark) => bookmark.id !== id)

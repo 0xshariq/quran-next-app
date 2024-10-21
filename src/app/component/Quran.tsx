@@ -273,7 +273,7 @@ export default function QuranApp() {
 
   useEffect(() => {
     // Update URL when currentSurah or currentVerse changes
-    router.push(`/?surah=${currentSurah}&verse=${currentVerse}`, undefined)
+    router.push(`/?surah=${currentSurah}&verse=${currentVerse}`)
   }, [currentSurah, currentVerse, router])
 
   const fetchVerseData = async () => {
