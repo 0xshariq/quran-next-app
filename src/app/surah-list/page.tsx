@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Book, ChevronLeft, Search } from "lucide-react";
 import Link from "next/link";
-import surahs from "./surah-list.json";
+import surahs from "@/data/surah-list.json";
 
 export default function SurahList() {
   const [searchQuery, setSearchQuery] = useState("");

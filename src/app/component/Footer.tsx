@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link'
 import { Facebook, X, Instagram, Heart, ExternalLink } from 'lucide-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

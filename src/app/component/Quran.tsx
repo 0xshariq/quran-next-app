@@ -1,33 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
-import Link from "next/link"
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Slider } from "@/components/ui/slider"
-import { useToast } from "@/hooks/use-toast"
-import { Label } from "@/components/ui/label"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
+import Image from 'next/image'
+import Link from 'next/link'
+import { useToast } from '@/hooks/use-toast'
 import {
   Book,
   ChevronLeft,
@@ -45,9 +22,32 @@ import {
   SkipBack,
   SkipForward,
   Repeat,
-} from "lucide-react"
-import reciters from "@/data/reciter.json"
-import surahs from "@/data/surah.json"
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Slider } from '@/components/ui/slider'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+import reciters from '@/data/reciter.json'
+import surahs from '@/data/surah.json'
 
 // Interfaces
 interface VerseData {
@@ -85,153 +85,64 @@ interface Surah {
   revelationType: string
 }
 
-// Custom Hooks
-const useAudio = (audioUrl: string | null, isLooping: boolean) => {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-
-  useEffect(() => {
-    if (audioUrl) {
-      audioRef.current = new Audio(audioUrl)
-      audioRef.current.addEventListener("ended", handleAudioEnd)
-      audioRef.current.addEventListener("timeupdate", handleTimeUpdate)
-      audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata)
-    }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener("ended", handleAudioEnd)
-        audioRef.current.removeEventListener("timeupdate", handleTimeUpdate)
-        audioRef.current.removeEventListener("loadedmetadata", handleLoadedMetadata)
-        audioRef.current.pause()
-      }
-    }
-  }, [audioUrl, isLooping])
-
-  const handleAudioEnd = () => {
-    if (isLooping) {
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0
-        audioRef.current.play()
-      }
-    } else {
-      setIsPlaying(false)
-    }
-  }
-
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime)
-    }
-  }
-
-  const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration)
-    }
-  }
-
-  const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-      } else {
-        audioRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
-  }
-
-  const handleSeek = (value: number[]) => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = value[0]
-      setCurrentTime(value[0])
-    }
-  }
-
-  return { isPlaying, currentTime, duration, toggleAudio, handleSeek }
-}
-
-const useVerseNavigation = (initialSurah: string, initialVerse: number) => {
-  const [currentSurah, setCurrentSurah] = useState(initialSurah)
-  const [currentVerse, setCurrentVerse] = useState(initialVerse)
-
-  const nextVerse = () => {
-    const currentSurahInfo = getSurahInfo(currentSurah)
-    if (currentVerse < currentSurahInfo.verses) {
-      setCurrentVerse((prev) => prev + 1)
-    } else {
-      const nextSurahIndex = (surahs as Surah[]).findIndex(s => s.name === currentSurah) + 1
-      if (nextSurahIndex < surahs.length) {
-        setCurrentSurah(surahs[nextSurahIndex].name)
-        setCurrentVerse(1)
-      }
-    }
-  }
-
-  const previousVerse = () => {
-    if (currentVerse > 1) {
-      setCurrentVerse((prev) => prev - 1)
-    } else {
-      const prevSurahIndex = (surahs as Surah[]).findIndex(s => s.name === currentSurah) - 1
-      if (prevSurahIndex >= 0) {
-        setCurrentSurah(surahs[prevSurahIndex].name)
-        setCurrentVerse(surahs[prevSurahIndex].verses)
-      }
-    }
-  }
-
-  return { currentSurah, setCurrentSurah, currentVerse, setCurrentVerse, nextVerse, previousVerse }
-}
-
 // Helper Functions
 const getSurahInfo = (surahName: string): Surah => {
-  const surah = (surahs as Surah[]).find(s => s.name === surahName)
-  return surah || {
-    number: 1,
-    name: "Al-Fatihah",
-    englishName: "The Opening",
-    englishNameTranslation: "The Opening",
-    revelationType: "Meccan",
-    verses: 7
-  }
+  const surah = (surahs as Surah[]).find((s) => s.name === surahName)
+  return (
+    surah || {
+      number: 1,
+      name: 'Al-Fatihah',
+      englishName: 'The Opening',
+      englishNameTranslation: 'The Opening',
+      revelationType: 'Meccan',
+      verses: 7,
+    }
+  )
 }
 
 const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60)
   const seconds = Math.floor(time % 60)
-  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 }
 
-// Main Component
 export default function QuranApp() {
   const { toast } = useToast()
   const router = useRouter()
   const searchParams = useSearchParams()
+
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [selectedLanguage, setSelectedLanguage] = useState("en")
+  const [selectedLanguage, setSelectedLanguage] = useState('en')
   const [selectedQari, setSelectedQari] = useState(1)
   const [isLooping, setIsLooping] = useState(false)
   const [showNextVersePrompt, setShowNextVersePrompt] = useState(false)
   const [timeRemaining, setTimeRemaining] = useState(5)
   const [isLoading, setIsLoading] = useState(false)
   const [verseData, setVerseData] = useState<VerseData | null>(null)
-  const [versePictureUrl, setVersePictureUrl] = useState("")
+  const [versePictureUrl, setVersePictureUrl] = useState('')
   const [audioUrl, setAudioUrl] = useState<string | null>(null)
   const [bookmarks, setBookmarks] = useState<BookmarkData[]>([])
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
 
-  const initialSurah = searchParams.get('surah') || surahs[0].name
-  const initialVerse = parseInt(searchParams.get('verse') || '1', 10)
-  const { currentSurah, setCurrentSurah, currentVerse, setCurrentVerse, nextVerse, previousVerse } = useVerseNavigation(initialSurah, initialVerse)
-  const { isPlaying, currentTime, duration, toggleAudio, handleSeek } = useAudio(audioUrl, isLooping)
-
+  const audioRef = useRef<HTMLAudioElement | null>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
+
+  const [currentSurah, setCurrentSurah] = useState('')
+  const [currentVerse, setCurrentVerse] = useState(1)
+
+  useEffect(() => {
+    const surah = searchParams.get('surah') || 'Al-Fatihah'
+    const verse = parseInt(searchParams.get('verse') || '1', 10)
+    setCurrentSurah(surah)
+    setCurrentVerse(verse)
+  }, [searchParams])
 
   useEffect(() => {
     const root = window.document.documentElement
-    root.classList.toggle("dark", isDarkMode)
+    root.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
   useEffect(() => {
@@ -239,7 +150,7 @@ export default function QuranApp() {
   }, [currentSurah, currentVerse, selectedLanguage, selectedQari])
 
   useEffect(() => {
-    const savedBookmarks = localStorage.getItem("quranBookmarks")
+    const savedBookmarks = localStorage.getItem('quranBookmarks')
     if (savedBookmarks) {
       setBookmarks(JSON.parse(savedBookmarks))
     }
@@ -247,7 +158,7 @@ export default function QuranApp() {
 
   useEffect(() => {
     if (showNextVersePrompt) {
-      setTimeRemaining(5)
+      setTimeRemaining(3)
       timerRef.current = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
@@ -272,16 +183,35 @@ export default function QuranApp() {
   }, [showNextVersePrompt])
 
   useEffect(() => {
-    // Update URL when currentSurah or currentVerse changes
     router.push(`/?surah=${currentSurah}&verse=${currentVerse}`)
   }, [currentSurah, currentVerse, router])
 
-  const fetchVerseData = async () => {
+  useEffect(() => {
+    if (audioUrl) {
+      audioRef.current = new Audio(audioUrl)
+      audioRef.current.addEventListener('ended', handleAudioEnd)
+      audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
+      audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata)
+    }
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener('ended', handleAudioEnd)
+        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
+        audioRef.current.removeEventListener(
+          'loadedmetadata',
+          handleLoadedMetadata
+        )
+        audioRef.current.pause()
+      }
+    }
+  }, [audioUrl, isLooping])
+
+  const fetchVerseData = useCallback(async () => {
     if (!currentVerse || isNaN(currentVerse)) {
       toast({
-        title: "Invalid Input",
-        description: "Please enter a valid verse number",
-        variant: "destructive",
+        title: 'Invalid Input',
+        description: 'Please enter a valid verse number',
+        variant: 'destructive',
       })
       return
     }
@@ -289,13 +219,13 @@ export default function QuranApp() {
     setIsLoading(true)
 
     try {
-      const lang = selectedLanguage === "ur" ? "ur.ahmedali" : "en.asad"
+      const lang = selectedLanguage === 'ur' ? 'ur.ahmedali' : 'en.asad'
       const surahInfo = getSurahInfo(currentSurah)
       const response = await fetch(
         `https://api.alquran.cloud/v1/ayah/${surahInfo.number}:${currentVerse}/${lang}`
       )
       if (!response.ok) {
-        throw new Error("Invalid verse number or API error")
+        throw new Error('Invalid verse number or API error')
       }
 
       const result = await response.json()
@@ -304,25 +234,32 @@ export default function QuranApp() {
         `https://cdn.islamic.network/quran/images/${surahInfo.number}_${currentVerse}.png`
       )
 
-      const selectedReciter = reciters.find((r: Reciter) => r.id === selectedQari)
+      const selectedReciter = reciters.find(
+        (r: Reciter) => r.id === selectedQari
+      )
       if (selectedReciter) {
-        const audioUrl = `https://everyayah.com/data/${selectedReciter.subfolder}/${surahInfo.number.toString().padStart(3, '0')}${currentVerse.toString().padStart(3, '0')}.mp3`
+        const audioUrl = `https://everyayah.com/data/${
+          selectedReciter.subfolder
+        }/${surahInfo.number.toString().padStart(3, '0')}${currentVerse
+          .toString()
+          .padStart(3, '0')}.mp3`
         setAudioUrl(audioUrl)
       }
     } catch (err) {
       toast({
-        title: "Error",
-        description: err instanceof Error ? err.message : "An unexpected error occurred",
-        variant: "destructive",
+        title: 'Error',
+        description:
+          err instanceof Error ? err.message : 'An unexpected error occurred',
+        variant: 'destructive',
       })
       setVerseData(null)
       setAudioUrl(null)
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [currentSurah, currentVerse, selectedLanguage, selectedQari, toast])
 
-  const addBookmark = () => {
+  const addBookmark = useCallback(() => {
     if (verseData) {
       const newBookmark: BookmarkData = {
         id: Date.now(),
@@ -332,13 +269,13 @@ export default function QuranApp() {
       }
       const updatedBookmarks = [...bookmarks, newBookmark]
       setBookmarks(updatedBookmarks)
-      localStorage.setItem("quranBookmarks", JSON.stringify(updatedBookmarks))
+      localStorage.setItem('quranBookmarks', JSON.stringify(updatedBookmarks))
       toast({
-        title: "Bookmark Added",
+        title: 'Bookmark Added',
         description: `Surah ${currentSurah}, Verse ${currentVerse} has been bookmarked.`,
       })
     }
-  }
+  }, [bookmarks, currentSurah, currentVerse, verseData, toast])
 
   const isBookmarked = bookmarks.some(
     (b) => b.surah === currentSurah && b.verse === currentVerse
@@ -346,20 +283,100 @@ export default function QuranApp() {
 
   const toggleDarkMode = () => setIsDarkMode((prev) => !prev)
 
-  const handleReset = () => {
-    setCurrentSurah(surahs[0].name)
+  const handleReset = useCallback(() => {
+    setCurrentSurah('Al-Fatihah')
     setCurrentVerse(1)
-  }
+  }, [])
 
-  const promptNextVerse = (confirmed: boolean) => {
-    setShowNextVersePrompt(false)
-    if (confirmed) {
-      nextVerse()
-      setTimeout(() => {
-        toggleAudio()
-      }, 1000)
+  const nextVerse = useCallback(() => {
+    const currentSurahInfo = getSurahInfo(currentSurah)
+    if (currentVerse < currentSurahInfo.verses) {
+      setCurrentVerse((prev) => prev + 1)
+    } else {
+      const nextSurahIndex =
+        (surahs as Surah[]).findIndex((s) => s.name === currentSurah) + 1
+      if (nextSurahIndex < surahs.length) {
+        setCurrentSurah(surahs[nextSurahIndex].name)
+        setCurrentVerse(1)
+      }
     }
-  }
+  }, [currentSurah, currentVerse])
+
+  const previousVerse = useCallback(() => {
+    if (currentVerse > 1) {
+      setCurrentVerse((prev) => prev - 1)
+    } else {
+      const prevSurahIndex =
+        (surahs as Surah[]).findIndex((s) => s.name === currentSurah) - 1
+      if (prevSurahIndex >= 0) {
+        setCurrentSurah(surahs[prevSurahIndex].name)
+        setCurrentVerse(surahs[prevSurahIndex].verses)
+      }
+    }
+  }, [currentSurah, currentVerse])
+
+  const promptNextVerse = useCallback(
+    (confirmed: boolean) => {
+      setShowNextVersePrompt(false)
+      if (confirmed) {
+        nextVerse()
+        if (audioRef.current) {
+          audioRef.current.pause()
+          audioRef.current.currentTime = 0
+        }
+        setIsPlaying(false)
+        fetchVerseData()
+      }
+    },
+    [nextVerse, fetchVerseData]
+  )
+
+  const handleAudioEnd = useCallback(() => {
+    if (isLooping && audioRef.current) {
+      audioRef.current.currentTime = 0
+      audioRef.current.play()
+    } else {
+      setIsPlaying(false)
+      setShowNextVersePrompt(true)
+    }
+  }, [isLooping])
+
+  const handleTimeUpdate = useCallback(() => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime)
+    }
+  }, [])
+
+  const handleLoadedMetadata = useCallback(() => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration)
+    }
+  }, [])
+
+  const toggleAudio = useCallback(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause()
+      } else {
+        audioRef.current.play().catch((error) => {
+          console.error('Audio playback failed:', error)
+          toast({
+            title: 'Playback Error',
+            description: 'Unable to play audio. Please try again.',
+            variant: 'destructive',
+          })
+        })
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }, [isPlaying, toast])
+
+  const handleSeek = useCallback((value: number[]) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = value[0]
+      setCurrentTime(value[0])
+    }
+  }, [])
 
   // UI Components
   const Header = () => (
@@ -383,32 +400,32 @@ export default function QuranApp() {
                   <h2 className="text-3xl font-semibold">Quran App Menu</h2>
                 </div>
                 <div className="space-y-4">
-                <Link href="/" passHref>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start"
-                    onClick={handleReset}
-                  >
-                    <Home className="mr-2 h-4 w-4" />
-                    Home
-                  </Button>
+                  <Link href="/">
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                      onClick={handleReset}
+                    >
+                      <Home className="mr-2 h-4 w-4" />
+                      Home
+                    </Button>
                   </Link>
-                  <Link href="/surah-list" passHref>
+                  <Link href="/surah-list">
                     <Button variant="ghost" className="w-full justify-start">
                       <BookOpen className="mr-2 h-4 w-4" />
                       Surah List
                     </Button>
                   </Link>
-                  <Link href="/bookmarks" passHref>
+                  <Link href="/bookmarks">
                     <Button variant="ghost" className="w-full justify-start">
                       <Bookmark className="mr-2 h-4 w-4" />
+                
                       Bookmarks
                     </Button>
                   </Link>
                   <Button
                     variant="ghost"
                     className="w-full justify-start"
-                    
                     onClick={toggleDarkMode}
                   >
                     {isDarkMode ? (
@@ -416,13 +433,13 @@ export default function QuranApp() {
                     ) : (
                       <Moon className="mr-2 h-4 w-4" />
                     )}
-                    {isDarkMode ? "Light Mode" : "Dark Mode"}
+                    {isDarkMode ? 'Light Mode' : 'Dark Mode'}
                   </Button>
-                  <Link href="/help" passHref>
-                  <Button variant="ghost" className="w-full justify-start">
-                    <HelpCircle className="mr-2  h-4 w-4" />
-                    Help & FAQ
-                  </Button>
+                  <Link href="/help">
+                    <Button variant="ghost" className="w-full justify-start">
+                      <HelpCircle className="mr-2 h-4 w-4" />
+                      Help & FAQ
+                    </Button>
                   </Link>
                 </div>
               </nav>
@@ -441,7 +458,9 @@ export default function QuranApp() {
   const Controls = () => (
     <div className="flex flex-wrap justify-between items-center gap-4">
       <div className="flex flex-col w-24">
-        <Label htmlFor="surah-input" className="mb-1">Surah</Label>
+        <Label htmlFor="surah-input" className="mb-1">
+          Surah
+        </Label>
         <Select
           value={currentSurah}
           onValueChange={(value) => {
@@ -454,18 +473,18 @@ export default function QuranApp() {
           </SelectTrigger>
           <SelectContent>
             {(surahs as Surah[]).map((surah) => (
-              <SelectItem
-                key={surah.number}
-                value={surah.name}
-              >
-                {surah.number})&nbsp;{surah.name} ({surah.verses}) - {surah.englishName}
+              <SelectItem key={surah.number} value={surah.name}>
+                {surah.number})&nbsp;{surah.name} ({surah.verses}) -{' '}
+                {surah.englishName}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
       <div className="flex flex-col w-24">
-        <Label htmlFor="verse-input" className="mb-1">Verse</Label>
+        <Label htmlFor="verse-input" className="mb-1">
+          Verse
+        </Label>
         <Input
           id="verse-input"
           type="number"
@@ -477,11 +496,10 @@ export default function QuranApp() {
         />
       </div>
       <div className="flex flex-col w-[180px]">
-        <Label htmlFor="language-select" className="mb-1">Language</Label>
-        <Select
-          value={selectedLanguage}
-          onValueChange={setSelectedLanguage}
-        >
+        <Label htmlFor="language-select" className="mb-1">
+          Language
+        </Label>
+        <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
           <SelectTrigger id="language-select" className="w-full">
             <SelectValue placeholder="Select language" />
           </SelectTrigger>
@@ -495,14 +513,12 @@ export default function QuranApp() {
         onClick={isBookmarked ? () => {} : addBookmark}
         variant="outline"
         className={`border-amber-300 dark:border-slate-600 ${
-          isBookmarked
-            ? "text-amber-500"
-            : "text-amber-700 dark:text-amber-300"
+          isBookmarked ? 'text-amber-500' : 'text-amber-700 dark:text-amber-300'
         }`}
         disabled={isBookmarked}
       >
         <Bookmark className="h-4 w-4 mr-2" aria-hidden="true" />
-        {isBookmarked ? "Bookmarked" : "Bookmark"}
+        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
       </Button>
       <Button
         onClick={handleReset}
@@ -513,7 +529,9 @@ export default function QuranApp() {
         Reset
       </Button>
       <div className="flex flex-col w-[180px]">
-        <Label htmlFor="qari-select" className="mb-1">Qari</Label>
+        <Label htmlFor="qari-select" className="mb-1">
+          Qari
+        </Label>
         <Select
           value={selectedQari.toString()}
           onValueChange={(value) => setSelectedQari(Number(value))}
@@ -522,7 +540,7 @@ export default function QuranApp() {
             <SelectValue placeholder="Select Qari" />
           </SelectTrigger>
           <SelectContent>
-            {reciters.map((reciter) => (
+            {reciters.map((reciter: Reciter) => (
               <SelectItem key={reciter.id} value={reciter.id.toString()}>
                 {reciter.name}
               </SelectItem>
@@ -589,7 +607,7 @@ export default function QuranApp() {
           variant="outline"
           size="icon"
           className="text-amber-600 dark:text-amber-400"
-          aria-label={isPlaying ? "Pause audio" : "Play audio"}
+          aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
         >
           {isPlaying ? (
             <Pause className="h-6 w-6" />
@@ -604,17 +622,13 @@ export default function QuranApp() {
           onClick={() => setIsLooping(!isLooping)}
           variant="outline"
           size="icon"
-          className={
-            isLooping ? "text-amber-600 dark:text-amber-400" : ""
-          }
+          className={isLooping ? 'text-amber-600 dark:text-amber-400' : ''}
         >
           <Repeat className="h-4 w-4" />
         </Button>
       </div>
       <div className="w-full max-w-md flex items-center space-x-2">
-        <span className="text-sm text-gray-500">
-          {formatTime(currentTime)}
-        </span>
+        <span className="text-sm text-gray-500">{formatTime(currentTime)}</span>
         <Slider
           value={[currentTime]}
           max={duration}
@@ -622,14 +636,13 @@ export default function QuranApp() {
           onValueChange={handleSeek}
           className="flex-grow"
         />
-        <span className="text-sm text-gray-500">
-          {formatTime(duration)}
-        </span>
+        <span className="text-sm text-gray-500">{formatTime(duration)}</span>
       </div>
     </div>
   )
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
       <Header />
 
@@ -658,20 +671,37 @@ export default function QuranApp() {
         </Card>
       </main>
 
-      <AlertDialog open={showNextVersePrompt} onOpenChange={setShowNextVersePrompt}>
+      <AlertDialog
+        open={showNextVersePrompt}
+        onOpenChange={setShowNextVersePrompt}
+      >
         <AlertDialogContent className="bg-white dark:bg-slate-800 border border-amber-200 dark:border-slate-700">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-amber-800 dark:text-amber-200">Next Verse</AlertDialogTitle>
+            <AlertDialogTitle className="text-amber-800 dark:text-amber-200">
+              Next Verse
+            </AlertDialogTitle>
             <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
-              Do you want to go to the next verse? (Automatically proceeding in {timeRemaining} seconds)
+              Do you want to go to the next verse? (Automatically proceeding in{' '}
+              {timeRemaining} seconds)
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => promptNextVerse(false)} className="bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200">Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => promptNextVerse(true)} className="bg-amber-500 text-white hover:bg-amber-600">Continue</AlertDialogAction>
+            <AlertDialogCancel
+              onClick={() => promptNextVerse(false)}
+              className="bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200"
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => promptNextVerse(true)}
+              className="bg-amber-500 text-white hover:bg-amber-600"
+            >
+              Continue
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </div>
+    </Suspense>
   )
 }
