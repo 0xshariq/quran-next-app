@@ -618,36 +618,8 @@ export default function QuranApp() {
     </div>
   )
 
-  return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-      <Header />
-
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
-          <CardContent className="p-6 space-y-6">
-            <Controls />
-
-            {isLoading && (
-              <div className="text-center">
-                <RefreshCw className="h-8 w-8 animate-spin mx-auto text-amber-600 dark:text-amber-400" />
-                <p className="mt-2 text-gray-600 dark:text-gray-400">
-                  Loading...
-                </p>
-              </div>
-            )}
-
-            {verseData && !isLoading && (
-              <>
-                <VerseDisplay />
-                <NavigationButtons />
-                <AudioControls />
-              </>
-            )}
-          </CardContent>
-        </Card>
-      </main>
-
-      <AlertDialog
+  const AlertBox = () => (
+    <AlertDialog
         open={showNextVersePrompt}
         onOpenChange={setShowNextVersePrompt}
       >
@@ -677,6 +649,38 @@ export default function QuranApp() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+  )
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
+      <Header />
+
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
+          <CardContent className="p-6 space-y-6">
+            <Controls />
+
+            {isLoading && (
+              <div className="text-center">
+                <RefreshCw className="h-8 w-8 animate-spin mx-auto text-amber-600 dark:text-amber-400" />
+                <p className="mt-2 text-gray-600 dark:text-gray-400">
+                  Loading...
+                </p>
+              </div>
+            )}
+
+            {verseData && !isLoading && (
+              <>
+                <VerseDisplay />
+                <NavigationButtons />
+                <AudioControls />
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </main>
+      
+      <AlertBox />
     </div>
   )
 }
