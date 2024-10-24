@@ -2,571 +2,799 @@
     {
         "number": 1,
         "name": "Al-Fatiha",
-        "verses": 7
+        "englishName": "The Opening",
+        "verses": 7,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 2,
         "name": "Al-Baqarah",
-        "verses": 286
+        "englishName": "The Cow",
+        "verses": 286,
+        "revelationPlace": "Medina"
     },
     {
         "number": 3,
         "name": "Aali Imran",
-        "verses": 200
+        "englishName": "The Family of Imran",
+        "verses": 200,
+        "revelationPlace": "Medina"
     },
     {
         "number": 4,
         "name": "An-Nisa",
-        "verses": 176
+        "englishName": "The Women",
+        "verses": 176,
+        "revelationPlace": "Medina"
     },
     {
         "number": 5,
         "name": "Al-Ma'idah",
-        "verses": 120
+        "englishName": "The Table Spread",
+        "verses": 120,
+        "revelationPlace": "Medina"
     },
     {
         "number": 6,
         "name": "Al-An'am",
-        "verses": 165
+        "englishName": "The Cattle",
+        "verses": 165,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 7,
         "name": "Al-A'raf",
-        "verses": 206
+        "englishName": "The Heights",
+        "verses": 206,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 8,
         "name": "Al-Anfal",
-        "verses": 75
+        "englishName": "The Spoils of War",
+        "verses": 75,
+        "revelationPlace": "Medina"
     },
     {
         "number": 9,
         "name": "At-Tawbah",
-        "verses": 129
+        "englishName": "The Repentance",
+        "verses": 129,
+        "revelationPlace": "Medina"
     },
     {
         "number": 10,
         "name": "Yunus",
-        "verses": 109
+        "englishName": "Jonah",
+        "verses": 109,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 11,
         "name": "Hud",
-        "verses": 123
+        "englishName": "Hud",
+        "verses": 123,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 12,
         "name": "Yusuf",
-        "verses": 111
+        "englishName": "Joseph",
+        "verses": 111,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 13,
         "name": "Ar-Ra'd",
-        "verses": 43
+        "englishName": "The Thunder",
+        "verses": 43,
+        "revelationPlace": "Medina"
     },
     {
         "number": 14,
         "name": "Ibrahim",
-        "verses": 52
+        "englishName": "Abraham",
+        "verses": 52,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 15,
         "name": "Al-Hijr",
-        "verses": 99
+        "englishName": "The Rocky Tract",
+        "verses": 99,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 16,
         "name": "An-Nahl",
-        "verses": 128
+        "englishName": "The Bee",
+        "verses": 128,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 17,
         "name": "Al-Isra",
-        "verses": 111
+        "englishName": "The Night Journey",
+        "verses": 111,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 18,
         "name": "Al-Kahf",
-        "verses": 110
+        "englishName": "The Cave",
+        "verses": 110,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 19,
         "name": "Maryam",
-        "verses": 98
+        "englishName": "Mary",
+        "verses": 98,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 20,
         "name": "Taha",
-        "verses": 135
+        "englishName": "Taha",
+        "verses": 135,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 21,
         "name": "Al-Anbiya",
-        "verses": 112
+        "englishName": "The Prophets",
+        "verses": 112,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 22,
         "name": "Al-Hajj",
-        "verses": 78
+        "englishName": "The Pilgrimage",
+        "verses": 78,
+        "revelationPlace": "Medina"
     },
     {
         "number": 23,
         "name": "Al-Mu'minun",
-        "verses": 118
+        "englishName": "The Believers",
+        "verses": 118,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 24,
         "name": "An-Nur",
-        "verses": 64
+        "englishName": "The Light",
+        "verses": 64,
+        "revelationPlace": "Medina"
     },
     {
         "number": 25,
         "name": "Al-Furqan",
-        "verses": 77
+        "englishName": "The Criterion",
+        "verses": 77,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 26,
         "name": "Ash-Shu'ara",
-        "verses": 227
+        "englishName": "The Poets",
+        "verses": 227,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 27,
         "name": "An-Naml",
-        "verses": 93
+        "englishName": "The Ant",
+        "verses": 93,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 28,
         "name": "Al-Qasas",
-        "verses": 88
+        "englishName": "The Stories",
+        "verses": 88,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 29,
         "name": "Al-Ankabut",
-        "verses": 69
+        "englishName": "The Spider",
+        "verses": 69,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 30,
         "name": "Ar-Rum",
-        "verses": 60
+        "englishName": "The Romans",
+        "verses": 60,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 31,
         "name": "Luqman",
-        "verses": 34
+        "englishName": "Luqman",
+        "verses": 34,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 32,
         "name": "As-Sajda",
-        "verses": 30
+        "englishName": "The Prostration",
+        "verses": 30,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 33,
         "name": "Al-Ahzab",
-        "verses": 73
+        "englishName": "The Combined Forces",
+        "verses": 73,
+        "revelationPlace": "Medina"
     },
     {
         "number": 34,
         "name": "Saba",
-        "verses": 54
+        "englishName": "Sheba",
+        "verses": 54,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 35,
         "name": "Fatir",
-        "verses": 45
+        "englishName": "The Originator",
+        "verses": 45,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 36,
         "name": "Ya-Sin",
-        "verses": 83
+        "englishName": "Ya-Sin",
+        "verses": 83,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 37,
         "name": "As-Saffat",
-        "verses": 182
+        "englishName": "Those who set the Ranks",
+        "verses": 182,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 38,
         "name": "Sad",
-        "verses": 88
+        "englishName": "Sad",
+        "verses": 88,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 39,
         "name": "Az-Zumar",
-        "verses": 75
+        "englishName": "The Groups",
+        "verses": 75,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 40,
         "name": "Ghafir",
-        "verses": 85
+        "englishName": "The Forgiver",
+        "verses": 85,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 41,
         "name": "Fussilat",
-        "verses": 54
+        "englishName": "Explained in Detail",
+        "verses": 54,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 42,
         "name": "Ash-Shura",
-        "verses": 53
+        "englishName": "The Consultation",
+        "verses": 53,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 43,
         "name": "Az-Zukhruf",
-        "verses": 89
+        "englishName": "The Gold Adornments",
+        "verses": 89,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 44,
         "name": "Ad-Dukhan",
-        "verses": 59
+        "englishName": "The Smoke",
+        "verses": 59,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 45,
         "name": "Al-Jathiya",
-        "verses": 37
+        "englishName": "The Crouching",
+        "verses": 37,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 46,
         "name": "Al-Ahqaf",
-        "verses": 35
+        "englishName": "The Wind-Curved Sandhills",
+        "verses": 35,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 47,
         "name": "Muhammad",
-        "verses": 38
+        "englishName": "Muhammad",
+        "verses": 38,
+        "revelationPlace": "Medina"
     },
     {
         "number": 48,
         "name": "Al-Fath",
-        "verses": 29
+        "englishName": "The Victory",
+        "verses": 29,
+        "revelationPlace": "Medina"
     },
     {
         "number": 49,
         "name": "Al-Hujurat",
-        "verses": 18
+        "englishName": "The Rooms",
+        "verses": 18,
+        "revelationPlace": "Medina"
     },
     {
         "number": 50,
         "name": "Qaf",
-        "verses": 45
+        "englishName": "The Letter Qaf",
+        "verses": 45,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 51,
         "name": "Adh-Dhariyat",
-        "verses": 60
+        "englishName": "The Winnowing Winds",
+        "verses": 60,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 52,
         "name": "At-Tur",
-        "verses": 49
+        "englishName": "The Mount",
+        "verses": 49,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 53,
         "name": "An-Najm",
-        "verses": 62
+        "englishName": "The Star",
+        "verses": 62,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 54,
         "name": "Al-Qamar",
-        "verses": 55
+        "englishName": "The Moon",
+        "verses": 55,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 55,
         "name": "Ar-Rahman",
-        "verses": 78
+        "englishName": "The Beneficent",
+        "verses": 78,
+        "revelationPlace": "Medina"
     },
     {
         "number": 56,
         "name": "Al-Waqi'a",
-        "verses": 96
+        "englishName": "The Inevitable",
+        "verses": 96,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 57,
         "name": "Al-Hadid",
-        "verses": 29
+        "englishName": "The Iron",
+        "verses": 29,
+        "revelationPlace": "Medina"
     },
     {
         "number": 58,
         "name": "Al-Mujadila",
-        "verses": 22
+        "englishName": "The Pleading Woman",
+        "verses": 22,
+        "revelationPlace": "Medina"
     },
     {
         "number": 59,
         "name": "Al-Hashr",
-        "verses": 24
+        "englishName": "The Exile",
+        "verses": 24,
+        "revelationPlace": "Medina"
     },
     {
         "number": 60,
-        "name": "Al-Mumtahana",
-        "verses": 13
+        "name": "Al-Mumtahina",
+        "englishName": "She that is to be examined",
+        "verses": 13,
+        "revelationPlace": "Medina"
     },
     {
         "number": 61,
         "name": "As-Saff",
-        "verses": 14
+        "englishName": "The Ranks",
+        "verses": 14,
+        "revelationPlace": "Medina"
     },
     {
         "number": 62,
         "name": "Al-Jumu'a",
-        "verses": 11
+        "englishName": "The Congregation, Friday",
+        "verses": 11,
+        "revelationPlace": "Medina"
     },
     {
         "number": 63,
         "name": "Al-Munafiqun",
-        "verses": 11
+        "englishName": "The Hypocrites",
+        "verses": 11,
+        "revelationPlace": "Medina"
     },
     {
         "number": 64,
         "name": "At-Taghabun",
-        "verses": 18
+        "englishName": "The Mutual Disillusion",
+        "verses": 18,
+        "revelationPlace": "Medina"
     },
     {
         "number": 65,
         "name": "At-Talaq",
-        "verses": 12
+        "englishName": "The Divorce",
+        "verses": 12,
+        "revelationPlace": "Medina"
     },
     {
         "number": 66,
         "name": "At-Tahrim",
-        "verses": 12
+        "englishName": "The Prohibition",
+        "verses": 12,
+        "revelationPlace": "Medina"
     },
     {
         "number": 67,
         "name": "Al-Mulk",
-        "verses": 30
+        "englishName": "The Sovereignty",
+        "verses": 30,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 68,
         "name": "Al-Qalam",
-        "verses": 52
+        "englishName": "The Pen",
+        "verses": 52,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 69,
         "name": "Al-Haaqqa",
-        "verses": 52
+        "englishName": "The Reality",
+        "verses": 52,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 70,
         "name": "Al-Ma'arij",
-        "verses": 44
+        "englishName": "The Ascending Stairways",
+        "verses": 44,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 71,
         "name": "Nuh",
-        "verses": 28
+        "englishName": "Noah",
+        "verses": 28,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 72,
         "name": "Al-Jinn",
-        "verses": 28
+        "englishName": "The Jinn",
+        "verses": 28,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 73,
         "name": "Al-Muzzammil",
-        "verses": 20
+        "englishName": "The Enshrouded One",
+        "verses": 20,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 74,
-        "name": "Al-Muddaththir",
-        "verses": 56
+        "name": "Al-Muddathir",
+        "englishName": "The Cloaked One",
+        "verses": 56,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 75,
         "name": "Al-Qiyama",
-        "verses": 40
+        "englishName": "The Resurrection",
+        "verses": 40,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 76,
         "name": "Al-Insan",
-        "verses": 31
+        "englishName": "Man",
+        "verses": 31,
+        "revelationPlace": "Medina"
     },
     {
         "number": 77,
         "name": "Al-Mursalat",
-        "verses": 50
+        "englishName": "The Emissaries",
+        "verses": 50,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 78,
         "name": "An-Naba",
-        "verses": 40
+        "englishName": "The Tidings",
+        "verses": 40,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 79,
         "name": "An-Nazi'at",
-        "verses": 46
+        "englishName": "Those who drag forth",
+        "verses": 46,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 80,
         "name": "Abasa",
-        "verses": 42
+        "englishName": "He frowned",
+        "verses": 42,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 81,
         "name": "At-Takwir",
-        "verses": 29
+        "englishName": "The Overthrowing",
+        "verses": 29,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 82,
         "name": "Al-Infitar",
-        "verses": 19
+        "englishName": "The Cleaving",
+        "verses": 19,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 83,
         "name": "Al-Mutaffifin",
-        "verses": 36
+        "englishName": "Defrauding",
+        "verses": 36,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 84,
         "name": "Al-Inshiqaq",
-        "verses": 25
+        "englishName": "The Splitting Open",
+        "verses": 25,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 85,
-        "name": "Al-Burooj",
-        "verses": 22
+        "name": "Al-Buruj",
+        "englishName": "The Mansions of the Stars",
+        "verses": 22,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 86,
         "name": "At-Tariq",
-        "verses": 17
+        "englishName": "The Morning Star",
+        "verses": 17,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 87,
         "name": "Al-A'la",
-        "verses": 19
+        "englishName": "The Most High",
+        "verses": 19,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 88,
-        "name": "Al-Ghashiya",
-        "verses": 26
+        "name": "Al-Ghashiyah",
+        "englishName": "The Overwhelming",
+        "verses": 26,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 89,
         "name": "Al-Fajr",
-        "verses": 30
+        "englishName": "The Dawn",
+        "verses": 30,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 90,
         "name": "Al-Balad",
-        "verses": 20
+        "englishName": "The City",
+        "verses": 20,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 91,
         "name": "Ash-Shams",
-        "verses": 15
+        "englishName": "The Sun",
+        "verses": 15,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 92,
-        "name": "Al-Lail",
-        "verses": 21
+        "name": "Al-Layl",
+        "englishName": "The Night",
+        "verses": 21,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 93,
         "name": "Ad-Duha",
-        "verses": 11
+        "englishName": "The Morning Hours",
+        "verses": 11,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 94,
-        "name": "Al-Inshirah",
-        "verses": 8
+        "name": "Ash-Sharh",
+        "englishName": "The Relief",
+        "verses": 8,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 95,
         "name": "At-Tin",
-        "verses": 8
+        "englishName": "The Fig",
+        "verses": 8,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 96,
         "name": "Al-Alaq",
-        "verses": 19
+        "englishName": "The Clot",
+        "verses": 19,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 97,
         "name": "Al-Qadr",
-        "verses": 5
+        "englishName": "The Power, Fate",
+        "verses": 5,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 98,
         "name": "Al-Bayyina",
-        "verses": 8
+        "englishName": "The Clear Proof",
+        "verses": 8,
+        "revelationPlace": "Medina"
     },
     {
         "number": 99,
-        "name": "Az-Zalzalah",
-        "verses": 8
+        "name": "Az-Zalzala",
+        "englishName": "The Earthquake",
+        "verses": 8,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 100,
         "name": "Al-Adiyat",
-        "verses": 11
+        "englishName": "The Courser",
+        "verses": 11,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 101,
-        "name": "Al-Haaqqa",
-        "verses": 11
+        "name": "Al-Qaria",
+        "englishName": "The Calamity",
+        "verses": 11,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 102,
         "name": "At-Takathur",
-        "verses": 8
+        "englishName": "The Rivalry in world increase",
+        "verses": 8,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 103,
         "name": "Al-Asr",
-        "verses": 3
+        "englishName": "The Declining Day, Epoch",
+        "verses": 3,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 104,
         "name": "Al-Humazah",
-        "verses": 9
+        "englishName": "The Traducer",
+        "verses": 9,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 105,
         "name": "Al-Fil",
-        "verses": 5
+        "englishName": "The Elephant",
+        "verses": 5,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 106,
-        "name": "Quraish",
-        "verses": 4
+        "name": "Quraysh",
+        "englishName": "Quraysh",
+        "verses": 4,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 107,
         "name": "Al-Ma'un",
-        "verses": 7
+        "englishName": "The Small kindnesses",
+        "verses": 7,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 108,
         "name": "Al-Kawthar",
-        "verses": 3
+        "englishName": "The Abundance",
+        "verses": 3,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 109,
         "name": "Al-Kafirun",
-        "verses": 6
+        "englishName": "The Disbelievers",
+        "verses": 6,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 110,
         "name": "An-Nasr",
-        "verses": 3
+        "englishName": "Divine Support",
+        "verses": 3,
+        "revelationPlace": "Medina"
     },
     {
         "number": 111,
-        "name": "Al-Masad",
-        "verses": 5
+        "name": "Lahab",
+        "englishName": "The Palm Fiber",
+        "verses": 5,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 112,
         "name": "Al-Ikhlas",
-        "verses": 4
+        "englishName": "The Sincerity",
+        "verses": 4,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 113,
         "name": "Al-Falaq",
-        "verses": 5
+        "englishName": "The Daybreak",
+        "verses": 5,
+        "revelationPlace": "Mecca"
     },
     {
         "number": 114,
         "name": "An-Nas",
-        "verses": 6
+        "englishName": "The Mankind",
+        "verses": 6,
+        "revelationPlace": "Mecca"
     }
 ]

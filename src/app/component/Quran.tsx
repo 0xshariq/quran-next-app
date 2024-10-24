@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef, Suspense } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -49,7 +49,6 @@ import {
 import reciters from '@/data/reciter.json'
 import surahs from '@/data/surah.json'
 
-// Interfaces
 interface VerseData {
   text: string
   translation: string
@@ -80,12 +79,10 @@ interface Surah {
   number: number
   name: string
   englishName: string
-  englishNameTranslation: string
   verses: number
-  revelationType: string
+  revelationPlace: string
 }
 
-// Helper Functions
 const getSurahInfo = (surahName: string): Surah => {
   const surah = (surahs as Surah[]).find((s) => s.name === surahName)
   return (
@@ -93,8 +90,7 @@ const getSurahInfo = (surahName: string): Surah => {
       number: 1,
       name: 'Al-Fatihah',
       englishName: 'The Opening',
-      englishNameTranslation: 'The Opening',
-      revelationType: 'Meccan',
+      revelationPlace: 'Meccan',
       verses: 7,
     }
   )
@@ -117,7 +113,7 @@ export default function QuranApp() {
   const [selectedQari, setSelectedQari] = useState(1)
   const [isLooping, setIsLooping] = useState(false)
   const [showNextVersePrompt, setShowNextVersePrompt] = useState(false)
-  const [timeRemaining, setTimeRemaining] = useState(5)
+  const [timeRemaining, setTimeRemaining] = useState(3)
   const [isLoading, setIsLoading] = useState(false)
   const [verseData, setVerseData] = useState<VerseData | null>(null)
   const [versePictureUrl, setVersePictureUrl] = useState('')
@@ -163,7 +159,7 @@ export default function QuranApp() {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
             clearInterval(timerRef.current!)
-            promptNextVerse(true)
+            handleNextVerse()
             return 0
           }
           return prev - 1
@@ -193,18 +189,16 @@ export default function QuranApp() {
       audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
       audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata)
     }
+
     return () => {
       if (audioRef.current) {
         audioRef.current.removeEventListener('ended', handleAudioEnd)
         audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
-        audioRef.current.removeEventListener(
-          'loadedmetadata',
-          handleLoadedMetadata
-        )
+        audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata)
         audioRef.current.pause()
       }
     }
-  }, [audioUrl, isLooping])
+  }, [audioUrl])
 
   const fetchVerseData = useCallback(async () => {
     if (!currentVerse || isNaN(currentVerse)) {
@@ -288,7 +282,7 @@ export default function QuranApp() {
     setCurrentVerse(1)
   }, [])
 
-  const nextVerse = useCallback(() => {
+  const handleNextVerse = useCallback(() => {
     const currentSurahInfo = getSurahInfo(currentSurah)
     if (currentVerse < currentSurahInfo.verses) {
       setCurrentVerse((prev) => prev + 1)
@@ -300,9 +294,10 @@ export default function QuranApp() {
         setCurrentVerse(1)
       }
     }
+    setShowNextVersePrompt(false)
   }, [currentSurah, currentVerse])
 
-  const previousVerse = useCallback(() => {
+  const handlePreviousVerse = useCallback(() => {
     if (currentVerse > 1) {
       setCurrentVerse((prev) => prev - 1)
     } else {
@@ -314,22 +309,6 @@ export default function QuranApp() {
       }
     }
   }, [currentSurah, currentVerse])
-
-  const promptNextVerse = useCallback(
-    (confirmed: boolean) => {
-      setShowNextVersePrompt(false)
-      if (confirmed) {
-        nextVerse()
-        if (audioRef.current) {
-          audioRef.current.pause()
-          audioRef.current.currentTime = 0
-        }
-        setIsPlaying(false)
-        fetchVerseData()
-      }
-    },
-    [nextVerse, fetchVerseData]
-  )
 
   const handleAudioEnd = useCallback(() => {
     if (isLooping && audioRef.current) {
@@ -378,7 +357,6 @@ export default function QuranApp() {
     }
   }, [])
 
-  // UI Components
   const Header = () => (
     <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
@@ -419,7 +397,6 @@ export default function QuranApp() {
                   <Link href="/bookmarks">
                     <Button variant="ghost" className="w-full justify-start">
                       <Bookmark className="mr-2 h-4 w-4" />
-                
                       Bookmarks
                     </Button>
                   </Link>
@@ -431,7 +408,7 @@ export default function QuranApp() {
                     {isDarkMode ? (
                       <Sun className="mr-2 h-4 w-4" />
                     ) : (
-                      <Moon className="mr-2 h-4 w-4" />
+                      <Moon className="mr-2 h-4  w-4" />
                     )}
                     {isDarkMode ? 'Light Mode' : 'Dark Mode'}
                   </Button>
@@ -578,13 +555,13 @@ export default function QuranApp() {
   const NavigationButtons = () => (
     <div className="flex justify-between mt-4">
       <Button
-        onClick={previousVerse}
+        onClick={handlePreviousVerse}
         disabled={currentSurah === surahs[0].name && currentVerse === 1}
       >
         <ChevronLeft className="h-5 w-5 mr-2" aria-hidden="true" />
         Previous
       </Button>
-      <Button onClick={nextVerse}>
+      <Button onClick={handleNextVerse}>
         Next
         <ChevronRight className="h-5 w-5 ml-2" aria-hidden="true" />
       </Button>
@@ -595,7 +572,7 @@ export default function QuranApp() {
     <div className="mt-4 flex flex-col items-center">
       <div className="flex items-center space-x-4 mb-2">
         <Button
-          onClick={previousVerse}
+          onClick={handlePreviousVerse}
           variant="outline"
           size="icon"
           disabled={currentSurah === surahs[0].name && currentVerse === 1}
@@ -615,7 +592,7 @@ export default function QuranApp() {
             <Volume2 className="h-6 w-6" />
           )}
         </Button>
-        <Button onClick={nextVerse} variant="outline" size="icon">
+        <Button onClick={handleNextVerse} variant="outline" size="icon">
           <SkipForward className="h-4 w-4" />
         </Button>
         <Button
@@ -642,7 +619,6 @@ export default function QuranApp() {
   )
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
       <Header />
 
@@ -687,13 +663,13 @@ export default function QuranApp() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel
-              onClick={() => promptNextVerse(false)}
+              onClick={() => setShowNextVersePrompt(false)}
               className="bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200"
             >
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
-              onClick={() => promptNextVerse(true)}
+              onClick={handleNextVerse}
               className="bg-amber-500 text-white hover:bg-amber-600"
             >
               Continue
@@ -702,6 +678,5 @@ export default function QuranApp() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
-    </Suspense>
   )
 }

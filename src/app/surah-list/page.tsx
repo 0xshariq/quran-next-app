@@ -1,23 +1,29 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Book, ChevronLeft, Search } from "lucide-react";
-import Link from "next/link";
-import surahs from "@/data/surah-list.json";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Book, ChevronLeft, Search } from "lucide-react"
+import Link from "next/link"
+import surahs from "@/data/surah.json"
 
 export default function SurahList() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("")
+  const router = useRouter()
 
   const filteredSurahs = surahs.filter(
     (surah) =>
       surah.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       surah.englishName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       surah.number.toString().includes(searchQuery)
-  );
+  )
+
+  const handleSurahClick = (surahNumber: number, surahName: string) => {
+    router.push(`/?surah=${surahName}&verse=1`)
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
@@ -53,27 +59,27 @@ export default function SurahList() {
             <ScrollArea className="h-[calc(100vh-200px)] pr-4">
               <div className="flex flex-col space-y-4">
                 {filteredSurahs.map((surah) => (
-                  <Link key={surah.number} href={`/surah/${surah.number}`} passHref>
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left h-auto py-4 border-amber-300 dark:border-slate-600 hover:bg-amber-100 dark:hover:bg-slate-700"
-                    >
-                      <div className="flex justify-between w-full">
-                        <div className="flex-grow">
-                          <div className="font-bold text-amber-800 dark:text-amber-200 text-lg">
-                            {surah.number}. {surah.name}
-                          </div>
-                          <div className="text-sm text-gray-600 dark:text-gray-400">
-                            {surah.englishName}
-                          </div>
+                  <Button
+                    key={surah.number}
+                    variant="outline"
+                    className="w-full justify-start text-left h-auto py-4 border-amber-300 dark:border-slate-600 hover:bg-amber-100 dark:hover:bg-slate-700"
+                    onClick={() => handleSurahClick(surah.number, surah.name)}
+                  >
+                    <div className="flex justify-between w-full">
+                      <div className="flex-grow">
+                        <div className="font-bold text-amber-800 dark:text-amber-200 text-lg">
+                          {surah.number}. {surah.name}
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          {surah.englishName}
                         </div>
                       </div>
-                      <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500 dark:text-gray-500">
-                        <div>Verses: {surah.versesCount}</div>&nbsp;&nbsp;
-                        <div>{surah.revelationPlace}</div>
-                      </div>
-                    </Button>
-                  </Link>
+                    </div>
+                    <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500 dark:text-gray-500">
+                      <div>Verses: {surah.verses}</div>&nbsp;&nbsp;
+                      <div>{surah.revelationPlace}</div>
+                    </div>
+                  </Button>
                 ))}
               </div>
             </ScrollArea>
@@ -81,5 +87,5 @@ export default function SurahList() {
         </Card>
       </main>
     </div>
-  );
+  )
 }
