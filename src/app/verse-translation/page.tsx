@@ -1,27 +1,19 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useToast } from '@/hooks/use-toast'
 import {
-  Book,
   ChevronLeft,
   ChevronRight,
-  Menu,
-  Moon,
-  Sun,
   RefreshCw,
-  BookOpen,
-  Bookmark,
-  HelpCircle,
-  Home,
   Volume2,
   Pause,
   SkipBack,
   SkipForward,
   Repeat,
+  Bookmark
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -34,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Slider } from '@/components/ui/slider'
 import {
   AlertDialog,
@@ -107,8 +98,6 @@ export default function QuranApp() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState('en')
   const [selectedQari, setSelectedQari] = useState(1)
   const [isLooping, setIsLooping] = useState(false)
@@ -136,10 +125,6 @@ export default function QuranApp() {
     setCurrentVerse(verse)
   }, [searchParams])
 
-  useEffect(() => {
-    const root = window.document.documentElement
-    root.classList.toggle('dark', isDarkMode)
-  }, [isDarkMode])
 
   useEffect(() => {
     fetchVerseData()
@@ -179,7 +164,7 @@ export default function QuranApp() {
   }, [showNextVersePrompt])
 
   useEffect(() => {
-    router.push(`/?surah=${currentSurah}&verse=${currentVerse}`)
+    router.push(`/verse-translation/?surah=${currentSurah}&verse=${currentVerse}`)
   }, [currentSurah, currentVerse, router])
 
   useEffect(() => {
@@ -275,7 +260,6 @@ export default function QuranApp() {
     (b) => b.surah === currentSurah && b.verse === currentVerse
   )
 
-  const toggleDarkMode = () => setIsDarkMode((prev) => !prev)
 
   const handleReset = useCallback(() => {
     setCurrentSurah('Al-Fatihah')
@@ -339,6 +323,7 @@ export default function QuranApp() {
       } else {
         audioRef.current.play().catch((error) => {
           console.error('Audio playback failed:', error)
+          
           toast({
             title: 'Playback Error',
             description: 'Unable to play audio. Please try again.',
@@ -356,81 +341,6 @@ export default function QuranApp() {
       setCurrentTime(value[0])
     }
   }, [])
-
-  const Header = () => (
-    <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-amber-600 dark:text-amber-400"
-                aria-label="Open menu"
-              >
-                <Menu className="h-6 w-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col h-full">
-                <div className="flex items-center mb-6">
-                  <h2 className="text-3xl font-semibold">Quran App Menu</h2>
-                </div>
-                <div className="space-y-4">
-                  <Link href="/">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      onClick={handleReset}
-                    >
-                      <Home className="mr-2 h-4 w-4" />
-                      Home
-                    </Button>
-                  </Link>
-                  <Link href="/surah-list">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <BookOpen className="mr-2 h-4 w-4" />
-                      Surah List
-                    </Button>
-                  </Link>
-                  <Link href="/bookmarks">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <Bookmark className="mr-2 h-4 w-4" />
-                      Bookmarks
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start"
-                    onClick={toggleDarkMode}
-                  >
-                    {isDarkMode ? (
-                      <Sun className="mr-2 h-4 w-4" />
-                    ) : (
-                      <Moon className="mr-2 h-4  w-4" />
-                    )}
-                    {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                  </Button>
-                  <Link href="/help">
-                    <Button variant="ghost" className="w-full justify-start">
-                      <HelpCircle className="mr-2 h-4 w-4" />
-                      Help & FAQ
-                    </Button>
-                  </Link>
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
-          <div className="text-center">
-            <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200">
-              <Book className="mr-2" aria-hidden="true" /> Quran App
-            </h1>
-          </div>
-        </div>
-      </div>
-    </header>
-  )
 
   const Controls = () => (
     <div className="flex flex-wrap justify-between items-center gap-4">
@@ -620,41 +530,40 @@ export default function QuranApp() {
 
   const AlertBox = () => (
     <AlertDialog
-        open={showNextVersePrompt}
-        onOpenChange={setShowNextVersePrompt}
-      >
-        <AlertDialogContent className="bg-white dark:bg-slate-800 border border-amber-200 dark:border-slate-700">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-amber-800 dark:text-amber-200">
-              Next Verse
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
-              Do you want to go to the next verse? (Automatically proceeding in{' '}
-              {timeRemaining} seconds)
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel
-              onClick={() => setShowNextVersePrompt(false)}
-              className="bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200"
-            >
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleNextVerse}
-              className="bg-amber-500 text-white hover:bg-amber-600"
-            >
-              Continue
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      open={showNextVersePrompt}
+      onOpenChange={setShowNextVersePrompt}
+    >
+      <AlertDialogContent className="bg-white dark:bg-slate-800 border border-amber-200 dark:border-slate-700">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-amber-800 dark:text-amber-200">
+            Next Verse
+          </AlertDialogTitle>
+          <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
+            Do you want to go to the next verse? (Automatically proceeding in{' '}
+            {timeRemaining} seconds)
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel
+            onClick={() => setShowNextVersePrompt(false)}
+            className="bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200"
+          >
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            onClick={handleNextVerse}
+            className="bg-amber-500 text-white hover:bg-amber-600"
+          >
+            Continue
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   )
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-      <Header />
-
       <main className="flex-grow container mx-auto px-4 py-8">
         <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
           <CardContent className="p-6 space-y-6">
@@ -682,5 +591,6 @@ export default function QuranApp() {
       
       <AlertBox />
     </div>
+    </Suspense>
   )
 }

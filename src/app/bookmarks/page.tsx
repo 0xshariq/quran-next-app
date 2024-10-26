@@ -45,7 +45,7 @@ export default function Bookmarks() {
   }
 
   const handleBookmarkClick = (surah: string, verse: string) => {
-    router.push(`/?surah=${surah}&verse=${verse}`)
+    router.push(`/verse-translation/?surah=${surah}&verse=${verse}`)
   }
 
   return (

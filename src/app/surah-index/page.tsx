@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Book, ChevronLeft, Search } from "lucide-react"
-import Link from "next/link"
+import { Book, Search } from "lucide-react"
 import surahs from "@/data/surah.json"
 
 export default function SurahList() {
@@ -22,7 +21,7 @@ export default function SurahList() {
   )
 
   const handleSurahClick = (surahNumber: number, surahName: string) => {
-    router.push(`/?surah=${surahName}&verse=1`)
+    router.push(`/verse-translation/?surah=${surahName}&verse=1`)
   }
 
   return (
@@ -30,11 +29,6 @@ export default function SurahList() {
       <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
         <div className="container mx-auto px-4 py-2 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link href="/" passHref>
-              <Button variant="ghost" size="icon" className="text-amber-600 dark:text-amber-400">
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-            </Link>
             <h1 className="text-2xl font-bold flex items-center text-amber-800 dark:text-amber-200">
               <Book className="mr-2" aria-hidden="true" /> Surah List
             </h1>
