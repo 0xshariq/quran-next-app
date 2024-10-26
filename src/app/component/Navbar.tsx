@@ -65,6 +65,12 @@ export default function Navbar() {
                       Home
                     </Button>
                   </Link>
+                  <Link href="/verse-translation">
+                    <Button variant="ghost" className="w-full justify-start">
+                      <Book className="mr-2 h-4 w-4" />
+                      Verse Translation
+                    </Button>
+                  </Link>
                   <Link href="/surah-list">
                     <Button variant="ghost" className="w-full justify-start">
                       <BookOpen className="mr-2 h-4 w-4" />
