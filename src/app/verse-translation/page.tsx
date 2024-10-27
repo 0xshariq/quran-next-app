@@ -138,7 +138,6 @@ function VerseTranslationContent() {
 
   useEffect(() => {
     if (showNextVersePrompt) {
-      setTimeRemaining(3)
       timerRef.current = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev <= 1) {

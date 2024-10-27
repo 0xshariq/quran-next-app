@@ -1,213 +1,182 @@
 [
-      {
-        "number": 1,
-        "name": "الم",
-        "englishName": "Alif Lam Meem",
-        "versesRange": "Al-Baqarah 1 - Al-Baqarah 141",
-        "pageRange": "1 - 21"
-      },
-      {
-        "number": 2,
-        "name": "سيقول",
-        "englishName": "Sayaqool",
-        "versesRange": "Al-Baqarah 142 - Al-Baqarah 252",
-        "pageRange": "22 - 41"
-      },
-      {
-        "number": 3,
-        "name": "تلك الرسل",
-        "englishName": "Tilkal Rusul",
-        "versesRange": "Al-Baqarah 253 - Al-Imran 92",
-        "pageRange": "42 - 61"
-      },
-      {
-        "number": 4,
-        "name": "لن تنالوا",
-        "englishName": "Lan Tanaaloo",
-        "versesRange": "Al-Imran 93 - An-Nisa 23",
-        "pageRange": "62 - 81"
-      },
-      {
-        "number": 5,
-        "name": "والمحصنات",
-        "englishName": "Wal Mohsanat",
-        "versesRange": "An-Nisa 24 - An-Nisa 147",
-        "pageRange": "82 - 101"
-      },
-      {
-        "number": 6,
-        "name": "لا يحب الله",
-        "englishName": "Laa Yuhibbu Allah",
-        "versesRange": "An-Nisa 148 - Al-Ma'idah 81",
-        "pageRange": "102 - 121"
-      },
-      {
-        "number": 7,
-        "name": "وإذا سمعوا",
-        "englishName": "Wa Iza Sami'oo",
-        "versesRange": "Al-Ma'idah 82 - Al-An'am 110",
-        "pageRange": "122 - 141"
-      },
-      {
-        "number": 8,
-        "name": "ولو أننا",
-        "englishName": "Wa Lau Annana",
-        "versesRange": "Al-An'am 111 - Al-A'raf 87",
-        "pageRange": "142 - 161"
-      },
-      {
-        "number": 9,
-        "name": "قد أفلح",
-        "englishName": "Qad Aflaha",
-        "versesRange": "Al-A'raf 88 - Al-Anfal 40",
-        "pageRange": "162 - 181"
-      },
-      {
-        "number": 10,
-        "name": "واعلموا",
-        "englishName": "Wa A'lamoo",
-        "versesRange": "Al-Anfal 41 - At-Tawbah 93",
-        "pageRange": "182 - 201"
-      },
-      {
-        "number": 11,
-        "name": "يعتذرون",
-        "englishName": "Ya'tazeroon",
-        "versesRange": "At-Tawbah 94 - Hud 5",
-        "pageRange": "202 - 221"
-      },
-      {
-        "number": 12,
-        "name": "وما من دابة",
-        "englishName": "Wa Mamin Da'bbah",
-        "versesRange": "Hud 6 - Yusuf 52",
-        "pageRange": "222 - 241"
-      },
-      {
-        "number": 13,
-        "name": "وما أبريء",
-        "englishName": "Wa Ma Ubrioo",
-        "versesRange": "Yusuf 53 - Ibrahim 52",
-        "pageRange": "242 - 261"
-      },
-      {
-        "number": 14,
-        "name": "ربما",
-        "englishName": "Rubama",
-        "versesRange": "Al-Hijr 1 - An-Nahl 128",
-        "pageRange": "262 - 281"
-      },
-      {
-        "number": 15,
-        "name": "سبحان",
-        "englishName": "Subhan",
-        "versesRange": "Al-Isra 1 - Al-Kahf 74",
-        "pageRange": "282 - 301"
-      },
-      {
-        "number": 16,
-        "name": "قال ألم",
-        "englishName": "Qala Alam",
-        "versesRange": "Al-Kahf 75 - Ta-Ha 135",
-        "pageRange": "302 - 321"
-      },
-      {
-        "number": 17,
-        "name": "اقترب للناس",
-        "englishName": "Iqtaraba Linnaas",
-        "versesRange": "Al-Anbiya 1 - Al-Hajj 78",
-        "pageRange": "322 - 341"
-      },
-      {
-        "number": 18,
-        "name": "قد أفلح",
-        "englishName": "Qad Aflaha",
-        "versesRange": "Al-Mu'minoon 1 - Al-Furqan 20",
-        "pageRange": "342 - 361"
-      },
-      {
-        "number": 19,
-        "name": "وقال الذين",
-        "englishName": "Wa Qalalladheena",
-        "versesRange": "Al-Furqan 21 - An-Naml 55",
-        "pageRange": "362 - 381"
-      },
-      {
-        "number": 20,
-        "name": "أمن خلق",
-        "englishName": "Aman Khalaq",
-        "versesRange": "An-Naml 56 - Al-Ankabut 45",
-        "pageRange": "382 - 401"
-      },
-      {
-        "number": 21,
-        "name": "اتل ما أوحي",
-        "englishName": "Utlu Ma Oohiya",
-        "versesRange": "Al-Ankabut 46 - Al-Azhab 30",
-        "pageRange": "402 - 421"
-      },
-      {
-        "number": 22,
-        "name": "ومن يقنت",
-        "englishName": "Wa Manyaqnut",
-        "versesRange": "Al-Azhab 31 - Ya-Sin 27",
-        "pageRange": "422 - 441"
-      },
-      {
-        "number": 23,
-        "name": "وما أنزلنا",
-        "englishName": "Wa Ma Anzalna",
-        "versesRange": "Ya-Sin 28 - Az-Zumar 31",
-        "pageRange": "442 - 461"
-      },
-      {
-        "number": 24,
-        "name": "فمن أظلم",
-        "englishName": "Faman Azlam",
-        "versesRange": "Az-Zumar 32 - Fussilat 46",
-        "pageRange": "462 - 481"
-      },
-      {
-        "number": 25,
-        "name": "إليه يرد",
-        "englishName": "Ilayhi Yurad",
-        "versesRange": "Fussilat 47 - Al-Jathiyah 37",
-        "pageRange": "482 - 501"
-      },
-      {
-        "number": 26,
-        "name": "حم",
-        "englishName": "Ha Meem",
-        "versesRange": "Al-Ahqaf 1 - Az-Zariyat 30",
-        "pageRange": "502 - 521"
-      },
-      {
-        "number": 27,
-        "name": "قال فما خطبكم",
-        "englishName": "Qala Fama Khatbukum",
-        "versesRange": "Az-Zariyat 31 - Al-Hadid 29",
-        "pageRange": "522 - 541"
-      },
-      {
-        "number": 28,
-        "name": "قد أفلح",
-        "englishName": "Qad Aflaha",
-        "versesRange": "Al-Mujadila 1 - At-Tahrim 12",
-        "pageRange": "542 - 561"
-      },
-      {
-        "number": 29,
-        "name": "تبارك",
-        "englishName": "Tabarak",
-        "versesRange": "Al-Mulk 1 - Al-Mursalat 50",
-        "pageRange": "562 - 581"
-      },
-      {
-        "number": 30,
-        "name": "عم يتساءلون",
-        "englishName": "Amma Yatasa'aloon",
-        "versesRange": "An-Naba 1 - An-Nas 6",
-        "pageRange": "582 - 604"
-      }
-    ]
-  
+  {
+    "number": 1,
+    "name": "الم",
+    "versesRange": "Al-Baqarah 1 - Al-Baqarah 141",
+    "pageRange": "1 - 21"
+  },
+  {
+    "number": 2,
+    "name": "سيقول",
+    "versesRange": "Al-Baqarah 142 - Al-Baqarah 252",
+    "pageRange": "22 - 41"
+  },
+  {
+    "number": 3,
+    "name": "تلك الرسل",
+    "versesRange": "Al-Baqarah 253 - Al-Imran 92",
+    "pageRange": "42 - 61"
+  },
+  {
+    "number": 4,
+    "name": "لن تنالوا",
+    "versesRange": "Al-Imran 93 - An-Nisa 23",
+    "pageRange": "62 - 81"
+  },
+  {
+    "number": 5,
+    "name": "والمحصنات",
+    "versesRange": "An-Nisa 24 - An-Nisa 147",
+    "pageRange": "82 - 101"
+  },
+  {
+    "number": 6,
+    "name": "لا يحب الله",
+    "versesRange": "An-Nisa 148 - Al-Ma'idah 81",
+    "pageRange": "102 - 121"
+  },
+  {
+    "number": 7,
+    "name": "وإذا سمعوا",
+    "versesRange": "Al-Ma'idah 82 - Al-An'am 110",
+    "pageRange": "122 - 141"
+  },
+  {
+    "number": 8,
+    "name": "ولو أننا",
+    "versesRange": "Al-An'am 111 - Al-A'raf 87",
+    "pageRange": "142 - 161"
+  },
+  {
+    "number": 9,
+    "name": "قد أفلح",
+    "versesRange": "Al-A'raf 88 - Al-Anfal 40",
+    "pageRange": "162 - 181"
+  },
+  {
+    "number": 10,
+    "name": "واعلموا",
+    "versesRange": "Al-Anfal 41 - At-Tawbah 93",
+    "pageRange": "182 - 201"
+  },
+  {
+    "number": 11,
+    "name": "يعتذرون",
+    "versesRange": "At-Tawbah 94 - Hud 5",
+    "pageRange": "202 - 221"
+  },
+  {
+    "number": 12,
+    "name": "وما من دابة",
+    "versesRange": "Hud 6 - Yusuf 52",
+    "pageRange": "222 - 241"
+  },
+  {
+    "number": 13,
+    "name": "وما أبريء",
+    "versesRange": "Yusuf 53 - Ibrahim 52",
+    "pageRange": "242 - 261"
+  },
+  {
+    "number": 14,
+    "name": "ربما",
+    "versesRange": "Al-Hijr 1 - An-Nahl 128",
+    "pageRange": "262 - 281"
+  },
+  {
+    "number": 15,
+    "name": "سبحان",
+    "versesRange": "Al-Isra 1 - Al-Kahf 74",
+    "pageRange": "282 - 301"
+  },
+  {
+    "number": 16,
+    "name": "قال ألم",
+    "versesRange": "Al-Kahf 75 - Ta-Ha 135",
+    "pageRange": "302 - 321"
+  },
+  {
+    "number": 17,
+    "name": "اقترب للناس",
+    "versesRange": "Al-Anbiya 1 - Al-Hajj 78",
+    "pageRange": "322 - 341"
+  },
+  {
+    "number": 18,
+    "name": "قد أفلح",
+    "versesRange": "Al-Mu'minoon 1 - Al-Furqan 20",
+    "pageRange": "342 - 361"
+  },
+  {
+    "number": 19,
+    "name": "وقال الذين",
+    "versesRange": "Al-Furqan 21 - An-Naml 55",
+    "pageRange": "362 - 381"
+  },
+  {
+    "number": 20,
+    "name": "أمن خلق",
+    "versesRange": "An-Naml 56 - Al-Ankabut 45",
+    "pageRange": "382 - 401"
+  },
+  {
+    "number": 21,
+    "name": "اتل ما أوحي",
+    "versesRange": "Al-Ankabut 46 - Al-Azhab 30",
+    "pageRange": "402 - 421"
+  },
+  {
+    "number": 22,
+    "name": "ومن يقنت",
+    "versesRange": "Al-Azhab 31 - Ya-Sin 27",
+    "pageRange": "422 - 441"
+  },
+  {
+    "number": 23,
+    "name": "وما أنزلنا",
+    "versesRange": "Ya-Sin 28 - Az-Zumar 31",
+    "pageRange": "442 - 461"
+  },
+  {
+    "number": 24,
+    "name": "فمن أظلم",
+    "versesRange": "Az-Zumar 32 - Fussilat 46",
+    "pageRange": "462 - 481"
+  },
+  {
+    "number": 25,
+    "name": "إليه يرد",
+    "versesRange": "Fussilat 47 - Al-Jathiyah 37",
+    "pageRange": "482 - 501"
+  },
+  {
+    "number": 26,
+    "name": "حم",
+    "versesRange": "Al-Ahqaf 1 - Az-Zariyat 30",
+    "pageRange": "502 - 521"
+  },
+  {
+    "number": 27,
+    "name": "قال فما خطبكم",
+    "versesRange": "Az-Zariyat 31 - Al-Hadid 29",
+    "pageRange": "522 - 541"
+  },
+  {
+    "number": 28,
+    "name": "قد أفلح",
+    "versesRange": "Al-Mujadila 1 - At-Tahrim 12",
+    "pageRange": "542 - 561"
+  },
+  {
+    "number": 29,
+    "name": "تبارك",
+    "versesRange": "Al-Mulk 1 - Al-Mursalat 50",
+    "pageRange": "562 - 581"
+  },
+  {
+    "number": 30,
+    "name": "عم يتساءلون",
+    "versesRange": "An-Naba 1 - An-Nas 6",
+    "pageRange": "582 - 604"
+  }
+]

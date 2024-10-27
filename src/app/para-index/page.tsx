@@ -19,7 +19,6 @@ import { useState } from "react";
 interface Para {
   number: number;
   name: string;
-  englishName: string;
   versesRange: string;
   pageRange: string;
 }
@@ -30,7 +29,6 @@ export default function ParaIndexPage() {
   const filteredParas = paraData.filter(
     (para: Para) =>
       para.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      para.englishName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       para.number.toString().includes(searchTerm)
   );
 
@@ -60,10 +58,10 @@ export default function ParaIndexPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[100px]">Number</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>English Name</TableHead>
+                    <TableHead className="w-[100px]">Para No.</TableHead>
+                    <TableHead>Para Name</TableHead>
                     <TableHead>Verses Range</TableHead>
+                    <TableHead>Page Range</TableHead>
                     <TableHead className="text-right">Action</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -74,7 +72,6 @@ export default function ParaIndexPage() {
                         {para.number}
                       </TableCell>
                       <TableCell>{para.name}</TableCell>
-                      <TableCell>{para.englishName}</TableCell>
                       <TableCell>{para.versesRange}</TableCell>
                       <TableCell>{para.pageRange}</TableCell>
                       <TableCell className="text-right">

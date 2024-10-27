@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Book, Menu, Home, BookOpen, Bookmark, HelpCircle, Sun, Moon } from 'lucide-react'
+import { Book, Menu, Home, Bookmark, HelpCircle, Sun, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
@@ -71,10 +71,14 @@ export default function Navbar() {
                       Verse Translation
                     </Button>
                   </Link>
-                  <Link href="/surah-list">
+                  <Link href="/surah-index">
                     <Button variant="ghost" className="w-full justify-start">
-                      <BookOpen className="mr-2 h-4 w-4" />
                       Surah Index
+                    </Button>
+                  </Link>
+                  <Link href="/para-index">
+                    <Button variant="ghost" className="w-full justify-start">
+                      Para Index
                     </Button>
                   </Link>
                   <Link href="/bookmarks">

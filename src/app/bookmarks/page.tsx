@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react"
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Bookmark, ChevronLeft, Trash2 } from "lucide-react"
-import Link from "next/link"
+import { Bookmark, Trash2, Search } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,7 +19,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-// Define a type for the bookmark
 interface Bookmark {
   id: number
   surah: string
@@ -27,8 +26,9 @@ interface Bookmark {
   text: string
 }
 
-export default function Bookmarks() {
+export default function BookmarksPage() {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
   const router = useRouter()
 
   useEffect(() => {
@@ -48,32 +48,43 @@ export default function Bookmarks() {
     router.push(`/verse-translation/?surah=${surah}&verse=${verse}`)
   }
 
-  return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-      <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link href="/" passHref>
-              <Button variant="ghost" size="icon" className="text-amber-600 dark:text-amber-400">
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-            </Link>
-            <h1 className="text-2xl font-bold flex items-center text-amber-800 dark:text-amber-200">
-              <Bookmark className="mr-2" aria-hidden="true" /> Bookmarks
-            </h1>
-          </div>
-        </div>
-      </header>
+  const filteredBookmarks = bookmarks.filter((bookmark) =>
+    bookmark.surah.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    bookmark.verse.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    bookmark.text.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
+  return (
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800">
       <main className="flex-grow container mx-auto px-4 py-8">
-        <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
-          <CardContent className="p-6">
-            <ScrollArea className="h-[calc(100vh-200px)] pr-4">
-              {bookmarks.length === 0 ? (
-                <p className="text-center text-gray-500 dark:text-gray-400">No bookmarks yet. Add some verses to your bookmarks!</p>
+        <Card className="w-full bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center text-amber-800 dark:text-amber-200 flex items-center justify-center">
+              <Bookmark className="mr-2" aria-hidden="true" />
+              Bookmarks
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="mb-4">
+              <div className="relative">
+                <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Search bookmarks..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 w-full"
+                />
+              </div>
+            </div>
+            <ScrollArea className="h-[calc(100vh-250px)]">
+              {filteredBookmarks.length === 0 ? (
+                <p className="text-center text-gray-500 dark:text-gray-400">
+                  {searchTerm ? "No matching bookmarks found." : "No bookmarks yet. Add some verses to your bookmarks!"}
+                </p>
               ) : (
                 <div className="space-y-4">
-                  {bookmarks.map((bookmark) => (
+                  {filteredBookmarks.map((bookmark) => (
                     <div key={bookmark.id} className="flex items-start justify-between p-4 bg-amber-50 dark:bg-slate-700 rounded-lg">
                       <div className="flex-grow">
                         <Button

@@ -59,7 +59,7 @@ export default function SurahListPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[100px]">Number</TableHead>
+                    <TableHead className="w-[100px]">Surah No.</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>English Name</TableHead>
                     <TableHead>Verses</TableHead>
