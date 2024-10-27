@@ -1,22 +1,22 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useState } from "react";
+import { useState } from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 
 const menuItems = [
   { title: "Surah Index", href: "/surah-index" },
   { title: "Para Index", href: "/para-index" },
   { title: "Verse Translation", href: "/verse-translation" },
-  // { title: "Go to Page", href: "/go-to-page" },
+  { title: "Go to", href: "/go-to" },
   { title: "Bookmarks", href: "/bookmarks" },
   // { title: "Settings", href: "/settings" },
 ];
 
 export default function HomePage() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800">
@@ -37,12 +37,8 @@ export default function HomePage() {
                     variant="outline"
                     className="w-full justify-start text-left font-medium transition-all duration-200 ease-in-out"
                     style={{
-                      transform:
-                        hoveredIndex === index ? "scale(1.05)" : "scale(1)",
-                      boxShadow:
-                        hoveredIndex === index
-                          ? "0 4px 6px rgba(0, 0, 0, 0.1)"
-                          : "none",
+                      transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)',
+                      boxShadow: hoveredIndex === index ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
                     }}
                   >
                     {item.title}
@@ -53,9 +49,6 @@ export default function HomePage() {
           </CardContent>
         </Card>
       </main>
-      <footer className="p-4 text-center text-sm text-amber-800 dark:text-amber-200">
-        © 2024 Quran App. All rights reserved.
-      </footer>
     </div>
-  );
+  )
 }

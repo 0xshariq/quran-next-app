@@ -93,7 +93,7 @@ const formatTime = (time: number) => {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 }
 
-export default function QuranApp() {
+function VerseTranslationContent() {
   const { toast } = useToast()
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -124,7 +124,6 @@ export default function QuranApp() {
     setCurrentSurah(surah)
     setCurrentVerse(verse)
   }, [searchParams])
-
 
   useEffect(() => {
     fetchVerseData()
@@ -591,6 +590,13 @@ export default function QuranApp() {
       
       <AlertBox />
     </div>
+    </Suspense>
+  )
+}
+export default function VerseTranslation() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerseTranslationContent />
     </Suspense>
   )
 }
