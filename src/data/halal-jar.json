@@ -1,0 +1,164 @@
+{
+    "happy": [
+      {
+        "verse": "Surah Al-An'am 6:160",
+        "text": "مَن جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا",
+        "translation": "Whoever brings a good deed will receive ten times as much."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:148",
+        "text": "فَاسْتَبِقُوا الْخَيْرَاتِ",
+        "translation": "So race to [all that is] good."
+      },
+      {
+        "verse": "Surah Al-Imran 3:139",
+        "text": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
+        "translation": "So do not weaken and do not grieve, and you will be superior if you are [true] believers."
+      },
+      {
+        "verse": "Surah Ar-Rahman 55:13",
+        "text": "فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ",
+        "translation": "So which of the favors of your Lord would you deny?"
+      },
+      {
+        "verse": "Surah Ad-Duha 93:5",
+        "text": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ",
+        "translation": "And your Lord is going to give you, and you will be satisfied."
+      }
+    ],
+    "thankful": [
+      {
+        "verse": "Surah Luqman 31:12",
+        "text": "وَلَقَدْ آتَيْنَا لُقْمَانَ الْحِكْمَةَ أَنِ اشْكُرْ لِلَّهِ",
+        "translation": "And We certainly gave Luqman wisdom [and said], 'Be grateful to Allah.'"
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:172",
+        "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا كُلُوا مِن طَيِّبَاتِ مَا رَزَقْنَاكُمْ وَاشْكُرُوا لِلَّهِ",
+        "translation": "O you who have believed, eat from the good things which We have provided for you and be grateful to Allah."
+      },
+      {
+        "verse": "Surah Ibrahim 14:7",
+        "text": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+        "translation": "If you are grateful, I will surely increase you [in favor]."
+      },
+      {
+        "verse": "Surah An-Naml 27:40",
+        "text": "وَمَن شَكَرَ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِ",
+        "translation": "And whoever is grateful - his gratitude is only for [the benefit of] himself."
+      },
+      {
+        "verse": "Surah Az-Zumar 39:7",
+        "text": "إِن تَشْكُرُوا يَرْضَهُ لَكُمْ",
+        "translation": "If you are grateful, He approves it for you."
+      }
+    ],
+    "angry": [
+      {
+        "verse": "Surah Ash-Shura 42:37",
+        "text": "وَالَّذِينَ يَجْتَنِبُونَ كَبَائِرَ الْإِثْمِ وَالْفَوَاحِشَ وَإِذَا مَا غَضِبُوا هُمْ يَغْفِرُونَ",
+        "translation": "And those who avoid the major sins and immoralities, and when they are angry, they forgive."
+      },
+      {
+        "verse": "Surah Al-A'raf 7:199",
+        "text": "خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ وَأَعْرِضْ عَنِ الْجَاهِلِينَ",
+        "translation": "Take what is given freely, enjoin what is good, and turn away from the ignorant."
+      },
+      {
+        "verse": "Surah Ali 'Imran 3:134",
+        "text": "وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ",
+        "translation": "Who restrain anger and who pardon the people - and Allah loves the doers of good."
+      },
+      {
+        "verse": "Surah An-Nahl 16:126",
+        "text": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا بِمِثْلِ مَا عُوقِبْتُم بِهِ ۖ وَلَئِن صَبَرْتُمْ لَهُوَ خَيْرٌ لِّلصَّابِرِينَ",
+        "translation": "And if you punish [an enemy], punish with an equivalent of that with which you were harmed. But if you are patient - it is better for those who are patient."
+      },
+      {
+        "verse": "Surah Fussilat 41:34",
+        "text": "ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَاوَةٌ كَأَنَّهُ وَلِيٌّ حَمِيمٌ",
+        "translation": "Repel [evil] by that [deed] which is better; and thereupon the one whom between you and him is enmity [will become] as though he was a devoted friend."
+      }
+    ],
+    "anxious": [
+      {
+        "verse": "Surah Al-Baqarah 2:155",
+        "text": "وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ",
+        "translation": "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient."
+      },
+      {
+        "verse": "Surah Al-Imran 3:139",
+        "text": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
+        "translation": "So do not weaken and do not grieve, and you will be superior if you are [true] believers."
+      },
+      {
+        "verse": "Surah Al-Hadid 57:22-23",
+        "text": "مَا أَصَابَ مِن مُّصِيبَةٍ فِي الْأَرْضِ وَلَا فِي أَنفُسِكُمْ إِلَّا فِي كِتَابٍ مِّن قَبْلِ أَن نَّبْرَأَهَا ۚ إِنَّ ذَٰلِكَ عَلَى اللَّهِ يَسِيرٌ",
+        "translation": "No disaster strikes upon the earth or among yourselves except that it is in a register before We bring it into being - indeed that, for Allah, is easy."
+      },
+      {
+        "verse": "Surah At-Tawbah 9:51",
+        "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ",
+        "translation": "Say, 'Never will we be struck except by what Allah has decreed for us; He is our protector.' And upon Allah let the believers rely."
+      },
+      {
+        "verse": "Surah Ar-Ra'd 13:28",
+        "text": "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+        "translation": "Those who have believed and whose hearts find rest in the remembrance of Allah, Verily, in the remembrance of Allah do hearts find rest."
+      }
+    ],
+    "sad": [
+      {
+        "verse": "Surah Al-Baqarah 2:286",
+        "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+        "translation": "Allah does not charge a soul except [with that within] its capacity."
+      },
+      {
+        "verse": "Surah Al-Inshirah 94:5-6",
+        "text": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۚ إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        "translation": "For indeed, with hardship [will be] ease. Indeed, with hardship [will be] ease."
+      },
+      {
+        "verse": "Surah Yusuf 12:86",
+        "text": "إِنَّمَا أَشْكُو بَثِّي وَحُزْنِي إِلَى اللَّهِ وَأَعْلَمُ مِنَ اللَّهِ مَا لَا تَعْلَمُونَ",
+        "translation": "I only complain of my suffering and my grief to Allah, and I know from Allah that which you do not know."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:153",
+        "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+        "translation": "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient."
+      },
+      {
+        "verse": "Surah Al-Anfal 8:46",
+        "text": "وَاصْبِرُوا ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+        "translation": "And be patient. Indeed, Allah is with the patient."
+      }
+    ],
+    "hopeful": [
+      {
+        "verse": "Surah Az-Zumar 39:53",
+        "text": "قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ",
+        "translation": "Say, 'O My servants who have transgressed against themselves [by sinning], do not despair of the mercy of Allah. Indeed, Allah forgives all sins. Indeed, it is He who is the Forgiving, the Merciful.'"
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:216",
+        "text": "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ ۖ وَعَسَىٰ أَن تُحِبُّوا شَيْئًا وَهُوَ شَرٌّ لَّكُمْ ۗ وَاللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ",
+        "translation": "But perhaps you hate a thing and it is good for you; and perhaps you love a thing and it is bad for you. And Allah Knows, while you know not."
+      },
+      {
+        "verse": "Surah Al-Imran 3:160",
+        "text": "إِن يَنصُرْكُمُ اللَّهُ فَلَا غَالِبَ لَكُمْ ۖ وَإِن  يَخْذُلْكُمْ فَمَن ذَا الَّذِي يَنصُرُكُم مِّن بَعْدِهِ ۗ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ",
+        "translation": "If Allah should aid you, no one can overcome you; but if He should forsake you, who is there that can aid you after Him? And upon Allah let the believers rely."
+      },
+      {
+        "verse": "Surah At-Tawbah 9:105",
+        "text": "وَقُلِ اعْمَلُوا فَسَيَرَى اللَّهُ عَمَلَكُمْ وَرَسُولُهُ وَالْمُؤْمِنُونَ",
+        "translation": "And say, 'Do [as you will], for Allah will see your deeds, and [so, will] His Messenger and the believers.'"
+      },
+      {
+        "verse": "Surah Ash-Sharh 94:8",
+        "text": "وَإِلَىٰ رَبِّكَ فَارْغَب",
+        "translation": "And to your Lord direct [your] longing."
+      }
+    ]
+  }

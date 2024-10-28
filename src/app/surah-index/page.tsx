@@ -75,7 +75,7 @@ export default function SurahListPage() {
                             Translation
                           </Button>
                         </Link>
-                        <Link href={``}>
+                        <Link href={`/quran-page-images/?surah=${surah.name}`}>
                           <Button variant="outline" size="sm">
                             <Book className="mr-2 h-4 w-4" />
                             Read

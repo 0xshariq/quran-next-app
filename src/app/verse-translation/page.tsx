@@ -119,8 +119,8 @@ function VerseTranslationContent() {
   const [currentVerse, setCurrentVerse] = useState(1)
 
   useEffect(() => {
-    const surah = searchParams.get('surah') || 'Al-Fatihah'
-    const verse = parseInt(searchParams.get('verse') || '1', 10)
+    const surah = searchParams?.get('surah') || 'Al-Fatihah'
+    const verse = parseInt(searchParams?.get('verse') || '1', 10)
     setCurrentSurah(surah)
     setCurrentVerse(verse)
   }, [searchParams])
