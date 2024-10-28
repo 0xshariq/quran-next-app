@@ -19,7 +19,6 @@ import surahs from '@/data/surah.json'
 interface Surah {
   number: number
   name: string
-  englishName: string
   verses: number
   revelationPlace: string
 }
@@ -29,7 +28,6 @@ export default function SurahListPage() {
 
   const filteredSurahs = surahs.filter((surah: Surah) =>
     surah.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    surah.englishName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     surah.number.toString().includes(searchTerm)
   )
 
@@ -61,9 +59,7 @@ export default function SurahListPage() {
                   <TableRow>
                     <TableHead className="w-[100px]">Surah No.</TableHead>
                     <TableHead>Name</TableHead>
-                    <TableHead>English Name</TableHead>
                     <TableHead>Verses</TableHead>
-                    <TableHead>Revelation Type</TableHead>
                     <TableHead className="text-right">Action</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -71,12 +67,15 @@ export default function SurahListPage() {
                   {filteredSurahs.map((surah: Surah) => (
                     <TableRow key={surah.number}>
                       <TableCell className="font-medium">{surah.number}</TableCell>
-                      <TableCell>{surah.name}</TableCell>
-                      <TableCell>{surah.englishName}</TableCell>
+                      <TableCell>{surah.name}{"\n"}({surah.revelationPlace})</TableCell>
                       <TableCell>{surah.verses}</TableCell>
-                      <TableCell>{surah.revelationPlace}</TableCell>
                       <TableCell className="text-right">
                         <Link href={`/verse-translation/?surah=${surah.name}&verse=1`}>
+                          <Button variant="outline" size="sm">
+                            Translation
+                          </Button>
+                        </Link>
+                        <Link href={``}>
                           <Button variant="outline" size="sm">
                             <Book className="mr-2 h-4 w-4" />
                             Read

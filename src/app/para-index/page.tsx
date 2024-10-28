@@ -75,7 +75,7 @@ export default function ParaIndexPage() {
                       <TableCell>{para.versesRange}</TableCell>
                       <TableCell>{para.pageRange}</TableCell>
                       <TableCell className="text-right">
-                        <Link href={`/para/${para.number}`}>
+                        <Link href={``}>
                           <Button variant="outline" size="sm">
                             <Book className="mr-2 h-4 w-4" />
                             Read
