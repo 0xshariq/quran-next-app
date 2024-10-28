@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card'
 const menuItems = [
   { title: "Surah Index", href: "/surah-index" },
   { title: "Para Index", href: "/para-index" },
+  { title: "Read Quran", href: "/read-quran" },
   { title: "Verse Translation", href: "/verse-translation" },
   { title: "Go to", href: "/go-to" },
   { title: "Bookmarks", href: "/bookmarks" },

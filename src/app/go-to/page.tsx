@@ -60,7 +60,7 @@ export default function GoToPage() {
       return
     }
     console.log('Navigating to Para:', para, 'Page:', page)
-    router.push(`/quran-page-images/${para}/${page}`)
+    router.push(`/read-quran/${para}/${page}`)
   }
 
   if (!mounted) return null
