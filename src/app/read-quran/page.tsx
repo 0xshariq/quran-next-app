@@ -119,7 +119,7 @@ export default function QuranViewer() {
                       <SelectContent>
                         {paras.map((para) => (
                           <SelectItem key={para.number} value={para.number.toString()}>
-                            {para.name}
+                            {para.number}).&nbsp;{para.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
