@@ -13,7 +13,7 @@ const menuItems = [
   { title: "Verse Translation", href: "/verse-translation" },
   { title: "Go to", href: "/go-to" },
   { title: "Bookmarks", href: "/bookmarks" },
-  { title: "Halal-jar", href: "/halal-jar" },
+  { title: "Halal Jar", href: "/halal-jar" },
   // { title: "Settings", href: "/settings" },
 ];
 

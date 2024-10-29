@@ -24,7 +24,12 @@ export default function HalalJar() {
   const getRandomVerse = (emotion: Emotion) => {
     const verses = versesData[emotion]
     const randomIndex = Math.floor(Math.random() * verses.length)
-    setCurrentVerse(verses[randomIndex])
+    const verse = verses[randomIndex]
+    setCurrentVerse({
+      verse: verse.verse,
+      text: verse.text,
+      translation: verse.translation
+    })
   }
 
   const handleGetAnotherVerse = () => {

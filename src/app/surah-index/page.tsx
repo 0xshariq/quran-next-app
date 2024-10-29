@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Book, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,6 +14,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import surahs from '@/data/surah.json'
 
 interface Surah {
@@ -25,11 +32,21 @@ interface Surah {
 
 export default function SurahListPage() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [selectedSurah, setSelectedSurah] = useState<string | null>(null)
+  const router = useRouter()
 
   const filteredSurahs = surahs.filter((surah: Surah) =>
     surah.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     surah.number.toString().includes(searchTerm)
   )
+
+  const handleReadClick = (surahName: string) => {
+    setSelectedSurah(surahName)
+  }
+
+  const handleSurahSelect = (value: string) => {
+    router.push(`/read-quran/?surah=${value}`)
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800">
@@ -67,20 +84,25 @@ export default function SurahListPage() {
                   {filteredSurahs.map((surah: Surah) => (
                     <TableRow key={surah.number}>
                       <TableCell className="font-medium">{surah.number}</TableCell>
-                      <TableCell>{surah.name}{"\n"}({surah.revelationPlace})</TableCell>
+                      <TableCell>{surah.name}<br /><span className="text-sm text-gray-500 dark:text-gray-400">({surah.revelationPlace})</span></TableCell>
                       <TableCell>{surah.verses}</TableCell>
                       <TableCell className="text-right">
-                        <Link href={`/verse-translation/?surah=${surah.name}&verse=1`}>
-                          <Button variant="outline" size="sm">
-                            Translation
-                          </Button>
-                        </Link>
-                        <Link href={`/read-quran/?surah=${surah.name}`}>
-                          <Button variant="outline" size="sm">
-                            <Book className="mr-2 h-4 w-4" />
-                            Read
-                          </Button>
-                        </Link>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="mr-2"
+                          onClick={() => router.push(`/verse-translation/?surah=${surah.name}&verse=1`)}
+                        >
+                          Translation
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleReadClick(surah.name)}
+                        >
+                          <Book className="mr-2 h-4 w-4" />
+                          Read
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -90,6 +112,34 @@ export default function SurahListPage() {
           </CardContent>
         </Card>
       </main>
+      {selectedSurah && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <Card className="w-full max-w-md">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold">Select Surah to Read</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Select onValueChange={handleSurahSelect}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a Surah" />
+                </SelectTrigger>
+                <SelectContent>
+                  {surahs.map((surah: Surah) => (
+                    <SelectItem key={surah.number} value={surah.name}>
+                      {surah.number}. {surah.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <div className="mt-4 flex justify-end">
+                <Button variant="outline" onClick={() => setSelectedSurah(null)}>
+                  Cancel
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   )
 }

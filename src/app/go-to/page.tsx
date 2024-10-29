@@ -60,7 +60,7 @@ export default function GoToPage() {
       return
     }
     console.log('Navigating to Para:', para, 'Page:', page)
-    router.push(`/read-quran/${para}/${page}`)
+    router.push(`/read-quran?para=${para}`)
   }
 
   if (!mounted) return null
@@ -73,7 +73,7 @@ export default function GoToPage() {
             <Input
               type="number"
               value={paraNumber}
-              onChange={(e) => setParaNumber(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setParaNumber(e.target.value)}
               className="bg-white dark:bg-slate-800 border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200 placeholder-amber-400 dark:placeholder-amber-600"
               placeholder="Para Number (1-30)"
               min="1"
@@ -84,7 +84,7 @@ export default function GoToPage() {
             <Input
               type="number"
               value={pageNumber}
-              onChange={(e) => setPageNumber(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPageNumber(e.target.value)}
               className="bg-white dark:bg-slate-800 border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200 placeholder-amber-400 dark:placeholder-amber-600"
               placeholder={selectedParaPages ? `Page Number (1-${selectedParaPages})` : "Page Number"}
               min="1"

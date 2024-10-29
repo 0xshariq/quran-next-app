@@ -48,8 +48,8 @@ export default function QuranViewer() {
   }
 
   const imagePath = viewMode === 'surah'
-    ? `/assets/surah-images/${selectedSurah.name}/${currentPage}.png`
-    : `/assets/para-images/${selectedPara.number}/${currentPage}.png`
+    ? `@/assets/surah-images/${selectedSurah.name}/${currentPage}.png`
+    : `@/assets/para-images/${selectedPara.number}/${currentPage}.png`
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
