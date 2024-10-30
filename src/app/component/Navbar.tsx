@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Book, Menu, Home, Bookmark, HelpCircle, Sun, Moon } from 'lucide-react'
+import { Book, Menu, Sun, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
@@ -61,13 +61,21 @@ export default function Navbar() {
                 <div className="space-y-4">
                   <Link href="/">
                     <Button variant="ghost" className="w-full justify-start">
-                      <Home className="mr-2 h-4 w-4" />
                       Home
+                    </Button>
+                  </Link>
+                  <Link href="/read-quran">
+                    <Button variant="ghost" className="w-full justify-start">
+                      Read Quran
+                    </Button>
+                  </Link>
+                  <Link href="/hadith-app">
+                    <Button variant="ghost" className="w-full justify-start">
+                      Visit Hadith App
                     </Button>
                   </Link>
                   <Link href="/verse-translation">
                     <Button variant="ghost" className="w-full justify-start">
-                      <Book className="mr-2 h-4 w-4" />
                       Verse Translation
                     </Button>
                   </Link>
@@ -83,13 +91,11 @@ export default function Navbar() {
                   </Link>
                   <Link href="/bookmarks">
                     <Button variant="ghost" className="w-full justify-start">
-                      <Bookmark className="mr-2 h-4 w-4" />
                       Bookmarks
                     </Button>
                   </Link>
                   <Link href="/help">
                     <Button variant="ghost" className="w-full justify-start">
-                      <HelpCircle className="mr-2 h-4 w-4" />
                       Help & FAQ
                     </Button>
                   </Link>

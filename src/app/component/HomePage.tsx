@@ -14,6 +14,7 @@ const menuItems = [
   { title: "Go to", href: "/go-to" },
   { title: "Bookmarks", href: "/bookmarks" },
   { title: "Halal Jar", href: "/halal-jar" },
+  { title: "Visit Hadith App", href: "/hadith-app" }
   // { title: "Settings", href: "/settings" },
 ];
 

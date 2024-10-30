@@ -6,7 +6,9 @@ import { ChevronLeft, ChevronRight, Book } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import { Card, CardContent } from '@/components/ui/card'
+import { toast } from '@/hooks/use-toast'
 import surahsData from '@/data/surah.json'
 import parasData from '@/data/para.json'
 
@@ -33,23 +35,52 @@ export default function QuranViewer() {
   const [selectedPara, setSelectedPara] = useState<Para>(paras[0])
   const [currentPage, setCurrentPage] = useState(1)
   const [viewMode, setViewMode] = useState<'surah' | 'para'>('surah')
+  const [pageInput, setPageInput] = useState('1')
 
   useEffect(() => {
     setCurrentPage(1)
+    setPageInput('1')
   }, [selectedSurah, selectedPara, viewMode])
 
   const handleNext = () => {
     const maxPages = viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages
-    setCurrentPage(prev => Math.min(prev + 1, maxPages))
+    setCurrentPage(prev => {
+      const newPage = Math.min(prev + 1, maxPages)
+      setPageInput(newPage.toString())
+      return newPage
+    })
   }
 
   const handlePrevious = () => {
-    setCurrentPage(prev => Math.max(prev - 1, 1))
+    setCurrentPage(prev => {
+      const newPage = Math.max(prev - 1, 1)
+      setPageInput(newPage.toString())
+      return newPage
+    })
+  }
+
+  const handlePageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPageInput(e.target.value)
+  }
+
+  const handlePageInputBlur = () => {
+    const maxPages = viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages
+    const pageNumber = parseInt(pageInput)
+    if (isNaN(pageNumber) || pageNumber < 1 || pageNumber > maxPages) {
+      toast({
+        title: "Invalid Page Number",
+        description: `Please enter a number between 1 and ${maxPages}.`,
+        variant: "destructive",
+      })
+      setPageInput(currentPage.toString())
+    } else {
+      setCurrentPage(pageNumber)
+    }
   }
 
   const imagePath = viewMode === 'surah'
-    ? `@/assets/surah-images/${selectedSurah.name}/${currentPage}.png`
-    : `@/assets/para-images/${selectedPara.number}/${currentPage}.png`
+    ? `/assets/surah-images/${selectedSurah.name}/${currentPage}.png`
+    : `/assets/para-images/${selectedPara.number}/${currentPage}.png`
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
@@ -119,13 +150,26 @@ export default function QuranViewer() {
                       <SelectContent>
                         {paras.map((para) => (
                           <SelectItem key={para.number} value={para.number.toString()}>
-                            {para.number}).&nbsp;{para.name}
+                            {para.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
                 )}
+                <div>
+                  <Label htmlFor="page-input" className="text-amber-800 dark:text-amber-200">Page</Label>
+                  <Input
+                    id="page-input"
+                    type="number"
+                    value={pageInput}
+                    onChange={handlePageInputChange}
+                    onBlur={handlePageInputBlur}
+                    className="w-[100px] border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
+                    min={1}
+                    max={viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages}
+                  />
+                </div>
               </div>
               <div className="flex items-center space-x-2">
                 <Button
