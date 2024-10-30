@@ -43,6 +43,8 @@ export default function Footer() {
               <li className="text-sm">Verse Bookmarking</li>
               <li className="text-sm">Dark Mode</li>
               <li className="text-sm">Responsive Design</li>
+              <li className="text-sm">Hadith App</li>
+              <li className="text-sm">Read Quran Through Image</li>
             </ul>
           </div>
 
