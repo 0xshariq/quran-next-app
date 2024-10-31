@@ -1,519 +1,260 @@
 {
   "happy": [
-    {
-      "verse": "Surah Al-An'am 6:160",
-      "text": "مَن جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا",
-      "translation": "Whoever brings a good deed will receive ten times as much."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:148",
-      "text": "فَاسْتَبِقُوا الْخَيْرَاتِ",
-      "translation": "So race to [all that is] good."
-    },
-    {
-      "verse": "Surah Al-Imran 3:139",
-      "text": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
-      "translation": "So do not weaken and do not grieve, and you will be superior if you are [true] believers."
-    },
-    {
-      "verse": "Surah Al-Hajj 22:77",
-      "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا ارْكَعُوا وَاسْجُدُوا وَاعْبُدُوا رَبَّكُمْ",
-      "translation": "O you who have believed, bow and prostrate and worship your Lord."
-    },
-    {
-      "verse": "Surah Al-Mumtahanah 60:4",
-      "text": "رَبَّنَا عَلَيْكَ تَوَكَّلْنَا وَإِلَيْكَ أَنَبْنَا",
-      "translation": "Our Lord, upon You we have relied, and to You we have returned."
-    },
-    {
-      "verse": "Surah Al-Fath 48:4",
-      "text": "لِيَزْدَادُوا إِيمَانًا مَّعَ إِيمَانِهِمْ",
-      "translation": "That they may increase in faith along with their [present] faith."
-    },
-    {
-      "verse": "Surah At-Tawbah 9:51",
-      "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا",
-      "translation": "Say, 'Never will we be struck except by what Allah has decreed for us.'"
-    },
-    {
-      "verse": "Surah Yunus 10:62",
-      "text": "أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
-      "translation": "Unquestionably, the allies of Allah - there will be no fear concerning them, nor will they grieve."
-    },
-    {
-      "verse": "Surah An-Nisa 4:86",
-      "text": "فَحَيُّوا بِأَحْسَنَ مِنْهَا أَوْ رُدُّوهَا",
-      "translation": "Respond with something better or return it [in kind]."
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah Ash-Sharh 94:5",
-      "text": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
-      "translation": "For indeed, with hardship [will be] ease."
-    },
-    {
-      "verse": "Surah Al-An'am 6:82",
-      "text": "الَّذِينَ آمَنُوا وَلَمْ يَلْبِسُوا إِيمَانَهُم بِظُلْمٍ أُولَـٰئِكَ لَهُمُ الْأَمْنُ وَهُم مُّهْتَدُونَ",
-      "translation": "They who believe and do not mix their belief with injustice - those will have security, and they are [rightly] guided."
-    },
-    {
-      "verse": "Surah Al-Ma'idah 5:119",
-      "text": "رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ",
-      "translation": "Allah being pleased with them and they with Him."
-    },
-    {
-      "verse": "Surah Al-Furqan 25:70",
-      "text": "فَأُولَـٰئِكَ يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ",
-      "translation": "For them Allah will replace their evil deeds with good."
-    },
-    {
-      "verse": "Surah At-Tahrim 66:8",
-      "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا تُوبُوا إِلَى اللَّهِ تَوْبَةً نَّصُوحًا",
-      "translation": "O you who have believed, repent to Allah with sincere repentance."
-    },
-    {
-      "verse": "Surah Maryam 19:96",
-      "text": "إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ سَيَجْعَلُ لَهُمُ الرَّحْمَـٰنُ وُدًّا",
-      "translation": "Indeed, those who have believed and done righteous deeds - the Most Merciful will appoint for them affection."
-    },
-    {
-      "verse": "Surah An-Nur 24:55",
-      "text": "وَعَدَ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَعَمِلُوا الصَّالِحَاتِ لَيَسْتَخْلِفَنَّهُمْ فِي الْأَرْضِ",
-      "translation": "Allah has promised those who have believed among you and done righteous deeds that He will surely grant them succession [to authority] upon the earth."
-    },
-    {
-      "verse": "Surah As-Saff 61:13",
-      "text": "وَبُشْرَىٰ لِلْمُؤْمِنِينَ",
-      "translation": "And [He will give you] good tidings for the believers."
-    },
-    {
-      "verse": "Surah Al-Ma'idah 5:2",
-      "text": "وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ",
-      "translation": "And cooperate in righteousness and piety."
-    },
-    {
-      "verse": "Surah Al-Fajr 89:27-28",
-      "text": "يَا أَيَّتُهَا النَّفْسُ الْمُطْمَئِنَّةُ ارْجِعِي إِلَىٰ رَبِّكِ رَاضِيَةً مَّرْضِيَّةً",
-      "translation": "O satisfied soul, return to your Lord, well-pleased and pleasing [to Him]."
-    }
-  ],
-  "thankful": [
-    {
-      "verse": "Surah Luqman 31:12",
-      "text": "وَلَقَدْ آتَيْنَا لُقْمَانَ الْحِكْمَةَ أَنِ اشْكُرْ لِلَّهِ",
-      "translation": "And We certainly gave Luqman wisdom [and said], 'Be grateful to Allah.'"
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:172",
-      "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا كُلُوا مِن طَيِّبَاتِ مَا رَزَقْنَاكُمْ وَاشْكُرُوا لِلَّهِ",
-      "translation": "O you who have believed, eat from the good things which We have provided for you and be grateful to Allah."
-    },
-    {
-      "verse": "Surah An-Naml 27:19",
-      "text": "فَتَبَسَّمَ ضَاحِكًا مِّن قَوْلِهَا وَقَالَ رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ",
-      "translation": "So [Solomon] smiled, amused at her speech, and said, 'My Lord, enable me to be grateful for Your favor.'"
-    },
-    {
-      "verse": "Surah Ibrahim 14:34",
-      "text": "وَإِن تَعُدُّوا نِعْمَتَ اللَّهِ لَا تُحْصُوهَا",
-      "translation": "And if you should count the favors of Allah, you could not enumerate them."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:186",
-      "text": "فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
-      "translation": "So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided."
-    },
-    {
-      "verse": "Surah Al-A'raf 7:144",
-      "text": "قَالَ يَا مُوسَىٰ إِنِّي اصْطَفَيْتُكَ عَلَى النَّاسِ بِرِسَالَاتِي وَبِكَلَامِي",
-      "translation": "He said, 'O Moses, I have chosen you over the people with My messages and My words [to you].'"
-    },
-    {
-      "verse": "Surah Az-Zumar 39:66",
-      "text": "بَلِ اللَّهَ فَاعْبُدْ وَكُن مِّنَ الشَّاكِرِينَ",
-      "translation": "Rather, worship [only] Allah and be among the grateful."
-    },
-    {
-      "verse": "Surah Yunus 10:22",
-      "text": "فَلَمَّا أَنجَاهُمْ إِلَى الْبَرِّ إِذَا هُمْ يُشْرِكُونَ",
-      "translation": "But when He delivers them to the land, at once they associate others with Him."
-    },
-    {
-      "verse": "Surah An-Nahl 16:78",
-      "text": "وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ",
-      "translation": "And He gave you hearing and vision and hearts."
-    },
-    {
-      "verse": "Surah Ibrahim 14:5",
-      "text": "وَذَكِّرْهُم بِأَيَّامِ اللَّهِ",
-      "translation": "And remind them of the days of Allah."
-    },
-    {
-      "verse": "Surah Al-Furqan 25:62",
-      "text": "وَهُوَ الَّذِي جَعَلَ اللَّيْلَ وَالنَّهَارَ خِلْفَةً",
-      "translation": "And it is He who has made the night and the day in succession."
-    },
-    {
-      "verse": "Surah As-Saffat 37:143-144",
-      "text": "فَلَوْلَا أَنَّهُ كَانَ مِنَ الْمُسَبِّحِينَ لَلَبِثَ فِي بَطْنِهِ إِلَىٰ يَوْمِ يُبْعَثُونَ",
-      "translation": "Had he not been of those who exalt Allah, he would have remained inside its belly until the Day they are resurrected."
-    },
-    {
-      "verse": "Surah Al-Insan 76:3",
-      "text": "إِنَّا هَدَيْنَاهُ السَّبِيلَ إِمَّا شَاكِرًا وَإِمَّا كَفُورًا",
-      "translation": "Indeed, We guided him to the way, be he grateful or be he ungrateful."
-    },
-    {
-      "verse": "Surah Al-Ma'idah 5:45",
-      "text": "فَمَن تَصَدَّقَ بِهِ فَهُوَ كَفَّارَةٌ لَّهُ",
-      "translation": "But whoever gives [something] up, it is an expiation for him."
-    },
-    {
-      "verse": "Surah Az-Zumar 39:66",
-      "text": "بَلِ اللَّهَ فَاعْبُدْ وَكُن مِّنَ الشَّاكِرِينَ",
-      "translation": "Rather, worship [only] Allah and be among the grateful."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:267",
-      "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا أَنفِقُوا مِن طَيِّبَاتِ مَا كَسَبْتُمْ",
-      "translation": "O you who have believed, spend from the good things which you have earned."
-    },
-    {
-      "verse": "Surah An-Nahl 16:78",
-      "text": "وَاللَّهُ أَخْرَجَكُم مِّن بُطُونِ أُمَّهَاتِكُمْ",
-      "translation": "And Allah brought you forth from the wombs of your mothers."
-    },
-    {
-      "verse": "Surah Ibrahim 14:32",
-      "text": "اللَّهُ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ",
-      "translation": "It is Allah who created the heavens and the earth."
-    },
-    {
-      "verse": "Surah Al-Mu'minun 23:78",
-      "text": "وَهُوَ الَّذِي أَنشَأَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ",
-      "translation": "And it is He who produced for you hearing and vision and hearts."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:261",
-      "text": "مَّثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ فِي سَبِيلِ اللَّهِ كَمَثَلِ حَبَّةٍ أَنبَتَتْ سَبْعَ سَنَابِلَ",
-      "translation": "The example of those who spend their wealth in the way of Allah is like a seed [of grain] that sprouts seven ears."
-    }
-  ],
-  "angry": [
-    {
-      "verse": "Surah Ash-Shura 42:37",
-      "text": "وَالَّذِينَ يَجْتَنِبُونَ كَبَائِرَ الْإِثْمِ وَالْفَوَاحِشَ وَإِذَا مَا غَضِبُوا هُمْ يَغْفِرُونَ",
-      "translation": "And those who avoid the major sins and immoralities, and when they are angry, they forgive."
-    },
-    {
-      "verse": "Surah An-Nahl 16:126",
-      "text": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا بِمِثْلِ مَا عُوقِبْتُمْ بِهِ",
-      "translation": "And if you punish [an enemy], punish with an equivalent of that with which you were harmed."
-    },
-    {
-      "verse": "Surah Al-Ma'idah 5:8",
-      "text": "وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰ أَلَّا تَعْدِلُوا",
-      "translation": "And do not let the hatred of a people prevent you from being just."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:195",
-      "text": "وَأَحْسِنُوا إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ",
-      "translation": "And do good; indeed, Allah loves the doers of good."
-    },
-    {
-      "verse": "Surah An-Nahl 16:125",
-      "text": "ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ",
-      "translation": "Invite to the way of your Lord with wisdom and good instruction."
-    },
-    {
-      "verse": "Surah Al-Mu'minun 23:96",
-      "text": "ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ السَّيِّئَةَ",
-      "translation": "Repel evil by that [deed] which is better."
-    },
-    {
-      "verse": "Surah Al-Imran 3:159",
-      "text": "فَاعْفُ عَنْهُمْ وَاسْتَغْفِرْ لَهُمْ",
-      "translation": "So pardon them and ask forgiveness for them."
-    },
-    {
-      "verse": "Surah Al-Hijr 15:85",
-      "text": "فَاصْفَحِ الصَّفْحَ الْجَمِيلَ",
-      "translation": "So overlook [their faults] with gracious forgiveness."
-    },
-    {
-      "verse": "Surah Fussilat 41:34",
-      "text": "ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ",
-      "translation": "Repel [evil] by that [deed] which is better."
-    },
-    {
-      "verse": "Surah Al-Imran 3:186",
-      "text": "وَلَئِن صَبَرْتُمْ لَهُوَ خَيْرٌ لِّلصَّابِرِينَ",
-      "translation": "But if you are patient, it is better for those who are patient."
-    },
-    {
-      "verse": "Surah Al-Mumtahina 60:8",
-      "text": "إِنَّ اللَّهَ يُحِبُّ الْمُقْسِطِينَ",
-      "translation": "Indeed, Allah loves those who act justly."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:153",
-      "text": "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
-      "translation": "Indeed, Allah is with the patient."
-    },
-    {
-      "verse": "Surah Al-Anfal 8:46",
-      "text": "وَاصْبِرُوا ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
-      "translation": "And be patient. Indeed, Allah is with the patient."
-    },
-    {
-      "verse": "Surah Al-A'raf 7:199",
-      "text": "خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ",
-      "translation": "Take what is given freely, enjoin what is good."
-    },
-    {
-      "verse": "Surah At-Taghabun 64:14",
-      "text": "وَإِن تَعْفُوا وَتَصْفَحُوا وَتَغْفِرُوا",
-      "translation": "But if you pardon and overlook and forgive."
-    },
-    {
-      "verse": "Surah Ash-Shura 42:43",
-      "text": "وَلَمَن صَبَرَ وَغَفَرَ إِنَّ ذَٰلِكَ لَمِنْ عَزْمِ الْأُمُورِ",
-      "translation": "And whoever is patient and forgives - indeed, that is of the matters [requiring] determination."
-    },
-    {
-      "verse": "Surah Al-Anfal 8:1",
-      "text": "فَاتَّقُوا اللَّهَ وَأَصْلِحُوا ذَاتَ بَيْنِكُمْ",
-      "translation": "So fear Allah and amend that which is between you."
-    },
-    {
-      "verse": "Surah Al-A'raf 7:126",
-      "text": "فَأَقْضِ مَا أَنتَ قَاضٍ",
-      "translation": "So decree whatever you are to decree."
-    },
-    {
-      "verse": "Surah An-Nisa 4:128",
-      "text": "وَالصُّلْحُ خَيْرٌ",
-      "translation": "And reconciliation is better."
-    },
-    {
-      "verse": "Surah An-Nahl 16:126",
-      "text": "وَلَئِن صَبَرْتُمْ لَهُوَ خَيْرٌ لِّلصَّابِرِينَ",
-      "translation": "But if you are patient, it is better for those who are patient."
-    }
-  ],
-  "anxious": [
-    {
-      "verse": "Surah At-Tawbah 9:51",
-      "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا",
-      "translation": "Say, 'Never will we be struck except by what Allah has decreed for us.'"
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah Al-Isra 17:82",
-      "text": "وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ",
-      "translation": "And We send down in the Quran such things that have healing and mercy for the believers."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:286",
-      "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
-      "translation": "Allah does not burden a soul beyond that it can bear."
-    },
-    {
-      "verse": "Surah Al-Anfal 8:46",
-      "text": "وَأَطِيعُوا اللَّهَ وَرَسُولَهُ وَلَا تَنَازَعُوا فَتَفْشَلُوا وَتَذْهَبَ رِيحُكُمْ",
-      "translation": "And obey Allah and His Messenger and do not dispute and [thus] lose courage."
-    },
-    {
-      "verse": "Surah Al-Mulk 67:15",
-      "text": "يُقِيمُونَ الصَّلَوٰةَ وَيُقْرِضُونَ اللَّهَ قَرْضًا حَسَنًا",
-      "translation": "They establish prayer and give zakah, and they fear Allah and the Last Day."
-    },
-    {
-      "verse": "Surah Az-Zumar 39:10",
-      "text": "قُلْ يَا عِبَادِيَ الَّذِينَ آمَنُوا اتَّقُوا رَبَّكُمْ",
-      "translation": "Say, 'O My servants who have believed, fear your Lord.'"
-    },
-    {
-      "verse": "Surah Al-Imran 3:173",
-      "text": "الَّذِينَ قَالُوا رَبُّنَا اللَّهُ ثُمَّ اسْتَقَامُوا",
-      "translation": "Those who say, 'Our Lord is Allah' and then remain steadfast."
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah Ar-Rum 30:41",
-      "text": "ظَهَرَ الْفَسَادُ فِي الْبَرِّ وَالْبَحْرِ بِمَا كَسَبَتْ أَيْدِي النَّاسِ",
-      "translation": "Corruption has appeared throughout the land and sea by what the people have earned."
-    },
-    {
-      "verse": "Surah Al-Hadid 57:22",
-      "text": "مَا أَصَابَ مِن مُصِيبَةٍ إِلَّا بِإِذْنِ اللَّهِ",
-      "translation": "No disaster strikes except by permission of Allah."
-    },
-    {
-      "verse": "Surah Al-Ma'idah 5:114",
-      "text": "اللَّهُمَّ رَبَّنَا أَنْزِلْ عَلَيْنَا مَآئِدَةً مِنَ السَّمَاءِ",
-      "translation": "O Allah, our Lord, send us a table spread [with food] from the sky."
-    },
-    {
-      "verse": "Surah Al-A'raf 7:96",
-      "text": "وَلَوْ أَنَّ أَهْلَ قُرَىٰ آمَنُوا وَاتَّقَوْا لَفَتَحْنَا عَلَيْهِمْ بَرَكَاتٍ مِنَ السَّمَاءِ وَالْأَرْضِ",
-      "translation": "And if the people of those towns had believed and been conscious of Allah, We would certainly have opened up to them blessings from the heavens and the earth."
-    },
-    {
-      "verse": "Surah At-Tawbah 9:129",
-      "text": "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
-      "translation": "So when you have decided, then rely upon Allah."
-    },
-    {
-      "verse": "Surah Al-Isra 17:28",
-      "text": "وَإِذَا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
-      "translation": "And when you recite the Quran, seek refuge in Allah from the accursed devil."
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:286",
-      "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
-      "translation": "Allah does not burden a soul beyond that it can bear."
-    },
-    {
-      "verse": "Surah Al-Mulk 67:15",
-      "text": "يُقِيمُونَ الصَّلَوٰةَ وَيُقْرِضُونَ اللَّهَ قَرْضًا حَسَنًا",
-      "translation": "They establish prayer and give zakah, and they fear Allah and the Last Day."
-    },
-    {
-      "verse": "Surah Al-Isra 17:82",
-      "text": "وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ",
-      "translation": "And We send down in the Quran such things that have healing and mercy for the believers."
-    },
-    {
-      "verse": "Surah At-Tawbah 9:51",
-      "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا",
-      "translation": "Say, 'Never will we be struck except by what Allah has decreed for us.'"
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    }
-  ],
-  "lonely": [
-    {
-      "verse": "Surah Al-Hadid 57:4",
-      "text": "يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا",
-      "translation": "He knows whatever goes into the earth and whatever comes out of it."
-    },
-    {
-      "verse": "Surah Al-Inshirah 94:5",
-      "text": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
-      "translation": "For indeed, with hardship [will be] ease."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:286",
-      "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
-      "translation": "Allah does not burden a soul beyond that it can bear."
-    },
-    {
-      "verse": "Surah Az-Zumar 39:10",
-      "text": "قُلْ يَا عِبَادِيَ الَّذِينَ آمَنُوا اتَّقُوا رَبَّكُمْ",
-      "translation": "Say, 'O My servants who have believed, fear your Lord.'"
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah Al-Isra 17:82",
-      "text": "وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ",
-      "translation": "And We send down in the Quran such things that have healing and mercy for the believers."
-    },
-    {
-      "verse": "Surah At-Tawbah 9:51",
-      "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا",
-      "translation": "Say, 'Never will we be struck except by what Allah has decreed for us.'"
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:286",
-      "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
-      "translation": "Allah does not burden a soul beyond that it can bear."
-    },
-    {
-      "verse": "Surah Al-Hadid 57:4",
-      "text": "يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا",
-      "translation": "He knows whatever goes into the earth and whatever comes out of it."
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah Az-Zumar 39:53",
-      "text": "يَا عِبَادِيَ الَّذِينَ آمَنُوا لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
-      "translation": "O My servants who have believed, do not despair of the mercy of Allah."
-    },
-    {
-      "verse": "Surah Al-Ma'idah 5:114",
-      "text": "اللَّهُمَّ رَبَّنَا أَنْزِلْ عَلَيْنَا مَآئِدَةً مِنَ السَّمَاءِ",
-      "translation": "O Allah, our Lord, send us a table spread [with food] from the sky."
-    },
-    {
-      "verse": "Surah Al-A'raf 7:96",
-      "text": "وَلَوْ أَنَّ أَهْلَ قُرَىٰ آمَنُوا وَاتَّقَوْا لَفَتَحْنَا عَلَيْهِمْ بَرَكَاتٍ مِنَ السَّمَاءِ وَالْأَرْضِ",
-      "translation": "And if the people of those towns had believed and been conscious of Allah, We would certainly have opened up to them blessings from the heavens and the earth."
-    },
-    {
-      "verse": "Surah Al-Baqarah 2:286",
-      "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
-      "translation": "Allah does not burden a soul beyond that it can bear."
-    },
-    {
-      "verse": "Surah Al-Hadid 57:4",
-      "text": "يَعْلَمُ مَا يَلِجُ فِي الْأَرْضِ وَمَا يَخْرُجُ مِنْهَا",
-      "translation": "He knows whatever goes into the earth and whatever comes out of it."
-    },
-    {
-      "verse": "Surah Al-Mulk 67:15",
-      "text": "يُقِيمُونَ الصَّلَوٰةَ وَيُقْرِضُونَ اللَّهَ قَرْضًا حَسَنًا",
-      "translation": "They establish prayer and give zakah, and they fear Allah and the Last Day."
-    },
-    {
-      "verse": "Surah Al-Isra 17:82",
-      "text": "وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ",
-      "translation": "And We send down in the Quran such things that have healing and mercy for the believers."
-    },
-    {
-      "verse": "Surah Al-Ankabut 29:69",
-      "text": "وَالَّذِينَ جَاهَدُوا فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
-      "translation": "And those who strive for Us - We will surely guide them to Our ways."
-    },
-    {
-      "verse": "Surah At-Tawbah 9:51",
-      "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا",
-      "translation": "Say, 'Never will we be struck except by what Allah has decreed for us.'"
-    },
-    {
-      "verse": "Surah Az-Zumar 39:10",
-      "text": "قُلْ يَا عِبَادِيَ الَّذِينَ آمَنُوا اتَّقُوا رَبَّكُمْ",
-      "translation": "Say, 'O My servants who have believed, fear your Lord.'"
-    }
-  ],
+      {
+        "verse": "Surah Ibrahim 14:7",
+        "text": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ",
+        "translation": "And [remember] when your Lord proclaimed, 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.'"
+      },
+      {
+        "verse": "Surah Ar-Ra'd 13:28",
+        "text": "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+        "translation": "Those who have believed and whose hearts find rest in the remembrance of Allah, Verily, in the remembrance of Allah do hearts find rest."
+      },
+      {
+        "verse": "Surah Ad-Duha 93:5",
+        "text": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ",
+        "translation": "And your Lord is going to give you, and you will be satisfied."
+      },
+      {
+        "verse": "Surah Al-Inshirah 94:5-6",
+        "text": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا - إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        "translation": "For indeed, with hardship [will be] ease. Indeed, with hardship [will be] ease."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:152",
+        "text": "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
+        "translation": "So remember Me; I will remember you. And be grateful to Me and do not deny Me."
+      },
+      {
+        "verse": "Surah Al-Anfal 8:2-4",
+        "text": "إِنَّمَا الْمُؤْمِنُونَ الَّذِينَ إِذَا ذُكِرَ اللَّهُ وَجِلَتْ قُلُوبُهُمْ وَإِذَا تُلِيَتْ عَلَيْهِمْ آيَاتُهُ زَادَتْهُمْ إِيمَانًا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ - الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ - أُولَٰئِكَ هُمُ الْمُؤْمِنُونَ حَقًّا ۚ لَّهُمْ دَرَجَاتٌ عِندَ رَبِّهِمْ وَمَغْفِرَةٌ وَرِزْقٌ كَرِيمٌ",
+        "translation": "The believers are only those who, when Allah is mentioned, their hearts become fearful, and when His verses are recited to them, it increases them in faith; and upon their Lord they rely - The ones who establish prayer, and from what We have provided them, they spend. Those are the believers, truly. For them are degrees [of high position] with their Lord and forgiveness and noble provision."
+      },
+      {
+        "verse": "Surah Al-Hijr 15:97-99",
+        "text": "وَلَقَدْ نَعْلَمُ أَنَّكَ يَضِيقُ صَدْرُكَ بِمَا يَقُولُونَ - فَسَبِّحْ بِحَمْدِ رَبِّكَ وَكُن مِّنَ السَّاجِدِينَ - وَاعْبُدْ رَبَّكَ حَتَّىٰ يَأْتِيَكَ الْيَقِينُ",
+        "translation": "And We already know that your breast is constrained by what they say. So exalt [Allah] with praise of your Lord and be of those who prostrate [to Him]. And worship your Lord until there comes to you the certainty (death)."
+      },
+      {
+        "verse": "Surah Al-Fath 48:4",
+        "text": "هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ لِيَزْدَادُوا إِيمَانًا مَّعَ إِيمَانِهِمْ ۗ وَلِلَّهِ جُنُودُ السَّمَاوَاتِ وَالْأَرْضِ ۚ وَكَانَ اللَّهُ عَلِيمًا حَكِيمًا",
+        "translation": "It is He who sent down tranquillity into the hearts of the believers that they would increase in faith along with their [present] faith. And to Allah belong the soldiers of the heavens and the earth, and ever is Allah Knowing and Wise."
+      },
+      {
+        "verse": "Surah Al-An'am 6:160",
+        "text": "مَن جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا ۖ وَمَن جَاءَ بِالسَّيِّئَةِ فَلَا يُجْزَىٰ إِلَّا مِثْلَهَا وَهُمْ لَا يُظْلَمُونَ",
+        "translation": "Whoever comes [on the Day of Judgement] with a good deed will have ten times the like thereof [to his credit], and whoever comes with an evil deed will not be recompensed except the like thereof; and they will not be wronged."
+      },
+      {
+        "verse": "Surah Az-Zumar 39:10",
+        "text": "قُلْ يَا عِبَادِ الَّذِينَ آمَنُوا اتَّقُوا رَبَّكُمْ ۚ لِلَّذِينَ أَحْسَنُوا فِي هَٰذِهِ الدُّنْيَا حَسَنَةٌ ۗ وَأَرْضُ اللَّهِ وَاسِعَةٌ ۗ إِنَّمَا يُوَفَّى الصَّابِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍ",
+        "translation": "Say, 'O My servants who have believed, fear your Lord. For those who do good in this world is good, and the earth of Allah is spacious. Indeed, the patient will be given their reward without account.'"
+      }
+    ],
+    "thankful": [
+      {
+        "verse": "Surah Ibrahim 14:7",
+        "text": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ",
+        "translation": "And [remember] when your Lord proclaimed, 'If you are grateful, I will surely increase you [in favor]; but if you deny, indeed, My punishment is severe.'"
+      },
+      {
+        "verse": "Surah Luqman 31:12",
+        "text": "وَلَقَدْ آتَيْنَا لُقْمَانَ الْحِكْمَةَ أَنِ اشْكُرْ لِلَّهِ ۚ وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِ ۖ وَمَن كَفَرَ فَإِنَّ اللَّهَ غَنِيٌّ حَمِيدٌ",
+        "translation": "And We had certainly given Luqman wisdom [and said], 'Be grateful to Allah.' And whoever is grateful is grateful for [the benefit of] himself. And whoever denies [His favor] - then indeed, Allah is Free of need and Praiseworthy."
+      },
+      {
+        "verse": "Surah An-Nahl 16:78",
+        "text": "وَاللَّهُ أَخْرَجَكُم مِّن بُطُونِ أُمَّهَاتِكُمْ لَا تَعْلَمُونَ شَيْئًا وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۙ لَعَلَّكُمْ تَشْكُرُونَ",
+        "translation": "And Allah has extracted you from the wombs of your mothers not knowing a thing, and He made for you hearing and vision and intellect that perhaps you would be grateful."
+      },
+      {
+        "verse": "Surah Ibrahim 14:34",
+        "text": "وَآتَاكُم مِّن كُلِّ مَا سَأَلْتُمُوهُ ۚ وَإِن تَعُدُّوا نِعْمَتَ اللَّهِ لَا تُحْصُوهَا ۗ إِنَّ الْإِنسَانَ لَظَلُومٌ كَفَّارٌ",
+        "translation": "And He gave you from all you asked of Him. And if you should count the favor of Allah, you could not enumerate them. Indeed, mankind is [generally] most unjust and ungrateful."
+      },
+      {
+        "verse": "Surah An-Naml 27:40",
+        "text": "قَالَ الَّذِي عِندَهُ عِلْمٌ مِّنَ الْكِتَابِ أَنَا آتِيكَ بِهِ قَبْلَ أَن يَرْتَدَّ إِلَيْكَ طَرْفُكَ ۚ فَلَمَّا رَآهُ مُسْتَقِرًّا عِندَهُ قَالَ هَٰذَا مِن فَضْلِ رَبِّي لِيَبْلُوَنِي أَأَشْكُرُ أَمْ أَكْفُرُ ۖ وَمَن شَكَرَ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِ ۖ وَمَن كَفَرَ فَإِنَّ رَبِّي غَنِيٌّ كَرِيمٌ",
+        "translation": "Said one who had knowledge from the Scripture, 'I will bring it to you before your glance returns to you.' And when [Solomon] saw it placed before him, he said, 'This is from the favor of my Lord to test me whether I will be grateful or ungrateful. And whoever is grateful - his gratitude is only for [the benefit of] himself. And whoever is ungrateful - then indeed, my Lord is Free of need and Generous.'"
+      },
+      {
+        "verse": "Surah Az-Zumar 39:7",
+        "text": "إِن تَكْفُرُوا فَإِنَّ اللَّهَ غَنِيٌّ عَنكُمْ ۖ وَلَا يَرْضَىٰ لِعِبَادِهِ الْكُفْرَ ۖ وَإِن تَشْكُرُوا يَرْضَهُ لَكُمْ ۗ وَلَا تَزِرُ وَازِرَةٌ وِزْرَ أُخْرَىٰ ۗ ثُمَّ إِلَىٰ رَبِّكُم مَّرْجِعُكُمْ فَيُنَبِّئُكُم بِمَا كُنتُمْ تَعْمَلُونَ ۚ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ",
+        "translation": "If you disbelieve - indeed, Allah is Free from need of you. And He does not approve for His servants disbelief. And if you are grateful, He approves it for you; and no bearer of burdens will bear the burden of another. Then to your Lord is your return, and He will inform you about what you used to do. Indeed, He is Knowing of that within the breasts."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:152",
+        
+        "text": "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
+        "translation": "So remember Me; I will remember you. And be grateful to Me and do not deny Me."
+      },
+      {
+        "verse": "Surah An-Nahl 16:114",
+        "text": "فَكُلُوا مِمَّا رَزَقَكُمُ اللَّهُ حَلَالًا طَيِّبًا وَاشْكُرُوا نِعْمَتَ اللَّهِ إِن كُنتُمْ إِيَّاهُ تَعْبُدُونَ",
+        "translation": "Then eat of what Allah has provided for you [which is] lawful and good. And be grateful for the favor of Allah, if it is [indeed] Him that you worship."
+      },
+      {
+        "verse": "Surah Saba 34:13",
+        "text": "يَعْمَلُونَ لَهُ مَا يَشَاءُ مِن مَّحَارِيبَ وَتَمَاثِيلَ وَجِفَانٍ كَالْجَوَابِ وَقُدُورٍ رَّاسِيَاتٍ ۚ اعْمَلُوا آلَ دَاوُودَ شُكْرًا ۚ وَقَلِيلٌ مِّنْ عِبَادِيَ الشَّكُورُ",
+        "translation": "They made for him what he willed of elevated chambers, statues, bowls like reservoirs, and stationary kettles. [We said], 'Work, O family of David, in gratitude.' And few of My servants are grateful."
+      }
+    ],
+    "angry": [
+      {
+        "verse": "Surah Ali 'Imran 3:134",
+        "text": "الَّذِينَ يُنفِقُونَ فِي السَّرَّاءِ وَالضَّرَّاءِ وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ",
+        "translation": "Who spend [in the cause of Allah] during ease and hardship and who restrain anger and who pardon the people - and Allah loves the doers of good."
+      },
+      {
+        "verse": "Surah Al-A'raf 7:199",
+        "text": "خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ وَأَعْرِضْ عَنِ الْجَاهِلِينَ",
+        "translation": "Take what is given freely, enjoin what is good, and turn away from the ignorant."
+      },
+      {
+        "verse": "Surah Ash-Shura 42:37",
+        "text": "وَالَّذِينَ يَجْتَنِبُونَ كَبَائِرَ الْإِثْمِ وَالْفَوَاحِشَ وَإِذَا مَا غَضِبُوا هُمْ يَغْفِرُونَ",
+        "translation": "And those who avoid the major sins and immoralities, and when they are angry, they forgive."
+      },
+      {
+        "verse": "Surah Fussilat 41:34",
+        "text": "وَلَا تَسْتَوِي الْحَسَنَةُ وَلَا السَّيِّئَةُ ۚ ادْفَعْ بِالَّتِي هِيَ أَحْسَنُ فَإِذَا الَّذِي بَيْنَكَ وَبَيْنَهُ عَدَاوَةٌ كَأَنَّهُ وَلِيٌّ حَمِيمٌ",
+        "translation": "And not equal are the good deed and the bad. Repel [evil] by that [deed] which is better; and thereupon the one whom between you and him is enmity [will become] as though he was a devoted friend."
+      },
+      {
+        "verse": "Surah An-Nahl 16:126",
+        "text": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا بِمِثْلِ مَا عُوقِبْتُم بِهِ ۖ وَلَئِن صَبَرْتُمْ لَهُوَ خَيْرٌ لِّلصَّابِرِينَ",
+        "translation": "And if you punish [an enemy, O believers], punish with an equivalent of that with which you were harmed. But if you are patient - it is better for those who are patient."
+      },
+      {
+        "verse": "Surah Al-Ghafir 40:55",
+        "text": "فَاصْبِرْ إِنَّ وَعْدَ اللَّهِ حَقٌّ وَاسْتَغْفِرْ لِذَنبِكَ وَسَبِّحْ بِحَمْدِ رَبِّكَ بِالْعَشِيِّ وَالْإِبْكَارِ",
+        "translation": "So be patient, [O Muhammad]. Indeed, the promise of Allah is truth. And ask forgiveness for your sin and exalt [Allah] with praise of your Lord in the evening and the morning."
+      },
+      {
+        "verse": "Surah Al-A'raf 7:154",
+        "text": "وَلَمَّا سَكَتَ عَن مُّوسَى الْغَضَبُ أَخَذَ الْأَلْوَاحَ ۖ وَفِي نُسْخَتِهَا هُدًى وَرَحْمَةٌ لِّلَّذِينَ هُمْ لِرَبِّهِمْ يَرْهَبُونَ",
+        "translation": "And when the anger subsided in Moses, he took up the tablets; and in their inscription was guidance and mercy for those who are fearful of their Lord."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:263",
+        "text": "قَوْلٌ مَّعْرُوفٌ وَمَغْفِرَةٌ خَيْرٌ مِّن صَدَقَةٍ يَتْبَعُهَا أَذًى ۗ وَاللَّهُ غَنِيٌّ حَلِيمٌ",
+        "translation": "Kind speech and forgiveness are better than charity followed by injury. And Allah is Free of need and Forbearing."
+      },
+      {
+        "verse": "Surah An-Nur 24:22",
+        "text": "وَلَا يَأْتَلِ أُولُو الْفَضْلِ مِنكُمْ وَالسَّعَةِ أَن يُؤْتُوا أُولِي الْقُرْبَىٰ وَالْمَسَاكِينَ وَالْمُهَاجِرِينَ فِي سَبِيلِ اللَّهِ ۖ وَلْيَعْفُوا وَلْيَصْفَحُوا ۗ أَلَا تُحِبُّونَ أَن يَغْفِرَ اللَّهُ لَكُمْ ۗ وَاللَّهُ غَفُورٌ رَّحِيمٌ",
+        "translation": "And let not those of virtue among you and wealth swear not to give [aid] to their relatives and the needy and the emigrants for the cause of Allah, and let them pardon and overlook. Would you not like that Allah should forgive you? And Allah is Forgiving and Merciful."
+      },
+      {
+        "verse": "Surah At-Taghabun 64:14",
+        "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا إِنَّ مِنْ أَزْوَاجِكُمْ وَأَوْلَادِكُمْ عَدُوًّا لَّكُمْ فَاحْذَرُوهُمْ ۚ وَإِن تَعْفُوا وَتَصْفَحُوا وَتَغْفِرُوا فَإِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ",
+        "translation": "O you who have believed, indeed, among your wives and your children are enemies to you, so beware of them. But if you pardon and overlook and forgive - then indeed, Allah is Forgiving and Merciful."
+      }
+    ],
+    "anxious": [
+      {
+        "verse": "Surah Al-Baqarah 2:155-156",
+        "text": "وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ وَالْأَنفُسِ وَالثَّمَرَاتِ ۗ وَبَشِّرِ الصَّابِرِينَ - الَّذِينَ إِذَا أَصَابَتْهُم مُّصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ",
+        "translation": "And We will surely test you with something of fear and hunger and a loss of wealth and lives and fruits, but give good tidings to the patient, Who, when disaster strikes them, say, 'Indeed we belong to Allah, and indeed to Him we will return.'"
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:286",
+        "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ",
+        "translation": "Allah does not charge a soul except [with that within] its capacity. It will have [the consequence of] what [good] it has gained, and it will bear [the consequence of] what [evil] it has earned."
+      },
+      {
+        "verse": "Surah At-Tawbah 9:51",
+        "text": "قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ",
+        "translation": "Say, 'Never will we be struck except by what Allah has decreed for us; He is our protector.' And upon Allah let the believers rely."
+      },
+      {
+        "verse": "Surah Al-Hadid 57:22-23",
+        "text": "مَا أَصَابَ مِن مُّصِيبَةٍ فِي الْأَرْضِ وَلَا فِي أَنفُسِكُمْ إِلَّا فِي كِتَابٍ مِّن قَبْلِ أَن نَّبْرَأَهَا ۚ إِنَّ ذَٰلِكَ عَلَى اللَّهِ يَسِيرٌ - لِّكَيْلَا تَأْسَوْا عَلَىٰ مَا فَاتَكُمْ وَلَا تَفْرَحُوا بِمَا آتَاكُمْ ۗ وَاللَّهُ لَا يُحِبُّ كُلَّ مُخْتَالٍ فَخُورٍ",
+        "translation": "No disaster strikes upon the earth or among yourselves except that it is in a register before We bring it into being - indeed that, for Allah, is easy - In order that you not despair over what has eluded you and not exult [in pride] over what He has given you. And Allah does not like everyone self-deluded and boastful."
+      },
+      {
+        "verse": "Surah Al-Ankabut 29:2-3",
+        "text": "أَحَسِبَ النَّاسُ أَن يُتْرَكُوا أَن يَقُولُوا آمَنَّا وَهُمْ لَا يُفْتَنُونَ - وَلَقَدْ فَتَنَّا الَّذِينَ مِن قَبْلِهِمْ ۖ فَلَيَعْلَمَنَّ اللَّهُ الَّذِينَ صَدَقُوا وَلَيَعْلَمَنَّ الْكَاذِبِينَ",
+        "translation": "Do the people think that they will be left to say, 'We believe' and they will not be tried? But We have certainly tried those before them, and Allah will surely make evident those who are truthful, and He will surely make evident the liars."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:153",
+        "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+        "translation": "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient."
+      },
+      {
+        "verse": "Surah Al-Imran 3:139",
+        "text": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
+        "translation": "So do not weaken and do not grieve, and you will be superior if you are [true] believers."
+      },
+      {
+        "verse": "Surah Fussilat 41:30",
+        "text": "إِنَّ الَّذِينَ قَالُوا رَبُّنَا اللَّهُ ثُمَّ اسْتَقَامُوا تَتَنَزَّلُ عَلَيْهِمُ الْمَلَائِكَةُ أَلَّا تَخَافُوا وَلَا تَحْزَنُوا وَأَبْشِرُوا بِالْجَنَّةِ الَّتِي كُنتُمْ تُوعَدُونَ",
+        "translation": "Indeed, those who have said, 'Our Lord is Allah' and then remained on a right course - the angels will descend upon them, [saying], 'Do not fear and do not grieve but receive good tidings of Paradise, which you were promised.'"
+      },
+      {
+        "verse": "Surah Al-Anfal 8:10",
+        "text": "وَمَا جَعَلَهُ اللَّهُ إِلَّا بُشْرَىٰ وَلِتَطْمَئِنَّ بِهِ قُلُوبُكُمْ ۚ وَمَا النَّصْرُ إِلَّا مِنْ عِندِ اللَّهِ ۚ إِنَّ اللَّهَ عَزِيزٌ حَكِيمٌ",
+        "translation": "And Allah made it not but good tidings and so that your hearts would be assured thereby. And victory is not but from Allah. Indeed, Allah is Exalted in Might and Wise."
+      },
+      {
+        "verse": "Surah Yunus 10:62-64",
+        "text": "أَلَا إِنَّ أَوْلِيَاءَ اللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ - الَّذِينَ آمَنُوا وَكَانُوا يَتَّقُونَ - لَهُمُ الْبُشْرَىٰ فِي الْحَيَاةِ الدُّنْيَا وَفِي الْآخِرَةِ ۚ لَا تَبْدِيلَ لِكَلِمَاتِ اللَّهِ ۚ ذَٰلِكَ هُوَ الْفَوْزُ الْعَظِيمُ",
+        "translation": "Unquestionably, [for] the allies of Allah there will be no fear concerning them, nor will they grieve. Those who believed and were fearing Allah. For them are good tidings in the worldly life and in the Hereafter. No change is there in the words of Allah. That is what is the great attainment."
+      }
+    ],
+    "lonely": [
+      {
+        "verse": "Surah Qaf 50:16",
+        "text": "وَلَقَدْ خَلَقْنَا الْإِنسَانَ وَنَعْلَمُ مَا تُوَسْوِسُ بِهِ نَفْسُهُ ۖ وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ",
+        "translation": "And We have already created man and know what his soul whispers to him, and We are closer to him than [his] jugular vein."
+      },
+      {
+        "verse": "Surah Al-Hadid 57:4",
+        "text": "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۚ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ",
+        "translation": "And He is with you wherever you are. And Allah, of what you do, is Seeing."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:186",
+        "text": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
+        "translation": "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me. So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided."
+      },
+      {
+        "verse": "Surah Al-Mujadila 58:7",
+        "text": "أَلَمْ تَرَ أَنَّ اللَّهَ يَعْلَمُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۖ مَا يَكُونُ مِن نَّجْوَىٰ ثَلَاثَةٍ إِلَّا هُوَ رَابِعُهُمْ وَلَا خَمْسَةٍ إِلَّا هُوَ سَادِسُهُمْ وَلَا أَدْنَىٰ مِن ذَٰلِكَ وَلَا أَكْثَرَ إِلَّا هُوَ مَعَهُمْ أَيْنَ مَا كَانُوا ۖ ثُمَّ يُنَبِّئُهُم بِمَا عَمِلُوا يَوْمَ الْقِيَامَةِ ۚ إِنَّ اللَّهَ بِكُلِّ شَيْءٍ عَلِيمٌ",
+        "translation": "Have you not considered that Allah knows what is in the heavens and what is on the earth? There is in no private conversation three but that He is the fourth of them, nor are there five but that He is the sixth of them - and no less than that and no more except that He is with them [in knowledge] wherever they are. Then He will inform them of what they did, on the Day of Resurrection. Indeed Allah is, of all things, Knowing."
+      },
+      {
+        "verse": "Surah Ad-Duha 93:3",
+        "text": "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
+        "translation": "Your Lord has not taken leave of you, [O Muhammad], nor has He detested [you]."
+      },
+      {
+        "verse": "Surah Al-Anfal 8:19",
+        "text": "إِن تَسْتَفْتِحُوا فَقَدْ جَاءَكُمُ الْفَتْحُ ۖ وَإِن تَنتَهُوا فَهُوَ خَيْرٌ لَّكُمْ ۖ وَإِن تَعُودُوا نَعُدْ وَلَن تُغْنِيَ عَنكُمْ فِئَتُكُمْ شَيْئًا وَلَوْ كَثُرَتْ وَأَنَّ اللَّهَ مَعَ الْمُؤْمِنِينَ",
+        "translation": "If you [disbelievers] seek the victory - the defeat has come to you. And if you desist [from hostilities], it is best for you; but if you return [to war], We will return, and never will you be availed by your [large] company at all, even if it should increase; and [that is] because Allah is with the believers."
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:115",
+        "text": "وَلِلَّهِ الْمَشْرِقُ وَالْمَغْرِبُ ۚ فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ ۚ إِنَّ اللَّهَ وَاسِعٌ عَلِيمٌ",
+        "translation": "And to Allah belongs the east and the west. So wherever you [might] turn, there is the Face of Allah. Indeed, Allah is all-Encompassing and Knowing."
+      },
+      {
+        "verse": "Surah Al-Imran 3:30",
+        "text": "يَوْمَ تَجِدُ كُلُّ نَفْسٍ مَّا عَمِلَتْ مِنْ خَيْرٍ مُّحْضَرًا وَمَا عَمِلَتْ مِن سُوءٍ تَوَدُّ لَوْ أَنَّ بَيْنَهَا وَبَيْنَهُ أَمَدًا بَعِيدًا ۗ وَيُحَذِّرُكُمُ اللَّهُ نَفْسَهُ ۗ وَاللَّهُ رَءُوفٌ بِالْعِبَادِ",
+        "translation": "The Day every soul will find what it has done of good present [before it] and what it has done of evil, it will wish that between itself and that [evil] was a great distance. And Allah warns you of Himself, and Allah is Kind to [His] servants."
+      },
+      {
+        "verse": "Surah Al-An'am 6:162-163",
+        "text": "قُلْ إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ - لَا شَرِيكَ لَهُ ۖ وَبِذَٰلِكَ أُمِرْتُ وَأَنَا أَوَّلُ الْمُسْلِمِينَ",
+        "translation": "Say, 'Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds. No partner has He. And this I have been commanded, and I am the first [among you] of the Muslims.'"
+      },
+      {
+        "verse": "Surah Al-Baqarah 2:152",
+        "text": "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
+        "translation": "So remember Me; I will remember you. And be grateful to Me and do not deny Me."
+      }
+    ],
   "sad": [
     {
       "verse": "Surah Al-Ankabut 29:69",
