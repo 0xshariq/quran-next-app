@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Book } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
@@ -84,15 +84,13 @@ export default function QuranViewer() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-      <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200">
-            <Book className="mr-2" aria-hidden="true" /> Read Quran
-          </h1>
-        </div>
-      </header>
 
       <main className="flex-grow container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+          <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200">
+            Read Quran
+          </h1>
+        </div>
         <Card className="w-full mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
           <CardContent className="p-6 space-y-6">
             <div className="flex justify-between items-center flex-wrap gap-4">

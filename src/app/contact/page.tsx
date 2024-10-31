@@ -1,14 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Label } from "@/components/ui/label"
-import { Book, ChevronLeft, Mail, Phone, MapPin, Send } from "lucide-react"
+import { Book, Mail, Phone, MapPin, Send } from "lucide-react"
 import { motion } from "framer-motion"
 
 
@@ -49,20 +48,11 @@ export default function ContactUs() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-      <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
-        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <Link href="/" passHref>
-            <Button variant="ghost" size="icon" className="text-amber-600 dark:text-amber-400 transition-colors duration-300" aria-label="Back to home">
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-          </Link>
-          <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200 transition-colors duration-300">
-            <Book className="mr-2" aria-hidden="true" /> Quran App
-          </h1>
-        </div>
-      </header>
 
       <main className="flex-grow container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200 transition-colors duration-300">
+            <Book className="mr-2" aria-hidden="true" /> Quran App
+          </h1>
         <motion.div
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
