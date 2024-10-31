@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardTitle,CardHeader,CardDescription } from '@/components/ui/card'
 import { toast } from '@/hooks/use-toast'
 import surahsData from '@/data/surah.json'
 import parasData from '@/data/para.json'
@@ -86,12 +86,15 @@ export default function QuranViewer() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
 
       <main className="flex-grow container mx-auto px-4 py-8">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-          <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200">
-            Read Quran
-          </h1>
-        </div>
         <Card className="w-full mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
+        <CardHeader>
+              <CardTitle className="text-3xl font-bold text-center text-amber-800 dark:text-amber-200 transition-colors duration-300">
+              Read Quran
+              </CardTitle>
+              <CardDescription className="text-center text-lg mt-2 text-amber-600 dark:text-amber-400 transition-colors duration-300">
+                Read Quran with ease
+              </CardDescription>
+            </CardHeader>
           <CardContent className="p-6 space-y-6">
             <div className="flex justify-between items-center flex-wrap gap-4">
               <div className="flex items-center space-x-4 flex-wrap gap-4">
