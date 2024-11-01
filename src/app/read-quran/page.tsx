@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardTitle,CardHeader,CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardTitle, CardHeader, CardDescription } from '@/components/ui/card'
 import { toast } from '@/hooks/use-toast'
 import surahsData from '@/data/surah.json'
 import parasData from '@/data/para.json'
@@ -80,21 +80,20 @@ export default function QuranViewer() {
 
   const imagePath = viewMode === 'surah'
     ? `/assets/surah-images/${selectedSurah.name}/${currentPage}.png`
-    : `/assets/para-images/${selectedPara.number}/${currentPage}.png`
+    : `/assets/para-images/Para-${selectedPara.number}/${currentPage}.png`
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-
       <main className="flex-grow container mx-auto px-4 py-8">
         <Card className="w-full mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
-        <CardHeader>
-              <CardTitle className="text-3xl font-bold text-center text-amber-800 dark:text-amber-200 transition-colors duration-300">
+          <CardHeader>
+            <CardTitle className="text-3xl font-bold text-center text-amber-800 dark:text-amber-200 transition-colors duration-300">
               Read Quran
-              </CardTitle>
-              <CardDescription className="text-center text-lg mt-2 text-amber-600 dark:text-amber-400 transition-colors duration-300">
-                Read Quran with ease
-              </CardDescription>
-            </CardHeader>
+            </CardTitle>
+            <CardDescription className="text-center text-lg mt-2 text-amber-600 dark:text-amber-400 transition-colors duration-300">
+              Read Quran with ease
+            </CardDescription>
+          </CardHeader>
           <CardContent className="p-6 space-y-6">
             <div className="flex justify-between items-center flex-wrap gap-4">
               <div className="flex items-center space-x-4 flex-wrap gap-4">
@@ -151,7 +150,7 @@ export default function QuranViewer() {
                       <SelectContent>
                         {paras.map((para) => (
                           <SelectItem key={para.number} value={para.number.toString()}>
-                            {para.name}
+                            {para.number}).&nbsp;{para.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -196,7 +195,7 @@ export default function QuranViewer() {
                 </Button>
               </div>
             </div>
-            <div className="relative w-full" style={{ height: 'calc(100vh - 250px)' }}>
+            <div className="relative w-full h-[calc(100vh-300px)] max-h-[800px]">
               <Image
                 src={imagePath}
                 alt={`${viewMode === 'surah' ? selectedSurah.name : selectedPara.name} - Page ${currentPage}`}
