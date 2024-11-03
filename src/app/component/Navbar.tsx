@@ -74,9 +74,14 @@ export default function Navbar() {
                       Visit Hadith App
                     </Button>
                   </Link>
-                  <Link href="/verse-translation">
+                  <Link href="/go-to">
                     <Button variant="ghost" className="w-full justify-start">
                       Verse Translation
+                    </Button>
+                  </Link>
+                  <Link href="/verse-translation">
+                    <Button variant="ghost" className="w-full justify-start">
+                      Go To
                     </Button>
                   </Link>
                   <Link href="/surah-index">
