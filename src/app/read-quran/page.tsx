@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -30,33 +31,84 @@ interface Para {
 const surahs: Surah[] = surahsData
 const paras: Para[] = parasData
 
-export default function QuranViewer() {
+// Main component
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <QuranReader />
+    </Suspense>
+  )
+}
+
+// QuranReader component (uses search params)
+function QuranReader() {
+  const searchParams = useSearchParams()
+  const paraParam = searchParams?.get('para')
+  const pageParam = searchParams?.get('page')
+
+  return <QuranReaderContent initialPara={paraParam ?? null} initialPage={pageParam ?? null} />
+}
+
+// QuranReaderContent component
+function QuranReaderContent({ initialPara, initialPage }: { initialPara: string | null; initialPage: string | null }) {
+  const router = useRouter()
   const [selectedSurah, setSelectedSurah] = useState<Surah>(surahs[0])
   const [selectedPara, setSelectedPara] = useState<Para>(paras[0])
   const [currentPage, setCurrentPage] = useState(1)
-  const [viewMode, setViewMode] = useState<'surah' | 'para'>('surah')
+  const [viewMode, setViewMode] = useState<'surah' | 'para'>('para')
   const [pageInput, setPageInput] = useState('1')
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const imageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setCurrentPage(1)
-    setPageInput('1')
-  }, [selectedSurah, selectedPara, viewMode])
+    if (initialPara) {
+      const paraNumber = parseInt(initialPara)
+      const para = paras.find(p => p.number === paraNumber)
+      if (para) {
+        setSelectedPara(para)
+        setViewMode('para')
+      }
+    }
+
+    if (initialPage) {
+      const pageNumber = parseInt(initialPage)
+      setCurrentPage(pageNumber)
+      setPageInput(pageNumber.toString())
+    }
+  }, [initialPara, initialPage])
+
+  useEffect(() => {
+    if (viewMode === 'surah') {
+      setCurrentPage(1)
+      setPageInput('1')
+    }
+  }, [selectedSurah, viewMode])
+
+  useEffect(() => {
+    if (viewMode === 'para') {
+      setCurrentPage(1)
+      setPageInput('1')
+    }
+  }, [selectedPara, viewMode])
+
+  const handlePageChange = (newPage: number) => {
+    setIsTransitioning(true)
+    setCurrentPage(newPage)
+    setPageInput(newPage.toString())
+    setTimeout(() => setIsTransitioning(false), 300)
+    updateURL(newPage)
+  }
 
   const handleNext = () => {
     const maxPages = viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages
-    setCurrentPage(prev => {
-      const newPage = Math.min(prev + 1, maxPages)
-      setPageInput(newPage.toString())
-      return newPage
-    })
+    handlePageChange(Math.min(currentPage + 1, maxPages))
   }
 
   const handlePrevious = () => {
-    setCurrentPage(prev => {
-      const newPage = Math.max(prev - 1, 1)
-      setPageInput(newPage.toString())
-      return newPage
-    })
+    handlePageChange(Math.max(currentPage - 1, 1))
   }
 
   const handlePageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,8 +126,35 @@ export default function QuranViewer() {
       })
       setPageInput(currentPage.toString())
     } else {
-      setCurrentPage(pageNumber)
+      handlePageChange(pageNumber)
     }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      handleNext()
+    }
+
+    if (touchStart - touchEnd < -75) {
+      handlePrevious()
+    }
+  }
+
+  const updateURL = (page: number) => {
+    const params = new URLSearchParams()
+    params.set('page', page.toString())
+    if (viewMode === 'para') {
+      params.set('para', selectedPara.number.toString())
+    }
+    router.push(`/read-quran?${params.toString()}`)
   }
 
   const imagePath = viewMode === 'surah'
@@ -88,125 +167,182 @@ export default function QuranViewer() {
         <Card className="w-full mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center text-amber-800 dark:text-amber-200 transition-colors duration-300">
-              Read Quran
+              Explore the Holy Quran
             </CardTitle>
             <CardDescription className="text-center text-lg mt-2 text-amber-600 dark:text-amber-400 transition-colors duration-300">
-              Read Quran with ease
+              Navigate through Surahs and Paras with ease
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6 space-y-6">
             <div className="flex justify-between items-center flex-wrap gap-4">
               <div className="flex items-center space-x-4 flex-wrap gap-4">
-                <div>
-                  <Label htmlFor="view-mode" className="text-amber-800 dark:text-amber-200">View Mode</Label>
-                  <Select
-                    value={viewMode}
-                    onValueChange={(value: 'surah' | 'para') => setViewMode(value)}
-                  >
-                    <SelectTrigger id="view-mode" className="w-[180px] border-amber-300 dark:border-slate-600">
-                      <SelectValue placeholder="Select view mode" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="surah">Surah</SelectItem>
-                      <SelectItem value="para">Para</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                <ViewModeSelect viewMode={viewMode} setViewMode={setViewMode} />
                 {viewMode === 'surah' ? (
-                  <div>
-                    <Label htmlFor="surah-select" className="text-amber-800 dark:text-amber-200">Surah</Label>
-                    <Select
-                      value={selectedSurah.name}
-                      onValueChange={(value) => {
-                        const surah = surahs.find(s => s.name === value)
-                        if (surah) setSelectedSurah(surah)
-                      }}
-                    >
-                      <SelectTrigger id="surah-select" className="w-[180px] border-amber-300 dark:border-slate-600">
-                        <SelectValue placeholder="Select a Surah" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {surahs.map((surah) => (
-                          <SelectItem key={surah.number} value={surah.name}>
-                            {surah.number}. {surah.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  <SurahSelect selectedSurah={selectedSurah} setSelectedSurah={setSelectedSurah} />
                 ) : (
-                  <div>
-                    <Label htmlFor="para-select" className="text-amber-800 dark:text-amber-200">Para</Label>
-                    <Select
-                      value={selectedPara.number.toString()}
-                      onValueChange={(value) => {
-                        const para = paras.find(p => p.number === parseInt(value))
-                        if (para) setSelectedPara(para)
-                      }}
-                    >
-                      <SelectTrigger id="para-select" className="w-[180px] border-amber-300 dark:border-slate-600">
-                        <SelectValue placeholder="Select a Para" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {paras.map((para) => (
-                          <SelectItem key={para.number} value={para.number.toString()}>
-                            {para.number}).&nbsp;{para.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  <ParaSelect selectedPara={selectedPara} setSelectedPara={setSelectedPara} />
                 )}
-                <div>
-                  <Label htmlFor="page-input" className="text-amber-800 dark:text-amber-200">Page</Label>
-                  <Input
-                    id="page-input"
-                    type="number"
-                    value={pageInput}
-                    onChange={handlePageInputChange}
-                    onBlur={handlePageInputBlur}
-                    className="w-[100px] border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
-                    min={1}
-                    max={viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages}
-                  />
-                </div>
+                <PageInput
+                  pageInput={pageInput}
+                  handlePageInputChange={handlePageInputChange}
+                  handlePageInputBlur={handlePageInputBlur}
+                  maxPages={viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages}
+                />
               </div>
-              <div className="flex items-center space-x-2">
-                <Button
-                  onClick={handlePrevious}
-                  disabled={currentPage === 1}
-                  variant="outline"
-                  size="icon"
-                  className="border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <span className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                  Page {currentPage} of {viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages}
-                </span>
-                <Button
-                  onClick={handleNext}
-                  disabled={currentPage === (viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages)}
-                  variant="outline"
-                  size="icon"
-                  className="border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-              </div>
+              <PageNavigation
+                currentPage={currentPage}
+                handlePrevious={handlePrevious}
+                handleNext={handleNext}
+                totalPages={viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages}
+              />
             </div>
-            <div className="relative w-full h-[calc(100vh-300px)] max-h-[800px]">
+            <div 
+              className="relative w-full h-[calc(100vh-300px)] max-h-[800px] overflow-hidden"
+              ref={imageRef}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               <Image
+                key={imagePath}
                 src={imagePath}
                 alt={`${viewMode === 'surah' ? selectedSurah.name : selectedPara.name} - Page ${currentPage}`}
-                layout="fill"
-                objectFit="contain"
+                fill
+                className={`object-contain transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 priority
               />
             </div>
           </CardContent>
         </Card>
       </main>
+    </div>
+  )
+}
+
+function ViewModeSelect({ viewMode, setViewMode }: { viewMode: 'surah' | 'para', setViewMode: (mode: 'surah' | 'para') => void }) {
+  return (
+    <div>
+      <Label htmlFor="view-mode" className="text-amber-800 dark:text-amber-200">View Mode</Label>
+      <Select
+        value={viewMode}
+        onValueChange={(value: 'surah' | 'para') => setViewMode(value)}
+      >
+        <SelectTrigger id="view-mode" className="w-[180px] border-amber-300 dark:border-slate-600">
+          <SelectValue placeholder="Select view mode" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="surah">Surah</SelectItem>
+          <SelectItem value="para">Para</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  )
+}
+
+function SurahSelect({ selectedSurah, setSelectedSurah }: { selectedSurah: Surah, setSelectedSurah: (surah: Surah) => void }) {
+  return (
+    <div>
+      <Label htmlFor="surah-select" className="text-amber-800 dark:text-amber-200">Surah</Label>
+      <Select
+        value={selectedSurah.name}
+        onValueChange={(value) => {
+          const surah = surahs.find(s => s.name === value)
+          if (surah) setSelectedSurah(surah)
+        }}
+      >
+        <SelectTrigger id="surah-select" className="w-[180px] border-amber-300 dark:border-slate-600">
+          <SelectValue placeholder="Select a Surah" />
+        </SelectTrigger>
+        <SelectContent>
+          {surahs.map((surah) => (
+            <SelectItem key={surah.number} value={surah.name}>
+              {surah.number}. {surah.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  )
+}
+
+function ParaSelect({ selectedPara, setSelectedPara }: { selectedPara: Para, setSelectedPara: (para: Para) => void }) {
+  return (
+    <div>
+      <Label htmlFor="para-select" className="text-amber-800 dark:text-amber-200">Para</Label>
+      <Select
+        value={selectedPara.number.toString()}
+        onValueChange={(value) => {
+          const para = paras.find(p => p.number === parseInt(value))
+          if (para) setSelectedPara(para)
+        }}
+      >
+        <SelectTrigger id="para-select" className="w-[180px] border-amber-300 dark:border-slate-600">
+          <SelectValue placeholder="Select a Para" />
+        </SelectTrigger>
+        <SelectContent>
+          {paras.map((para) => (
+            <SelectItem key={para.number} value={para.number.toString()}>
+              {para.number}. {para.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  )
+}
+
+function PageInput({ pageInput, handlePageInputChange, handlePageInputBlur, maxPages }: { 
+  pageInput: string, 
+  handlePageInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, 
+  handlePageInputBlur: () => void, 
+  maxPages: number 
+}) {
+  return (
+    <div>
+      <Label htmlFor="page-input" className="text-amber-800 dark:text-amber-200">Page</Label>
+      <Input
+        id="page-input"
+        type="number"
+        value={pageInput}
+        onChange={handlePageInputChange}
+        onBlur={handlePageInputBlur}
+        className="w-[100px] border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
+        min={1}
+        max={maxPages}
+      />
+    </div>
+  )
+}
+
+function PageNavigation({ currentPage, handlePrevious, handleNext, totalPages }: { 
+  currentPage: number, 
+  handlePrevious: () => void, 
+  handleNext: () => void, 
+  totalPages: number 
+}) {
+  return (
+    <div className="flex items-center space-x-2">
+      <Button
+        onClick={handlePrevious}
+        disabled={currentPage === 1}
+        variant="outline"
+        size="icon"
+        className="border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Button>
+      <span className="text-sm font-medium text-amber-800 dark:text-amber-200">
+        Page {currentPage} of {totalPages}
+      </span>
+      <Button
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+        variant="outline"
+        size="icon"
+        className="border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200"
+      >
+        <ChevronRight className="h-4 w-4" />
+      </Button>
     </div>
   )
 }

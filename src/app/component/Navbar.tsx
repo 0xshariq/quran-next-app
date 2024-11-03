@@ -56,7 +56,7 @@ export default function Navbar() {
             <SheetContent side="left" className="w-[300px] sm:w-[400px]">
               <nav className="flex flex-col h-full">
                 <div className="flex items-center mb-6">
-                  <h2 className="text-3xl font-semibold">Quran App Menu</h2>
+                  <h2 className="text-3xl font-semibold">Quran App</h2>
                 </div>
                 <div className="space-y-4">
                   <Link href="/">

@@ -16,8 +16,8 @@ interface Para {
 const paras: Para[] = parasData
 
 export default function GoToPage() {
-  const [paraNumber, setParaNumber] = useState('')
-  const [pageNumber, setPageNumber] = useState('')
+  const [paraNumber, setParaNumber] = useState<number | null>(null)
+  const [pageNumber, setPageNumber] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
   const [selectedParaPages, setSelectedParaPages] = useState<number | null>(null)
   const router = useRouter()
@@ -28,7 +28,7 @@ export default function GoToPage() {
 
   useEffect(() => {
     if (paraNumber) {
-      const para = paras.find(p => p.number === parseInt(paraNumber))
+      const para = paras.find(p => p.number === paraNumber)
       if (para) {
         setSelectedParaPages(para.totalPages)
       } else {
@@ -39,9 +39,19 @@ export default function GoToPage() {
     }
   }, [paraNumber])
 
+  const handleParaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value ? parseInt(e.target.value, 10) : null
+    setParaNumber(value)
+  }
+
+  const handlePageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value ? parseInt(e.target.value, 10) : null
+    setPageNumber(value)
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!paraNumber || !pageNumber) {
+    if (paraNumber === null || pageNumber === null) {
       toast({
         title: "Error",
         description: "Please enter both Para and Page numbers.",
@@ -49,9 +59,7 @@ export default function GoToPage() {
       })
       return
     }
-    const para = parseInt(paraNumber)
-    const page = parseInt(pageNumber)
-    if (para < 1 || para > 30 || page < 1 || (selectedParaPages && page > selectedParaPages)) {
+    if (paraNumber < 1 || paraNumber > 30 || pageNumber < 1 || (selectedParaPages && pageNumber > selectedParaPages)) {
       toast({
         title: "Invalid Input",
         description: `Para number should be between 1 and 30, and Page number should be between 1 and ${selectedParaPages || 'the total pages for the selected para'}.`,
@@ -59,8 +67,9 @@ export default function GoToPage() {
       })
       return
     }
-    console.log('Navigating to Para:', para, 'Page:', page)
-    router.push(`/read-quran?para=${para}?page=${page}`)
+    console.log('Navigating to Para:', paraNumber, 'Page:', pageNumber)
+    // Handle page change logic here if needed
+    router.push(`/read-quran?para=${paraNumber}&page=${pageNumber}`)
   }
 
   if (!mounted) return null
@@ -72,23 +81,23 @@ export default function GoToPage() {
           <div>
             <Input
               type="number"
-              value={paraNumber}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setParaNumber(e.target.value)}
+              value={paraNumber !== null ? paraNumber : ''}
+              onChange={handleParaChange}
               className="bg-white dark:bg-slate-800 border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200 placeholder-amber-400 dark:placeholder-amber-600"
               placeholder="Para Number (1-30)"
-              min="1"
-              max="30"
+              min={1}
+              max={30}
             />
           </div>
           <div>
             <Input
               type="number"
-              value={pageNumber}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPageNumber(e.target.value)}
+              value={pageNumber !== null ? pageNumber : ''}
+              onChange={handlePageChange}
               className="bg-white dark:bg-slate-800 border-amber-300 dark:border-slate-600 text-amber-800 dark:text-amber-200 placeholder-amber-400 dark:placeholder-amber-600"
               placeholder={selectedParaPages ? `Page Number (1-${selectedParaPages})` : "Page Number"}
-              min="1"
-              max={selectedParaPages?.toString()}
+              min={1}
+              max={selectedParaPages || undefined}
             />
           </div>
           <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white dark:bg-amber-800 dark:hover:bg-amber-900">

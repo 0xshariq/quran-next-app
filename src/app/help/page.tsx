@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Input } from "@/components/ui/input"
-import { Book, Search, ChevronLeft, Mail } from "lucide-react"
+import { Book, Search, Mail } from "lucide-react"
 import Link from 'next/link'
 
 export default function HelpFAQ() {
@@ -73,11 +73,6 @@ export default function HelpFAQ() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
-          <Link href="/" passHref>
-            <Button variant="ghost" size="icon" className="text-amber-600 dark:text-amber-400" aria-label="Back to home">
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-          </Link>
           <h1 className="sr-only">Quran App Help & FAQ</h1>
         </div>
         <Card className={`w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700 transition-all duration-500 ease-in-out`}>
