@@ -127,6 +127,7 @@ function VerseTranslationContent() {
 
   useEffect(() => {
     fetchVerseData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSurah, currentVerse, selectedLanguage, selectedQari])
 
   useEffect(() => {
@@ -159,6 +160,7 @@ function VerseTranslationContent() {
         clearInterval(timerRef.current)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showNextVersePrompt])
 
   useEffect(() => {
@@ -181,6 +183,7 @@ function VerseTranslationContent() {
         audioRef.current.pause()
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audioUrl])
 
   const fetchVerseData = useCallback(async () => {

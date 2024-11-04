@@ -44,13 +44,14 @@ export default function Page() {
 function QuranReader() {
   const searchParams = useSearchParams()
   const surahParam = searchParams?.get('surah')
+  const paraParam = searchParams?.get('para')
   const pageParam = searchParams?.get('page')
 
-  return <QuranReaderContent initialSurah={surahParam ?? null} initialPage={pageParam ?? null} />
+  return <QuranReaderContent initialSurah={surahParam ?? null} initialPara={paraParam ?? null} initialPage={pageParam ?? null} />
 }
 
 // QuranReaderContent component
-function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: string | null; initialPage: string | null }) {
+function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initialSurah: string | null; initialPara: string | null; initialPage: string | null }) {
   const router = useRouter()
   const [selectedSurah, setSelectedSurah] = useState<Surah>(surahs[0])
   const [selectedPara, setSelectedPara] = useState<Para>(paras[0])
@@ -60,6 +61,7 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 
   const imageRef = useRef<HTMLDivElement>(null)
@@ -82,6 +84,12 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
         setSelectedSurah(surah)
         setViewMode('surah')
       }
+    } else if (initialPara) {
+      const para = paras.find(p => p.number === parseInt(initialPara))
+      if (para) {
+        setSelectedPara(para)
+        setViewMode('para')
+      }
     }
 
     if (initialPage) {
@@ -89,7 +97,7 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
       setCurrentPage(pageNumber)
       setPageInput(pageNumber.toString())
     }
-  }, [initialSurah, initialPage])
+  }, [initialSurah, initialPara, initialPage])
 
   useEffect(() => {
     if (viewMode === 'surah') {
@@ -105,21 +113,25 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
     }
   }, [selectedPara, viewMode])
 
-  const handlePageChange = (newPage: number) => {
+  const handlePageChange = (newPage: number, direction: 'left' | 'right') => {
     setIsTransitioning(true)
+    setTransitionDirection(direction)
     setCurrentPage(newPage)
     setPageInput(newPage.toString())
-    setTimeout(() => setIsTransitioning(false), 300)
+    setTimeout(() => {
+      setIsTransitioning(false)
+      setTransitionDirection(null)
+    }, 300)
     updateURL(newPage)
   }
 
   const handleNext = () => {
     const maxPages = viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages
-    handlePageChange(Math.min(currentPage + 1, maxPages))
+    handlePageChange(Math.min(currentPage + 1, maxPages), 'left')
   }
 
   const handlePrevious = () => {
-    handlePageChange(Math.max(currentPage - 1, 1))
+    handlePageChange(Math.max(currentPage - 1, 1), 'right')
   }
 
   const handlePageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,7 +149,7 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
       })
       setPageInput(currentPage.toString())
     } else {
-      handlePageChange(pageNumber)
+      handlePageChange(pageNumber, pageNumber > currentPage ? 'left' : 'right')
     }
   }
 
@@ -157,9 +169,9 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
     const isRightSwipe = distance < -50
 
     if (isLeftSwipe) {
-      handleNext()
-    } else if (isRightSwipe) {
       handlePrevious()
+    } else if (isRightSwipe) {
+      handleNext()
     }
   }
 
@@ -225,7 +237,13 @@ function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: strin
                 src={imagePath}
                 alt={`${viewMode === 'surah' ? selectedSurah.name : selectedPara.name} - Page ${currentPage}`}
                 fill
-                className={`object-contain transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                className={`object-contain transition-all duration-300 ${
+                  isTransitioning
+                    ? transitionDirection === 'left'
+                      ? '-translate-x-full opacity-0'
+                      : 'translate-x-full opacity-0'
+                    : 'translate-x-0 opacity-100'
+                }`}
                 priority
               />
             </div>
@@ -338,6 +356,7 @@ function PageNavigation({ currentPage, handlePrevious, handleNext, totalPages }:
   totalPages: number 
 }) {
   return (
+    
     <div className="flex items-center space-x-2">
       <Button
         onClick={handlePrevious}
@@ -348,7 +367,7 @@ function PageNavigation({ currentPage, handlePrevious, handleNext, totalPages }:
       >
         <ChevronLeft className="h-4 w-4" />
       </Button>
-      <span className="text-sm font-medium text-amber-800 dark:text-amber-200">
+      <span  className="text-sm font-medium text-amber-800 dark:text-amber-200">
         Page {currentPage} of {totalPages}
       </span>
       <Button

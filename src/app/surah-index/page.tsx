@@ -36,6 +36,10 @@ export default function SurahListPage() {
     router.push(`/read-quran/?surah=${surahName}`)
   }
 
+  const handleTranslationClick = (surahName: string) => {
+    router.push(`/verse-translation/?surah=${surahName}`)
+  }
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800">
       <main className="flex-grow container mx-auto px-4 py-8">
@@ -75,6 +79,13 @@ export default function SurahListPage() {
                       <TableCell>{surah.name}<br /><span className="text-sm text-gray-500 dark:text-gray-400">({surah.revelationPlace})</span></TableCell>
                       <TableCell>{surah.verses}</TableCell>
                       <TableCell className="text-right">
+                      <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleTranslationClick(surah.name)}
+                        >
+                          Translation
+                        </Button>
                         <Button
                           variant="outline"
                           size="sm"

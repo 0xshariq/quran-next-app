@@ -42,6 +42,7 @@ export default function GoToPage() {
   const handleParaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value ? parseInt(e.target.value, 10) : null
     setParaNumber(value)
+    setPageNumber(null) // Reset page number when para changes
   }
 
   const handlePageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +69,6 @@ export default function GoToPage() {
       return
     }
     console.log('Navigating to Para:', paraNumber, 'Page:', pageNumber)
-    // Handle page change logic here if needed
     router.push(`/read-quran?para=${paraNumber}&page=${pageNumber}`)
   }
 
@@ -98,6 +98,7 @@ export default function GoToPage() {
               placeholder={selectedParaPages ? `Page Number (1-${selectedParaPages})` : "Page Number"}
               min={1}
               max={selectedParaPages || undefined}
+              disabled={paraNumber === null}
             />
           </div>
           <Button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white dark:bg-amber-800 dark:hover:bg-amber-900">
