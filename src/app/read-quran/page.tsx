@@ -158,7 +158,7 @@ function QuranReaderContent({ initialPara, initialPage }: { initialPara: string 
   }
 
   const imagePath = viewMode === 'surah'
-    ? `/assets/surah-images/${selectedSurah.name}/${currentPage}.png`
+    ? `/assets/surah-images/${selectedSurah.number}.${selectedSurah.name}/${currentPage}.png`
     : `/assets/para-images/Para-${selectedPara.number}/${currentPage}.png`
 
   return (
