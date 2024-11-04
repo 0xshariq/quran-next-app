@@ -43,33 +43,44 @@ export default function Page() {
 // QuranReader component (uses search params)
 function QuranReader() {
   const searchParams = useSearchParams()
-  const paraParam = searchParams?.get('para')
+  const surahParam = searchParams?.get('surah')
   const pageParam = searchParams?.get('page')
 
-  return <QuranReaderContent initialPara={paraParam ?? null} initialPage={pageParam ?? null} />
+  return <QuranReaderContent initialSurah={surahParam ?? null} initialPage={pageParam ?? null} />
 }
 
 // QuranReaderContent component
-function QuranReaderContent({ initialPara, initialPage }: { initialPara: string | null; initialPage: string | null }) {
+function QuranReaderContent({ initialSurah, initialPage }: { initialSurah: string | null; initialPage: string | null }) {
   const router = useRouter()
   const [selectedSurah, setSelectedSurah] = useState<Surah>(surahs[0])
   const [selectedPara, setSelectedPara] = useState<Para>(paras[0])
   const [currentPage, setCurrentPage] = useState(1)
-  const [viewMode, setViewMode] = useState<'surah' | 'para'>('para')
+  const [viewMode, setViewMode] = useState<'surah' | 'para'>('surah')
   const [pageInput, setPageInput] = useState('1')
-  const [touchStart, setTouchStart] = useState(0)
-  const [touchEnd, setTouchEnd] = useState(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const imageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (initialPara) {
-      const paraNumber = parseInt(initialPara)
-      const para = paras.find(p => p.number === paraNumber)
-      if (para) {
-        setSelectedPara(para)
-        setViewMode('para')
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768) // Adjust this breakpoint as needed
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (initialSurah) {
+      const surah = surahs.find(s => s.name === initialSurah)
+      if (surah) {
+        setSelectedSurah(surah)
+        setViewMode('surah')
       }
     }
 
@@ -78,7 +89,7 @@ function QuranReaderContent({ initialPara, initialPage }: { initialPara: string 
       setCurrentPage(pageNumber)
       setPageInput(pageNumber.toString())
     }
-  }, [initialPara, initialPage])
+  }, [initialSurah, initialPage])
 
   useEffect(() => {
     if (viewMode === 'surah') {
@@ -131,6 +142,7 @@ function QuranReaderContent({ initialPara, initialPage }: { initialPara: string 
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null) // Reset touchEnd
     setTouchStart(e.targetTouches[0].clientX)
   }
 
@@ -139,11 +151,14 @@ function QuranReaderContent({ initialPara, initialPage }: { initialPara: string 
   }
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 75) {
-      handleNext()
-    }
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
 
-    if (touchStart - touchEnd < -75) {
+    if (isLeftSwipe) {
+      handleNext()
+    } else if (isRightSwipe) {
       handlePrevious()
     }
   }
@@ -151,7 +166,9 @@ function QuranReaderContent({ initialPara, initialPage }: { initialPara: string 
   const updateURL = (page: number) => {
     const params = new URLSearchParams()
     params.set('page', page.toString())
-    if (viewMode === 'para') {
+    if (viewMode === 'surah') {
+      params.set('surah', selectedSurah.name)
+    } else {
       params.set('para', selectedPara.number.toString())
     }
     router.push(`/read-quran?${params.toString()}`)
@@ -199,9 +216,9 @@ function QuranReaderContent({ initialPara, initialPage }: { initialPara: string 
             <div 
               className="relative w-full h-[calc(100vh-300px)] max-h-[800px] overflow-hidden"
               ref={imageRef}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
+              onTouchStart={isMobile ? handleTouchStart : undefined}
+              onTouchMove={isMobile ? handleTouchMove : undefined}
+              onTouchEnd={isMobile ? handleTouchEnd : undefined}
             >
               <Image
                 key={imagePath}
@@ -242,7 +259,7 @@ function ViewModeSelect({ viewMode, setViewMode }: { viewMode: 'surah' | 'para',
 function SurahSelect({ selectedSurah, setSelectedSurah }: { selectedSurah: Surah, setSelectedSurah: (surah: Surah) => void }) {
   return (
     <div>
-      <Label htmlFor="surah-select" className="text-amber-800 dark:text-amber-200">Surah</Label>
+      <Label htmlFor="surah-select"   className="text-amber-800 dark:text-amber-200">Surah</Label>
       <Select
         value={selectedSurah.name}
         onValueChange={(value) => {
