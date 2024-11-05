@@ -44,8 +44,9 @@ function QuranReader() {
   const surahParam = searchParams?.get('surah')
   const paraParam = searchParams?.get('para')
   const pageParam = searchParams?.get('page')
+  const initialPageParam = searchParams?.get('initialPage')
 
-  return <QuranReaderContent initialSurah={surahParam ?? null} initialPara={paraParam ?? null} initialPage={pageParam ?? null} />
+  return <QuranReaderContent initialSurah={surahParam ?? null} initialPara={paraParam ?? null} initialPage={initialPageParam ?? pageParam ?? null} />
 }
 
 function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initialSurah: string | null; initialPara: string | null; initialPage: string | null }) {
@@ -233,6 +234,7 @@ function SurahSelect({ selectedSurah, setSelectedSurah }: { selectedSurah: Surah
           <SelectValue placeholder="Select a Surah" />
         </SelectTrigger>
         <SelectContent>
+          
           {surahs.map((surah) => (
             <SelectItem key={surah.number} value={surah.name}>
               {surah.number}. {surah.name}
