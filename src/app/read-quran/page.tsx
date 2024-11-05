@@ -31,7 +31,6 @@ interface Para {
 const surahs: Surah[] = surahsData
 const paras: Para[] = parasData
 
-// Main component
 export default function Page() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -40,7 +39,6 @@ export default function Page() {
   )
 }
 
-// QuranReader component (uses search params)
 function QuranReader() {
   const searchParams = useSearchParams()
   const surahParam = searchParams?.get('surah')
@@ -50,7 +48,6 @@ function QuranReader() {
   return <QuranReaderContent initialSurah={surahParam ?? null} initialPara={paraParam ?? null} initialPage={pageParam ?? null} />
 }
 
-// QuranReaderContent component
 function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initialSurah: string | null; initialPara: string | null; initialPage: string | null }) {
   const router = useRouter()
   const [selectedSurah, setSelectedSurah] = useState<Surah>(surahs[0])
@@ -58,24 +55,8 @@ function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initia
   const [currentPage, setCurrentPage] = useState(1)
   const [viewMode, setViewMode] = useState<'surah' | 'para'>('surah')
   const [pageInput, setPageInput] = useState('1')
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [transitionDirection, setTransitionDirection] = useState<'left' | 'right' | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
 
   const imageRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768) // Adjust this breakpoint as needed
-    }
-
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   useEffect(() => {
     if (initialSurah) {
@@ -113,25 +94,19 @@ function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initia
     }
   }, [selectedPara, viewMode])
 
-  const handlePageChange = (newPage: number, direction: 'left' | 'right') => {
-    setIsTransitioning(true)
-    setTransitionDirection(direction)
+  const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage)
     setPageInput(newPage.toString())
-    setTimeout(() => {
-      setIsTransitioning(false)
-      setTransitionDirection(null)
-    }, 300)
     updateURL(newPage)
   }
 
   const handleNext = () => {
     const maxPages = viewMode === 'surah' ? selectedSurah.totalPages : selectedPara.totalPages
-    handlePageChange(Math.min(currentPage + 1, maxPages), 'left')
+    handlePageChange(Math.min(currentPage + 1, maxPages))
   }
 
   const handlePrevious = () => {
-    handlePageChange(Math.max(currentPage - 1, 1), 'right')
+    handlePageChange(Math.max(currentPage - 1, 1))
   }
 
   const handlePageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,29 +124,7 @@ function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initia
       })
       setPageInput(currentPage.toString())
     } else {
-      handlePageChange(pageNumber, pageNumber > currentPage ? 'left' : 'right')
-    }
-  }
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null) // Reset touchEnd
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > 50
-    const isRightSwipe = distance < -50
-
-    if (isLeftSwipe) {
-      handlePrevious()
-    } else if (isRightSwipe) {
-      handleNext()
+      handlePageChange(pageNumber)
     }
   }
 
@@ -228,23 +181,14 @@ function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initia
             <div 
               className="relative w-full h-[calc(100vh-300px)] max-h-[800px] overflow-hidden"
               ref={imageRef}
-              onTouchStart={isMobile ? handleTouchStart : undefined}
-              onTouchMove={isMobile ? handleTouchMove : undefined}
-              onTouchEnd={isMobile ? handleTouchEnd : undefined}
             >
               <Image
-                key={imagePath}
                 src={imagePath}
                 alt={`${viewMode === 'surah' ? selectedSurah.name : selectedPara.name} - Page ${currentPage}`}
                 fill
-                className={`object-contain transition-all duration-300 ${
-                  isTransitioning
-                    ? transitionDirection === 'left'
-                      ? '-translate-x-full opacity-0'
-                      : 'translate-x-full opacity-0'
-                    : 'translate-x-0 opacity-100'
-                }`}
+                className="object-contain"
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           </CardContent>
@@ -277,7 +221,7 @@ function ViewModeSelect({ viewMode, setViewMode }: { viewMode: 'surah' | 'para',
 function SurahSelect({ selectedSurah, setSelectedSurah }: { selectedSurah: Surah, setSelectedSurah: (surah: Surah) => void }) {
   return (
     <div>
-      <Label htmlFor="surah-select"   className="text-amber-800 dark:text-amber-200">Surah</Label>
+      <Label htmlFor="surah-select" className="text-amber-800 dark:text-amber-200">Surah</Label>
       <Select
         value={selectedSurah.name}
         onValueChange={(value) => {
@@ -356,7 +300,6 @@ function PageNavigation({ currentPage, handlePrevious, handleNext, totalPages }:
   totalPages: number 
 }) {
   return (
-    
     <div className="flex items-center space-x-2">
       <Button
         onClick={handlePrevious}
@@ -367,7 +310,7 @@ function PageNavigation({ currentPage, handlePrevious, handleNext, totalPages }:
       >
         <ChevronLeft className="h-4 w-4" />
       </Button>
-      <span  className="text-sm font-medium text-amber-800 dark:text-amber-200">
+      <span className="text-sm font-medium text-amber-800 dark:text-amber-200">
         Page {currentPage} of {totalPages}
       </span>
       <Button
