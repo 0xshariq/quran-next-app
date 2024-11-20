@@ -15,14 +15,21 @@ const menuItems = [
   { title: "Bookmarks", href: "/bookmarks" },
   { title: "Halal Jar", href: "/halal-jar" },
   { title: "Visit Hadith App", href: "/hadith-app" }
-  // { title: "Settings", href: "/settings" },
-];
+]
 
-export default function HomePage() {
+export default function Component() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800">
+      <header className="py-6 text-center">
+        <h1 className="text-3xl font-bold text-amber-800 dark:text-amber-200">
+          Welcome to the Quran App
+        </h1>
+        <p className="mt-2 text-lg text-amber-700 dark:text-amber-300">
+          Explore the wisdom of the Holy Quran
+        </p>
+      </header>
       <main className="flex-grow container mx-auto px-4 py-8 flex items-center justify-center">
         <Card className="w-full max-w-md bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-xl border-amber-200 dark:border-slate-700">
           <CardContent className="p-6 grid gap-4">
