@@ -125,17 +125,17 @@ export default function Component() {
                       </div>
                       <Button
                         type="submit"
-                        className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-colors duration-300"
+                        className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-colors duration-300 py-6 text-lg font-semibold"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center">
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                             Sending...
                           </span>
                         ) : (
                           <span className="flex items-center justify-center">
-                            <Send className="mr-2 h-4 w-4" />
+                            <Send className="mr-2 h-5 w-5" />
                             Send Message
                           </span>
                         )}
