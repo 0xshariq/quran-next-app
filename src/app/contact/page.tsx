@@ -125,17 +125,17 @@ export default function Component() {
                       </div>
                       <Button
                         type="submit"
-                        className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-colors duration-300 py-6 text-lg font-semibold"
+                        className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-all duration-300 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 active:bg-amber-800 disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center">
-                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                            <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
                             Sending...
                           </span>
                         ) : (
                           <span className="flex items-center justify-center">
-                            <Send className="mr-2 h-5 w-5" />
+                            <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                             Send Message
                           </span>
                         )}
