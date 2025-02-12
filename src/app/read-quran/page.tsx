@@ -138,10 +138,10 @@ function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initia
     }
     router.push(`/read-quran?${params.toString()}`)
   }
-
+  const BASEURL = 'https://ik.imagekit.io/yj5oyrbvwk'
   const imagePath = viewMode === 'surah'
-    ? `/assets/surah-images/${selectedSurah.number}.${selectedSurah.name}/${currentPage}.png`
-    : `/assets/para-images/Para-${selectedPara.number}/${currentPage}.png`
+    ? `${BASEURL}/surah-images${selectedSurah.number}.${selectedSurah.name}/${currentPage}.png`
+    : `${BASEURL}/para-images/Para-${selectedPara.number}/${currentPage}.png`
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">

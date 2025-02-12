@@ -1,87 +1,87 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react'
+import emailjs from '@emailjs/browser'
+import { useToast } from '@/hooks/use-toast'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import emailjs from "@emailjs/browser";
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 
-export default function Component() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const { toast } = useToast();
-  const formRef = useRef<HTMLFormElement>(null);
+export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const { toast } = useToast()
+  const form = useForm({
+    resolver: zodResolver(z.object({
+      name: z.string().min(2, {
+        message: "Name must be at least 6 characters.",
+      }),
+      email: z.string().email({
+        message: "Please enter a valid email address.",
+      }),
+      message: z.string().min(10, {
+        message: "Message must be at least 10 characters.",
+      }),
+    })),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  })
 
   useEffect(() => {
-    setIsVisible(true);
-    emailjs.init(process.env.NEXT_PUBLIC_USER_ID!);
-  }, []);
+    setIsVisible(true)
+    emailjs.init(process.env.NEXT_PUBLIC_USER_ID!)
+  }, [])
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (isSubmitting) return; // Prevent multiple submissions
-
-    setIsSubmitting(true);
-
-    const form = event.currentTarget;
-    const name = form.elements.namedItem("name") as HTMLInputElement;
-    const email = form.elements.namedItem("email") as HTMLInputElement;
-    const message = form.elements.namedItem("message") as HTMLTextAreaElement;
-
-    if (!name.value || !email.value || !message.value) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true)
     try {
       await emailjs.send(
         process.env.NEXT_PUBLIC_SERVICE_ID!,
         process.env.NEXT_PUBLIC_TEMPLATE_ID!,
         {
-          from_name: name.value,
-          from_email: email.value,
-          message: message.value,
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
         }
-      );
+      )
       toast({
         title: "Message Sent",
         description: "Thank you for your message. We'll get back to you soon.",
-      });
-      if (formRef.current) {
-        formRef.current.reset();
-      }
+      })
+      form.reset()
     } catch (error) {
-      console.error("Failed to send email:", error);
+      console.error("Failed to send email:", error)
       toast({
         title: "Error",
         description: "Failed to send message. Please try again later.",
         variant: "destructive",
-      });
+      })
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
@@ -105,116 +105,89 @@ export default function Component() {
                 </CardHeader>
                 <CardContent>
                   <div className="grid md:grid-cols-2 gap-8">
-                    <form
-                      ref={formRef}
-                      onSubmit={handleSubmit}
-                      className="space-y-4"
-                    >
-                      <div>
-                        <Label htmlFor="name">Your Name</Label>
-                        <Input
-                          id="name"
+                    <Form {...form}>
+                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                        <FormField
+                          control={form.control}
                           name="name"
-                          required
-                          className="bg-amber-50 dark:bg-slate-700 border-amber-200 dark:border-slate-600 transition-colors duration-300"
-                          aria-describedby="name-description"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Your Name</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  {...field} 
+                                  className="bg-amber-50 dark:bg-slate-700 border-amber-200 dark:border-slate-600 transition-colors duration-300"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                        <p id="name-description" className="sr-only">
-                          Please enter your full name
-                        </p>
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Your Email</Label>
-                        <Input
-                          id="email"
+                        <FormField
+                          control={form.control}
                           name="email"
-                          type="email"
-                          required
-                          className="bg-amber-50 dark:bg-slate-700 border-amber-200 dark:border-slate-600 transition-colors duration-300"
-                          aria-describedby="email-description"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Your Email</FormLabel>
+                              <FormControl>
+                                <Input 
+                                  {...field} 
+                                  type="email"
+                                  className="bg-amber-50 dark:bg-slate-700 border-amber-200 dark:border-slate-600 transition-colors duration-300"
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                        <p id="email-description" className="sr-only">
-                          Please enter a valid email address
-                        </p>
-                      </div>
-                      <div>
-                        <Label htmlFor="message">Your Message</Label>
-                        <Textarea
-                          id="message"
+                        <FormField
+                          control={form.control}
                           name="message"
-                          required
-                          className="bg-amber-50 dark:bg-slate-700 border-amber-200 dark:border-slate-600 transition-colors duration-300"
-                          rows={5}
-                          aria-describedby="message-description"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Your Message</FormLabel>
+                              <FormControl>
+                                <Textarea 
+                                  {...field} 
+                                  className="bg-amber-50 dark:bg-slate-700 border-amber-200 dark:border-slate-600 transition-colors duration-300"
+                                  rows={5}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                        <p id="message-description" className="sr-only">
-                          Please enter your message
-                        </p>
-                      </div>
-                      <Button
-                        type="submit"
-                        className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-all duration-300 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 active:bg-amber-800 disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <span className="flex items-center justify-center">
-                            <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
-                            Sending...
-                          </span>
-                        ) : (
-                          <span className="flex items-center justify-center">
-                            <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                            Send Message
-                          </span>
-                        )}
-                      </Button>
-                    </form>
+                        <Button
+                          type="submit"
+                          className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-all duration-300 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50 active:bg-amber-800 disabled:opacity-50 disabled:cursor-not-allowed"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <span className="flex items-center justify-center">
+                              <Loader2 className="mr-2 h-4 w-4 sm:h-5 sm:w-5 animate-spin" />
+                              Sending...
+                            </span>
+                          ) : (
+                            <span className="flex items-center justify-center">
+                              <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                              Send Message
+                            </span>
+                          )}
+                        </Button>
+                      </form>
+                    </Form>
                     <div className="space-y-6">
                       <div>
                         <h3 className="text-xl font-semibold text-amber-800 dark:text-amber-200 mb-2 transition-colors duration-300">
                           Contact Information
                         </h3>
                         <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300">
-                          Feel free to reach out to us using the following
-                          contact details:
+                          Feel free to reach out to us using the following contact details:
                         </p>
                       </div>
-                      <motion.div
-                        className="flex items-center text-amber-700 dark:text-amber-300 transition-colors duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <Mail className="h-5 w-5 mr-2" aria-hidden="true" />
-                        <span>khanshariq92213@gmail.com</span>
-                      </motion.div>
-                      <motion.div
-                        className="flex items-center text-amber-700 dark:text-amber-300 transition-colors duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <Phone className="h-5 w-5 mr-2" aria-hidden="true" />
-                        <span>+91 72081 79779</span>
-                      </motion.div>
-                      <motion.div
-                        className="flex items-center text-amber-700 dark:text-amber-300 transition-colors duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        }}
-                      >
-                        <MapPin className="h-5 w-5 mr-2" aria-hidden="true" />
-                        <span>Mumbai, India - 400612</span>
-                      </motion.div>
+                      <ContactInfo icon={Mail} text="khanshariq92213@gmail.com" />
+                      <ContactInfo icon={Phone} text="+91 72081 79779" />
+                      <ContactInfo icon={MapPin} text="Mumbai, India - 400612" />
                     </div>
                   </div>
                 </CardContent>
@@ -224,5 +197,18 @@ export default function Component() {
         </AnimatePresence>
       </main>
     </div>
-  );
+  )
+}
+
+function ContactInfo({ icon: Icon, text }: { icon: React.ElementType; text: string }) {
+  return (
+    <motion.div
+      className="flex items-center text-amber-700 dark:text-amber-300 transition-colors duration-300"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    >
+      <Icon className="h-5 w-5 mr-2" aria-hidden="true" />
+      <span>{text}</span>
+    </motion.div>
+  )
 }
