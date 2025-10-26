@@ -1,7 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['cdn.islamic.network','ik.imagekit.io'], // Add this line to allow images from the specified domain
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'cdn.islamic.network',
+          port: '',
+          pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'ik.imagekit.io',
+          port: '',
+          pathname: '/**',
+        },
+      ],
     },
   };
 
