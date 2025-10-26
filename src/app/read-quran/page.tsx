@@ -138,7 +138,7 @@ function QuranReaderContent({ initialSurah, initialPara, initialPage }: { initia
     }
     router.push(`/read-quran?${params.toString()}`)
   }
-  const BASEURL = 'https://ik.imagekit.io/yj5oyrbvwk'
+  const BASEURL = process.env.NEXT_PUBLIC_IMAGEKIT_URL;
   const imagePath = viewMode === 'surah'
     ? `${BASEURL}/surah-images${selectedSurah.number}.${selectedSurah.name}/${currentPage}.png`
     : `${BASEURL}/para-images/Para-${selectedPara.number}/${currentPage}.png`
