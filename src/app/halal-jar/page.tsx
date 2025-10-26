@@ -62,7 +62,7 @@ export default function HalalJar() {
           {currentVerse && (
             <div className="space-y-6">
               <div className="space-y-4">
-                <h2 className="text-xl font-semibold text-amber-800 dark:text-amber-200">{currentVerse.verse}</h2>
+                <h2 className="text-xl font-semibold text-amber-800 dark:text-amber-200 font-amiri">{currentVerse.verse}</h2>
                 <p className="text-right font-arabic text-lg text-amber-900 dark:text-amber-100">{currentVerse.text}</p>
                 <p className="italic text-amber-700 dark:text-amber-300">{currentVerse.translation}</p>
               </div>

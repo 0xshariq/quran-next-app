@@ -1,13 +1,17 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Book, Menu, Sun, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu'
 
 export default function Navbar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
@@ -42,8 +46,8 @@ export default function Navbar() {
     <header className="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-amber-200 dark:border-slate-700 shadow-md">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
-            <SheetTrigger asChild>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
@@ -52,67 +56,40 @@ export default function Navbar() {
               >
                 <Menu className="h-6 w-6" />
               </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col h-full">
-                <div className="flex items-center mb-6">
-                  <h2 className="text-3xl font-semibold">Quran App</h2>
-                </div>
-                <div className="space-y-4">
-                  <Link href="/">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Home
-                    </Button>
-                  </Link>
-                  <Link href="/read-quran">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Read Quran
-                    </Button>
-                  </Link>
-                  <Link href="/hadith-app">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Visit Hadith App
-                    </Button>
-                  </Link>
-                  <Link href="/halal-jar">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Halal Jar
-                    </Button>
-                  </Link>
-                  <Link href="/verse-translation">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Verse Translation
-                    </Button>
-                  </Link>
-                  <Link href="/go-to">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Go to
-                    </Button>
-                    </Link>
-                  <Link href="/surah-index">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Surah Index
-                    </Button>
-                  </Link>
-                  <Link href="/para-index">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Para Index
-                    </Button>
-                  </Link>
-                  <Link href="/bookmarks">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Bookmarks
-                    </Button>
-                  </Link>
-                  <Link href="/help">
-                    <Button variant="ghost" className="w-full justify-start">
-                      Help & FAQ
-                    </Button>
-                  </Link>
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" sideOffset={8}>
+              <DropdownMenuItem asChild>
+                <Link href="/">Home</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/read-quran">Read Quran</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/hadith-app">Visit Hadith App</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/halal-jar">Halal Jar</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/verse-translation">Verse Translation</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/go-to">Go to</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/surah-index">Surah Index</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/para-index">Para Index</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/bookmarks">Bookmarks</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/help">Help & FAQ</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <div className="text-center">
             <h1 className="text-3xl font-bold flex items-center text-amber-800 dark:text-amber-200">
               <Book className="mr-2" aria-hidden="true" /> Quran App
