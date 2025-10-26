@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react'
 import emailjs from '@emailjs/browser'
-import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useForm } from 'react-hook-form'
+import { toast } from "sonner"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import {
@@ -24,19 +24,20 @@ import {
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const { toast } = useToast()
+  const formSchema = z.object({
+    name: z.string().min(2, {
+      message: "Name must be at least 6 characters.",
+    }),
+    email: z.string().email({
+      message: "Please enter a valid email address.",
+    }),
+    message: z.string().min(10, {
+      message: "Message must be at least 10 characters.",
+    }),
+  })
+
   const form = useForm({
-    resolver: zodResolver(z.object({
-      name: z.string().min(2, {
-        message: "Name must be at least 6 characters.",
-      }),
-      email: z.string().email({
-        message: "Please enter a valid email address.",
-      }),
-      message: z.string().min(10, {
-        message: "Message must be at least 10 characters.",
-      }),
-    })),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -61,18 +62,11 @@ export default function ContactPage() {
           message: values.message,
         }
       )
-      toast({
-        title: "Message Sent",
-        description: "Thank you for your message. We'll get back to you soon.",
-      })
+      toast.success("Message Sent — Thank you for your message. We'll get back to you soon.")
       form.reset()
     } catch (error) {
       console.error("Failed to send email:", error)
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again later.",
-        variant: "destructive",
-      })
+      toast.error("Failed to send message. Please try again later.")
     } finally {
       setIsSubmitting(false)
     }

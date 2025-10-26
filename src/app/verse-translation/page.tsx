@@ -1,9 +1,8 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback, useRef, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import Image from 'next/image'
-import { useToast } from '@/hooks/use-toast'
+import { useState, useEffect, useCallback, useRef, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
@@ -13,20 +12,20 @@ import {
   SkipBack,
   SkipForward,
   Repeat,
-  Bookmark
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+  Bookmark,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Slider } from '@/components/ui/slider'
+} from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -36,208 +35,206 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog'
-import reciters from '@/data/reciter.json'
-import surahs from '@/data/surah.json'
+} from "@/components/ui/alert-dialog";
+import reciters from "@/data/reciter.json";
+import surahs from "@/data/surah.json";
+import { toast } from "sonner";
 
 interface VerseData {
-  text: string
-  translation: string
+  text: string;
+  translation: string;
   surah: {
-    name: string
-    englishName: string
-    englishNameTranslation: string
-    revelationType: string
-    numberOfAyahs: number
-    number: number
-  }
+    name: string;
+    englishName: string;
+    englishNameTranslation: string;
+    revelationType: string;
+    numberOfAyahs: number;
+    number: number;
+  };
 }
 
 interface BookmarkData {
-  id: number
-  surah: string
-  verse: number
-  text: string
+  id: number;
+  surah: string;
+  verse: number;
+  text: string;
 }
 
 interface Reciter {
-  id: number
-  name: string
-  subfolder: string
+  id: number;
+  name: string;
+  subfolder: string;
 }
 
 interface Surah {
-  number: number
-  name: string
-  englishName: string
-  verses: number
-  revelationPlace: string
+  number: number;
+  name: string;
+  englishName: string;
+  verses: number;
+  revelationPlace: string;
 }
 
 const getSurahInfo = (surahName: string): Surah => {
-  const surah = (surahs as Surah[]).find((s) => s.name === surahName)
+  const surah = (surahs as Surah[]).find((s) => s.name === surahName);
   return (
     surah || {
       number: 1,
-      name: 'Al-Fatihah',
-      englishName: 'The Opening',
-      revelationPlace: 'Meccan',
+      name: "Al-Fatihah",
+      englishName: "The Opening",
+      revelationPlace: "Meccan",
       verses: 7,
     }
-  )
-}
+  );
+};
 
 const formatTime = (time: number) => {
-  const minutes = Math.floor(time / 60)
-  const seconds = Math.floor(time % 60)
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-}
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+};
 
 function VerseTranslationContent() {
-  const { toast } = useToast()
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const [selectedLanguage, setSelectedLanguage] = useState('en')
-  const [selectedQari, setSelectedQari] = useState(1)
-  const [isLooping, setIsLooping] = useState(false)
-  const [showNextVersePrompt, setShowNextVersePrompt] = useState(false)
-  const [timeRemaining, setTimeRemaining] = useState(3)
-  const [isLoading, setIsLoading] = useState(false)
-  const [verseData, setVerseData] = useState<VerseData | null>(null)
-  const [versePictureUrl, setVersePictureUrl] = useState('')
-  const [audioUrl, setAudioUrl] = useState<string | null>(null)
-  const [bookmarks, setBookmarks] = useState<BookmarkData[]>([])
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+  const [selectedQari, setSelectedQari] = useState(1);
+  const [isLooping, setIsLooping] = useState(false);
+  const [showNextVersePrompt, setShowNextVersePrompt] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(3);
+  const [isLoading, setIsLoading] = useState(false);
+  const [verseData, setVerseData] = useState<VerseData | null>(null);
+  const [versePictureUrl, setVersePictureUrl] = useState("");
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [bookmarks, setBookmarks] = useState<BookmarkData[]>([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const [currentSurah, setCurrentSurah] = useState('')
-  const [currentVerse, setCurrentVerse] = useState(1)
-
-  useEffect(() => {
-    const surah = searchParams?.get('surah') || 'Al-Fatihah'
-    const verse = parseInt(searchParams?.get('verse') || '1', 10)
-    setCurrentSurah(surah)
-    setCurrentVerse(verse)
-  }, [searchParams])
+  const [currentSurah, setCurrentSurah] = useState("");
+  const [currentVerse, setCurrentVerse] = useState(1);
 
   useEffect(() => {
-    fetchVerseData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSurah, currentVerse, selectedLanguage, selectedQari])
+    const surah = searchParams?.get("surah") || "Al-Fatihah";
+    const verse = parseInt(searchParams?.get("verse") || "1", 10);
+    setCurrentSurah(surah);
+    setCurrentVerse(verse);
+  }, [searchParams]);
 
   useEffect(() => {
-    const savedBookmarks = localStorage.getItem('quranBookmarks')
+    fetchVerseData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSurah, currentVerse, selectedLanguage, selectedQari]);
+
+  useEffect(() => {
+    const savedBookmarks = localStorage.getItem("quranBookmarks");
     if (savedBookmarks) {
-      setBookmarks(JSON.parse(savedBookmarks))
+      setBookmarks(JSON.parse(savedBookmarks));
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (showNextVersePrompt) {
       timerRef.current = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
-            clearInterval(timerRef.current!)
-            handleNextVerse()
-            return 0
+            clearInterval(timerRef.current!);
+            handleNextVerse();
+            return 0;
           }
-          return prev - 1
-        })
-      }, 1000)
+          return prev - 1;
+        });
+      }, 1000);
     } else {
       if (timerRef.current) {
-        clearInterval(timerRef.current)
+        clearInterval(timerRef.current);
       }
     }
 
     return () => {
       if (timerRef.current) {
-        clearInterval(timerRef.current)
+        clearInterval(timerRef.current);
       }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showNextVersePrompt])
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showNextVersePrompt]);
 
   useEffect(() => {
-    router.push(`/verse-translation/?surah=${currentSurah}&verse=${currentVerse}`)
-  }, [currentSurah, currentVerse, router])
+    router.push(
+      `/verse-translation/?surah=${currentSurah}&verse=${currentVerse}`
+    );
+  }, [currentSurah, currentVerse, router]);
 
   useEffect(() => {
     if (audioUrl) {
-      audioRef.current = new Audio(audioUrl)
-      audioRef.current.addEventListener('ended', handleAudioEnd)
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
-      audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata)
+      audioRef.current = new Audio(audioUrl);
+      audioRef.current.addEventListener("ended", handleAudioEnd);
+      audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+      audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
     }
 
     return () => {
       if (audioRef.current) {
-        audioRef.current.removeEventListener('ended', handleAudioEnd)
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
-        audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata)
-        audioRef.current.pause()
+        audioRef.current.removeEventListener("ended", handleAudioEnd);
+        audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+        audioRef.current.removeEventListener(
+          "loadedmetadata",
+          handleLoadedMetadata
+        );
+        audioRef.current.pause();
       }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioUrl])
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audioUrl]);
 
   const fetchVerseData = useCallback(async () => {
     if (!currentVerse || isNaN(currentVerse)) {
-      toast({
-        title: 'Invalid Input',
-        description: 'Please enter a valid verse number',
-        variant: 'destructive',
-      })
-      return
+      toast.warning("Please enter a valid verse number");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
-      const lang = selectedLanguage === 'ur' ? 'ur.ahmedali' : 'en.asad'
-      const surahInfo = getSurahInfo(currentSurah)
+      const lang = selectedLanguage === "ur" ? "ur.ahmedali" : "en.asad";
+      const surahInfo = getSurahInfo(currentSurah);
       const response = await fetch(
         `https://api.alquran.cloud/v1/ayah/${surahInfo.number}:${currentVerse}/${lang}`
-      )
+      );
       if (!response.ok) {
-        throw new Error('Invalid verse number or API error')
+        throw new Error("Invalid verse number or API error");
       }
 
-      const result = await response.json()
-      setVerseData(result.data)
+      const result = await response.json();
+      setVerseData(result.data);
       setVersePictureUrl(
         `https://cdn.islamic.network/quran/images/${surahInfo.number}_${currentVerse}.png`
-      )
+      );
 
       const selectedReciter = reciters.find(
         (r: Reciter) => r.id === selectedQari
-      )
+      );
       if (selectedReciter) {
         const audioUrl = `https://everyayah.com/data/${
           selectedReciter.subfolder
-        }/${surahInfo.number.toString().padStart(3, '0')}${currentVerse
+        }/${surahInfo.number.toString().padStart(3, "0")}${currentVerse
           .toString()
-          .padStart(3, '0')}.mp3`
-        setAudioUrl(audioUrl)
+          .padStart(3, "0")}.mp3`;
+        setAudioUrl(audioUrl);
       }
     } catch (err) {
-      toast({
-        title: 'Error',
-        description:
-          err instanceof Error ? err.message : 'An unexpected error occurred',
-        variant: 'destructive',
-      })
-      setVerseData(null)
-      setAudioUrl(null)
+      toast.error(
+        err instanceof Error ? err.message : "An unexpected error occurred"
+      );
+      setVerseData(null);
+      setAudioUrl(null);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [currentSurah, currentVerse, selectedLanguage, selectedQari, toast])
+  }, [currentSurah, currentVerse, selectedLanguage, selectedQari]);
 
   const addBookmark = useCallback(() => {
     if (verseData) {
@@ -246,102 +243,96 @@ function VerseTranslationContent() {
         surah: currentSurah,
         verse: currentVerse,
         text: verseData.text,
-      }
-      const updatedBookmarks = [...bookmarks, newBookmark]
-      setBookmarks(updatedBookmarks)
-      localStorage.setItem('quranBookmarks', JSON.stringify(updatedBookmarks))
-      toast({
-        title: 'Bookmark Added',
-        description: `Surah ${currentSurah}, Verse ${currentVerse} has been bookmarked.`,
-      })
+      };
+      const updatedBookmarks = [...bookmarks, newBookmark];
+      setBookmarks(updatedBookmarks);
+      localStorage.setItem("quranBookmarks", JSON.stringify(updatedBookmarks));
+      toast.success(
+        `Surah ${currentSurah}, Verse ${currentVerse} has been bookmarked.`
+      );
     }
-  }, [bookmarks, currentSurah, currentVerse, verseData, toast])
+  }, [bookmarks, currentSurah, currentVerse, verseData]);
 
   const isBookmarked = bookmarks.some(
     (b) => b.surah === currentSurah && b.verse === currentVerse
-  )
-
+  );
 
   const handleReset = useCallback(() => {
-    setCurrentSurah('Al-Fatihah')
-    setCurrentVerse(1)
-  }, [])
+    setCurrentSurah("Al-Fatihah");
+    setCurrentVerse(1);
+  }, []);
 
   const handleNextVerse = useCallback(() => {
-    const currentSurahInfo = getSurahInfo(currentSurah)
+    const currentSurahInfo = getSurahInfo(currentSurah);
     if (currentVerse < currentSurahInfo.verses) {
-      setCurrentVerse((prev) => prev + 1)
+      setCurrentVerse((prev) => prev + 1);
     } else {
       const nextSurahIndex =
-        (surahs as Surah[]).findIndex((s) => s.name === currentSurah) + 1
+        (surahs as Surah[]).findIndex((s) => s.name === currentSurah) + 1;
       if (nextSurahIndex < surahs.length) {
-        setCurrentSurah(surahs[nextSurahIndex].name)
-        setCurrentVerse(1)
+        setCurrentSurah(surahs[nextSurahIndex].name);
+        setCurrentVerse(1);
       }
     }
-    setShowNextVersePrompt(false)
-  }, [currentSurah, currentVerse])
+    setShowNextVersePrompt(false);
+  }, [currentSurah, currentVerse]);
 
   const handlePreviousVerse = useCallback(() => {
     if (currentVerse > 1) {
-      setCurrentVerse((prev) => prev - 1)
+      setCurrentVerse((prev) => prev - 1);
     } else {
       const prevSurahIndex =
-        (surahs as Surah[]).findIndex((s) => s.name === currentSurah) - 1
+        (surahs as Surah[]).findIndex((s) => s.name === currentSurah) - 1;
       if (prevSurahIndex >= 0) {
-        setCurrentSurah(surahs[prevSurahIndex].name)
-        setCurrentVerse(surahs[prevSurahIndex].verses)
+        setCurrentSurah(surahs[prevSurahIndex].name);
+        setCurrentVerse(surahs[prevSurahIndex].verses);
       }
     }
-  }, [currentSurah, currentVerse])
+  }, [currentSurah, currentVerse]);
 
   const handleAudioEnd = useCallback(() => {
     if (isLooping && audioRef.current) {
-      audioRef.current.currentTime = 0
-      audioRef.current.play()
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
     } else {
-      setIsPlaying(false)
-      setShowNextVersePrompt(true)
+      setIsPlaying(false);
+      setShowNextVersePrompt(true);
     }
-  }, [isLooping])
+  }, [isLooping]);
 
   const handleTimeUpdate = useCallback(() => {
     if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime)
+      setCurrentTime(audioRef.current.currentTime);
     }
-  }, [])
+  }, []);
 
   const handleLoadedMetadata = useCallback(() => {
     if (audioRef.current) {
-      setDuration(audioRef.current.duration)
+      setDuration(audioRef.current.duration);
     }
-  }, [])
+  }, []);
 
   const toggleAudio = useCallback(() => {
     if (audioRef.current) {
       if (isPlaying) {
-        audioRef.current.pause()
+        audioRef.current.pause();
       } else {
         audioRef.current.play().catch((error) => {
-          console.error('Audio playback failed:', error)
-          
-          toast({
-            title: 'Playback Error',
-            description: 'Unable to play audio. Please try again.',
-            variant: 'destructive',
-          })
-        })
+          console.error("Audio playback failed:", error);
+
+          toast.error("Unable to play audio. Please try again.");
+        });
       }
-      setIsPlaying(!isPlaying)
+      setIsPlaying(!isPlaying);
     }
-  }, [isPlaying, toast])
+  }, [isPlaying]);
 
   const handleSeek = useCallback((value: number[]) => {
     if (audioRef.current) {
-      audioRef.current.currentTime = value[0]
-      setCurrentTime(value[0])
+      audioRef.current.currentTime = value[0];
+      setCurrentTime(value[0]);
     }
-  }, [])
+  }, []);
 
   const Controls = () => (
     <div className="flex flex-wrap justify-between items-center gap-4">
@@ -352,8 +343,8 @@ function VerseTranslationContent() {
         <Select
           value={currentSurah}
           onValueChange={(value) => {
-            setCurrentSurah(value)
-            setCurrentVerse(1)
+            setCurrentSurah(value);
+            setCurrentVerse(1);
           }}
         >
           <SelectTrigger id="surah-input" className="w-full">
@@ -362,7 +353,7 @@ function VerseTranslationContent() {
           <SelectContent>
             {(surahs as Surah[]).map((surah) => (
               <SelectItem key={surah.number} value={surah.name}>
-                {surah.number})&nbsp;{surah.name} ({surah.verses}) -{' '}
+                {surah.number})&nbsp;{surah.name} ({surah.verses}) -{" "}
                 {surah.englishName}
               </SelectItem>
             ))}
@@ -401,12 +392,12 @@ function VerseTranslationContent() {
         onClick={isBookmarked ? () => {} : addBookmark}
         variant="outline"
         className={`border-amber-300 dark:border-slate-600 ${
-          isBookmarked ? 'text-amber-500' : 'text-amber-700 dark:text-amber-300'
+          isBookmarked ? "text-amber-500" : "text-amber-700 dark:text-amber-300"
         }`}
         disabled={isBookmarked}
       >
         <Bookmark className="h-4 w-4 mr-2" aria-hidden="true" />
-        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
+        {isBookmarked ? "Bookmarked" : "Bookmark"}
       </Button>
       <Button
         onClick={handleReset}
@@ -437,7 +428,7 @@ function VerseTranslationContent() {
         </Select>
       </div>
     </div>
-  )
+  );
 
   const VerseDisplay = () => (
     <div className="text-center">
@@ -461,7 +452,7 @@ function VerseTranslationContent() {
         {verseData?.translation}
       </p>
     </div>
-  )
+  );
 
   const NavigationButtons = () => (
     <div className="flex justify-between mt-4">
@@ -477,7 +468,7 @@ function VerseTranslationContent() {
         <ChevronRight className="h-5 w-5 ml-2" aria-hidden="true" />
       </Button>
     </div>
-  )
+  );
 
   const AudioControls = () => (
     <div className="mt-4 flex flex-col items-center">
@@ -495,7 +486,7 @@ function VerseTranslationContent() {
           variant="outline"
           size="icon"
           className="text-amber-600 dark:text-amber-400"
-          aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
+          aria-label={isPlaying ? "Pause audio" : "Play audio"}
         >
           {isPlaying ? (
             <Pause className="h-6 w-6" />
@@ -510,7 +501,7 @@ function VerseTranslationContent() {
           onClick={() => setIsLooping(!isLooping)}
           variant="outline"
           size="icon"
-          className={isLooping ? 'text-amber-600 dark:text-amber-400' : ''}
+          className={isLooping ? "text-amber-600 dark:text-amber-400" : ""}
         >
           <Repeat className="h-4 w-4" />
         </Button>
@@ -527,7 +518,7 @@ function VerseTranslationContent() {
         <span className="text-sm text-gray-500">{formatTime(duration)}</span>
       </div>
     </div>
-  )
+  );
 
   const AlertBox = () => (
     <AlertDialog
@@ -540,7 +531,7 @@ function VerseTranslationContent() {
             Next Verse
           </AlertDialogTitle>
           <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
-            Do you want to go to the next verse? (Automatically proceeding in{' '}
+            Do you want to go to the next verse? (Automatically proceeding in{" "}
             {timeRemaining} seconds)
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -560,45 +551,45 @@ function VerseTranslationContent() {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
-          <CardContent className="p-6 space-y-6">
-            <Controls />
+      <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
+        <main className="flex-grow container mx-auto px-4 py-8">
+          <Card className="w-full max-w-4xl mx-auto bg-white dark:bg-slate-800 shadow-lg border-amber-200 dark:border-slate-700">
+            <CardContent className="p-6 space-y-6">
+              <Controls />
 
-            {isLoading && (
-              <div className="text-center">
-                <RefreshCw className="h-8 w-8 animate-spin mx-auto text-amber-600 dark:text-amber-400" />
-                <p className="mt-2 text-gray-600 dark:text-gray-400">
-                  Loading...
-                </p>
-              </div>
-            )}
+              {isLoading && (
+                <div className="text-center">
+                  <RefreshCw className="h-8 w-8 animate-spin mx-auto text-amber-600 dark:text-amber-400" />
+                  <p className="mt-2 text-gray-600 dark:text-gray-400">
+                    Loading...
+                  </p>
+                </div>
+              )}
 
-            {verseData && !isLoading && (
-              <>
-                <VerseDisplay />
-                <NavigationButtons />
-                <AudioControls />
-              </>
-            )}
-          </CardContent>
-        </Card>
-      </main>
-      
-      <AlertBox />
-    </div>
+              {verseData && !isLoading && (
+                <>
+                  <VerseDisplay />
+                  <NavigationButtons />
+                  <AudioControls />
+                </>
+              )}
+            </CardContent>
+          </Card>
+        </main>
+
+        <AlertBox />
+      </div>
     </Suspense>
-  )
+  );
 }
 export default function VerseTranslation() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <VerseTranslationContent />
     </Suspense>
-  )
+  );
 }

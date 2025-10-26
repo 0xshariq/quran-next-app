@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { toast } from '@/hooks/use-toast'
+import { toast } from "sonner"
 import parasData from '@/data/para.json'
 
 interface Para {
@@ -53,19 +53,11 @@ export default function GoToPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (paraNumber === null || pageNumber === null) {
-      toast({
-        title: "Error",
-        description: "Please enter both Para and Page numbers.",
-        variant: "destructive",
-      })
+      toast.error("Please enter both Para and Page numbers.")
       return
     }
     if (paraNumber < 1 || paraNumber > 30 || pageNumber < 1 || (selectedParaPages && pageNumber > selectedParaPages)) {
-      toast({
-        title: "Invalid Input",
-        description: `Para number should be between 1 and 30, and Page number should be between 1 and ${selectedParaPages || 'the total pages for the selected para'}.`,
-        variant: "destructive",
-      })
+      toast.error(`Para number should be between 1 and 30, and Page number should be between 1 and ${selectedParaPages || 'the total pages for the selected para'}.`)
       return
     }
     console.log('Navigating to Para:', paraNumber, 'Page:', pageNumber)

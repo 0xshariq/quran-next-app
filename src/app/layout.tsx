@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "./component/Footer";
-import Navbar from "./component/Navbar";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import {
   ClerkProvider,
   SignInButton,
@@ -11,6 +11,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -53,6 +54,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Toaster position="bottom-right" richColors />
         </body>
       </html>
     </ClerkProvider>

@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { Search } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -13,32 +13,33 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import surahs from '@/data/surah.json'
+} from "@/components/ui/table";
+import surahs from "@/data/surah.json";
 
 interface Surah {
-  number: number
-  name: string
-  verses: number
-  revelationPlace: string
+  number: number;
+  name: string;
+  verses: number;
+  revelationPlace: string;
 }
 
 export default function SurahListPage() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const router = useRouter()
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
 
-  const filteredSurahs = surahs.filter((surah: Surah) =>
-    surah.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    surah.number.toString().includes(searchTerm)
-  )
+  const filteredSurahs = surahs.filter(
+    (surah: Surah) =>
+      surah.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      surah.number.toString().includes(searchTerm)
+  );
 
   const handleReadClick = (surahName: string) => {
-    router.push(`/read-quran/?surah=${surahName}`)
-  }
+    router.push(`/read-quran/?surah=${surahName}`);
+  };
 
   const handleTranslationClick = (surahName: string) => {
-    router.push(`/verse-translation/?surah=${surahName}`)
-  }
+    router.push(`/verse-translation/?surah=${surahName}`);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-amber-50 to-amber-100 dark:from-slate-900 dark:to-slate-800">
@@ -75,11 +76,19 @@ export default function SurahListPage() {
                 <TableBody>
                   {filteredSurahs.map((surah: Surah) => (
                     <TableRow key={surah.number}>
-                      <TableCell className="font-medium">{surah.number}</TableCell>
-                      <TableCell>{surah.name}<br /><span className="text-sm text-gray-500 dark:text-gray-400">({surah.revelationPlace})</span></TableCell>
+                      <TableCell className="font-medium">
+                        {surah.number}
+                      </TableCell>
+                      <TableCell>
+                        {surah.name}
+                        <br />
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                          ({surah.revelationPlace})
+                        </span>
+                      </TableCell>
                       <TableCell>{surah.verses}</TableCell>
                       <TableCell className="text-right">
-                      <Button
+                        <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleTranslationClick(surah.name)}
@@ -103,5 +112,5 @@ export default function SurahListPage() {
         </Card>
       </main>
     </div>
-  )
+  );
 }
